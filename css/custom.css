@@ -1,39 +1,63 @@
-/* 1. 全局背景优化：让背景图固定不动，产生深邃感 */
+/* 1. 背景遮罩：让背景图稍微暗一点，衬托出星空的深邃，同时让前景文字更清晰 */
 #web_bg {
-    background-attachment: fixed !important;
-    filter: brightness(0.8); /* 稍微调暗背景，让文字更清晰 */
+    filter: brightness(0.6) !important; 
 }
 
-/* 2. 打造半透明“星空之镜”卡片 */
+/* 2. 核心卡片样式：改用深色半透明（像深海玻璃），而不是浅色透明 */
 #aside-content .card-widget, 
 #post, 
 #page, 
 #archive, 
 .recent-post-item {
-    background: rgba(10, 15, 30, 0.45) !important; /* 极深的半透明蓝黑 */
-    backdrop-filter: blur(12px) saturate(180%); /* 毛玻璃效果，星光会在背后晕开 */
-    -webkit-backdrop-filter: blur(12px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.1); /* 极其细微的白边，像银河的边缘 */
-    border-radius: 12px;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8) !important;
+    background: rgba(10, 15, 30, 0.5) !important; /* 降低亮度，增加深邃感 */
+    backdrop-filter: blur(15px) saturate(150%); /* 增加毛玻璃强度 */
+    -webkit-backdrop-filter: blur(15px) saturate(150%);
+    border: 1px solid rgba(255, 255, 255, 0.1) !important; /* 细腻的白边，像星光边缘 */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6) !important;
 }
 
-/* 3. 让文字像星星一样微弱发光 */
-#site-title, #site-subtitle, .article-title, .menu-item {
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-    color: #f0f0f0 !important;
+/* 3. 文字颜色适配：全部改为浅色系 */
+/* 主标题、文章标题 */
+.article-title, .site-name, #site-title, #site-subtitle, .card-widget .item-headline span {
+    color: #ffffff !important;
+    text-shadow: 0 2px 10px rgba(255, 255, 255, 0.2); /* 淡淡的荧光感 */
 }
 
-/* 4. 侧边栏和正文文字颜色调整 */
-#aside-content .card-widget .item-headline,
+/* 正文、摘要、侧边栏小字 */
 #aside-content .card-widget .content,
-.recent-post-content,
+.recent-post-item .article-meta,
+.recent-post-item .content,
 #post-content,
-#footer {
-    color: #d1d5db !important; /* 浅灰色，比纯白更优雅 */
+.category-lists,
+.tag-cloud-list,
+.aside-list-item .title {
+    color: #e0e0e0 !important; /* 浅灰色，保护视力且优雅 */
 }
 
-/* 5. 隐藏多余的分界线，让界面更通透 */
-hr {
-    border: 2px dashed rgba(255, 255, 255, 0.1) !important;
+/* 4. 侧边栏作者卡片特殊适配 */
+#aside-content .card-author .author-info__name,
+#aside-content .card-author .author-info__description {
+    color: #fff !important;
+}
+
+/* 5. 按钮样式适配 (Follow Me 那个蓝色太突兀了) */
+#aside-content .card-author .btn-inside {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: #fff !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    transition: all 0.3s;
+}
+#aside-content .card-author .btn-inside:hover {
+    background: #49b1f5 !important; /* 悬浮时变蓝 */
+}
+
+/* 6. 文章预览图稍微调暗，避免太扎眼 */
+.recent-post-item .post_cover img {
+    filter: brightness(0.8);
+}
+
+/* 7. 页脚适配 */
+#footer {
+    background: transparent !important;
+    color: #eee !important;
 }
