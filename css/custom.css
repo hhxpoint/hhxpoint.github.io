@@ -1,14 +1,14 @@
 /* ============================================================
-   Butterfly 星空主题 - 完美版 (彻底修复代码块白斑)
+   Butterfly 星空主题 - 完美最终版 (含目录 TOC 撞色修复)
    ============================================================ */
 
-/* 1. 背景设置 */
+/* 1. 全局背景 */
 #web_bg {
   filter: brightness(0.8) !important;
   background-attachment: fixed !important;
 }
 
-/* 2. 全站卡片容器 */
+/* 2. 全站卡片容器 (玻璃质感) */
 #aside-content .card-widget,
 #post,
 #page,
@@ -21,75 +21,70 @@
   box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.7) !important;
 }
 
-/* 3. 【重点修复】彻底解决代码块左侧白斑问题 */
+/* 3. 【重点修复】目录页 (TOC) 颜色撞色优化 */
+/* 默认目录文字颜色：亮白色，方便阅读 */
+#aside-content #card-toc .toc-content .toc-link {
+  color: rgba(255, 255, 255, 0.8) !important;
+  line-height: 2;
+  transition: all 0.3s;
+}
+
+/* 鼠标悬停时：变为青蓝色 */
+#aside-content #card-toc .toc-content .toc-link:hover {
+  color: #00d4ff !important;
+}
+
+/* 当前阅读章节 (Active)：改为深蓝色背景 + 纯白文字 + 青蓝左边框 */
+#aside-content #card-toc .toc-content .toc-link.active {
+  background: rgba(0, 212, 255, 0.2) !important;
+  /* 透明青蓝背底 */
+  color: #ffffff !important;
+  /* 纯白文字，解决撞色 */
+  border-left: 3px solid #00d4ff !important;
+  /* 醒目的左边框 */
+  font-weight: bold;
+}
+
+/* 4. 代码块彻底修复 (消除白斑 + 彩色高亮) */
 #article-container figure.highlight,
 #article-container figure.highlight table,
 #article-container figure.highlight .gutter,
 #article-container figure.highlight .code,
 #article-container figure.highlight pre {
-  background: rgba(20, 24, 32, 0.9) !important;
-  /* 统一设为深色背景 */
-  background-color: rgba(20, 24, 32, 0.9) !important;
+  background: rgba(20, 24, 32, 0.95) !important;
+  background-color: rgba(20, 24, 32, 0.95) !important;
   border: none !important;
 }
 
-/* 强制消除代码块内部表格的背景颜色 */
-#article-container figure.highlight table {
-  margin: 0 !important;
-  width: 100% !important;
-  border-collapse: collapse !important;
-}
-
-/* 代码块顶部的语言工具栏 */
-#article-container figure.highlight .highlight-tools {
-  background: rgba(40, 44, 52, 1) !important;
-  color: #abb2bf !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-}
-
-/* 4. 【彩色高亮】让代码变好看 (One Dark 配色) */
 .highlight .comment {
   color: #7f848e !important;
   font-style: italic;
 }
 
-/* 注释 */
 .highlight .keyword {
   color: #c678dd !important;
   font-weight: bold;
 }
 
-/* 关键字 */
 .highlight .string {
   color: #98c379 !important;
 }
 
-/* 字符串 */
 .highlight .function {
   color: #61afef !important;
 }
 
-/* 函数 */
 .highlight .number {
   color: #d19a66 !important;
 }
 
-/* 数字 */
-.highlight .operator {
-  color: #56b6c2 !important;
-}
-
-/* 符号 */
 .highlight .code pre {
   color: #abb2bf !important;
 }
 
-/* 基础文字 */
 .highlight .gutter pre {
   color: #636d83 !important;
 }
-
-/* 行号文字 */
 
 /* 5. 标题亮度强化 (极致发光) */
 h1,
@@ -107,14 +102,13 @@ h6,
   text-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 0 2px 4px rgba(0, 0, 0, 0.8) !important;
 }
 
-/* 6. 其他文字提亮 */
+/* 6. 全站正文文字提亮 */
 #article-container p,
 #article-container li,
 #article-container span,
 .recent-post-item .content,
 .article-meta,
 #post-info .post-meta,
-#aside-content .card-widget,
 #aside-content .author-info__name,
 #aside-content .author-info__description,
 #footer,
@@ -123,12 +117,11 @@ h6,
   opacity: 1 !important;
 }
 
-/* 7. 链接点缀：青蓝色 */
+/* 7. 链接点缀 */
 a,
 #article-container a,
 .recent-post-item .article-title:hover {
   color: #00d4ff !important;
-  transition: all 0.3s;
 }
 
 /* 8. 引用块 (Blockquote) */
@@ -138,7 +131,11 @@ blockquote {
   color: #ffffff !important;
 }
 
-/* 9. 按钮 (Follow Me) */
+/* 9. 侧边栏公告及按钮 */
+.card-announcement .item-headline+div {
+  color: #fff !important;
+}
+
 #aside-content .card-author .btn-inside {
   background: #00d4ff !important;
   color: #fff !important;
