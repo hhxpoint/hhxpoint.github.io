@@ -1,107 +1,90 @@
 /* ============================================================
-   Butterfly 星空深邃主题适配 - 文章页深度提亮版
+   Butterfly 星空主题 - 深度文字提亮最终版
    ============================================================ */
 
-/* 1. 背景与容器：保持深邃，调暗底图衬托文字 */
+/* 1. 背景亮度：让背景稍微暗一点，衬托白色文字 */
 #web_bg {
-  filter: brightness(0.45) !important;
+  filter: brightness(0.4) !important;
   background-attachment: fixed !important;
 }
 
+/* 2. 容器：深色半透明磨砂玻璃 */
 #aside-content .card-widget,
 #post,
 #page,
 #archive,
 .recent-post-item {
-  background: rgba(10, 15, 30, 0.65) !important;
-  /* 稍微加深底色，让亮色文字更跳脱 */
+  background: rgba(10, 15, 30, 0.7) !important;
+  /* 稍微加深底色，让文字对比度更强 */
   backdrop-filter: blur(15px) saturate(160%);
   -webkit-backdrop-filter: blur(15px) saturate(160%);
   border: 1px solid rgba(255, 255, 255, 0.15) !important;
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6) !important;
 }
 
-/* 2. 文章页核心文字提亮：强制覆盖所有层级 */
-/* 针对段落、列表、普通文本、Span等 */
-#post-content,
+/* 3. 【重点】文章内容区文字强制提亮 */
+/* 锁定红框所在的 article-container，强制所有 p, li, span 为纯白 */
+#article-container p,
+#article-container li,
+#article-container span,
+#article-container div,
 #post-content p,
 #post-content li,
-#post-content div,
-#post-content span:not([class*="highlight"]),
-/* 排除代码块高亮颜色 */
 .article-meta,
 #post-info {
   color: #ffffff !important;
-  /* 强制纯白 */
+  /* 强制纯白色 */
   opacity: 1 !important;
-  /* 确保没有透明度干扰 */
+  /* 防止主题默认的半透明干扰 */
   line-height: 1.8;
 }
 
-/* 针对文章内的加粗文字 */
-#post-content strong,
-#post-content b {
-  color: #00d4ff !important;
-  /* 加粗部分使用亮蓝色点缀，非常亮眼 */
-}
-
-/* 文章内的标题 (H1-H6) */
-#post-content h1,
-#post-content h2,
-#post-content h3,
-#post-content h4,
-#post-content h5,
-#post-content h6 {
+/* 4. 标题类提亮 (H1-H6) */
+#article-container h1,
+#article-container h2,
+#article-container h3,
+#article-container h4,
+#article-container h5,
+#article-container h6,
+.article-title,
+.site-name,
+#site-title,
+#site-subtitle {
   color: #ffffff !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  padding-bottom: 0.3em;
-  text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+  font-weight: 700 !important;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
-/* 3. 侧边栏与博主信息提亮 */
+/* 5. 引用块 (Blockquote) 保持亮度一致 */
+blockquote {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-left: 4px solid #00d4ff !important;
+  color: #ffffff !important;
+  /* 确保这里也是纯白 */
+}
+
+/* 6. 侧边栏文字提亮 */
 #aside-content .card-author .author-info__name,
 #aside-content .card-author .author-info__description,
 #aside-content .item-headline,
 #aside-content .aside-list-item .title,
-#aside-content .aside-list-item .content,
 .card-announcement .item-headline+div {
-  /* 公告栏文字 */
   color: #ffffff !important;
 }
 
-/* 4. 目录 (TOC) 适配 */
-#aside-content #card-toc .toc-content .toc-link {
-  color: rgba(255, 255, 255, 0.7) !important;
-}
-
-#aside-content #card-toc .toc-content .toc-link.active {
-  color: #00d4ff !important;
-  background: rgba(0, 212, 255, 0.15) !important;
-}
-
-/* 5. 链接颜色：明亮的青蓝色 */
-#post-content a {
+/* 7. 链接颜色：明亮的青蓝色作为视觉点缀 */
+#article-container a {
   color: #00d4ff !important;
   border-bottom: 1px dashed #00d4ff;
-  text-decoration: none;
 }
 
-#post-content a:hover {
-  filter: brightness(0.5);
-  border-bottom: 1px solid #00d4ff;
+/* 8. 列表符号颜色调整（让 1. 2. 3. 或小圆点也变亮） */
+#article-container ol li::before,
+#article-container ul li::before {
+  color: #00d4ff !important;
 }
 
-/* 6. 引用块 (Blockquote) 深度优化：不再沉闷 */
-blockquote {
-  background: rgba(255, 255, 255, 0.1) !important;
-  border-left: 4px solid #00d4ff !important;
-  color: #f8f9fa !important;
-  padding: 10px 20px;
-  margin: 20px 0;
-}
-
-/* 7. 顶部菜单栏适配 */
-#nav a {
+/* 9. 页脚文字 */
+#footer {
   color: #eee !important;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
