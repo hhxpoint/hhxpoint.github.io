@@ -1,0 +1,39 @@
+/* 1. 全局背景优化：让背景图固定不动，产生深邃感 */
+#web_bg {
+    background-attachment: fixed !important;
+    filter: brightness(0.8); /* 稍微调暗背景，让文字更清晰 */
+}
+
+/* 2. 打造半透明“星空之镜”卡片 */
+#aside-content .card-widget, 
+#post, 
+#page, 
+#archive, 
+.recent-post-item {
+    background: rgba(10, 15, 30, 0.45) !important; /* 极深的半透明蓝黑 */
+    backdrop-filter: blur(12px) saturate(180%); /* 毛玻璃效果，星光会在背后晕开 */
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.1); /* 极其细微的白边，像银河的边缘 */
+    border-radius: 12px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8) !important;
+}
+
+/* 3. 让文字像星星一样微弱发光 */
+#site-title, #site-subtitle, .article-title, .menu-item {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    color: #f0f0f0 !important;
+}
+
+/* 4. 侧边栏和正文文字颜色调整 */
+#aside-content .card-widget .item-headline,
+#aside-content .card-widget .content,
+.recent-post-content,
+#post-content,
+#footer {
+    color: #d1d5db !important; /* 浅灰色，比纯白更优雅 */
+}
+
+/* 5. 隐藏多余的分界线，让界面更通透 */
+hr {
+    border: 2px dashed rgba(255, 255, 255, 0.1) !important;
+}
