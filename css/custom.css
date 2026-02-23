@@ -1,63 +1,105 @@
-/* 1. 背景遮罩：让背景图稍微暗一点，衬托出星空的深邃，同时让前景文字更清晰 */
+/* ============================================================
+   Butterfly 星空深邃主题适配 - 最终增强版
+   ============================================================ */
+
+/* 1. 全局背景优化：保持深邃感，让内容更突出 */
 #web_bg {
-    filter: brightness(0.6) !important; 
+  filter: brightness(0.5) !important;
+  /* 调暗背景图，让文字像星星一样亮起来 */
+  background-attachment: fixed !important;
 }
 
-/* 2. 核心卡片样式：改用深色半透明（像深海玻璃），而不是浅色透明 */
-#aside-content .card-widget, 
-#post, 
-#page, 
-#archive, 
+/* 2. 核心卡片容器：半透明磨砂玻璃质感 */
+#aside-content .card-widget,
+#post,
+#page,
+#archive,
 .recent-post-item {
-    background: rgba(10, 15, 30, 0.5) !important; /* 降低亮度，增加深邃感 */
-    backdrop-filter: blur(15px) saturate(150%); /* 增加毛玻璃强度 */
-    -webkit-backdrop-filter: blur(15px) saturate(150%);
-    border: 1px solid rgba(255, 255, 255, 0.1) !important; /* 细腻的白边，像星光边缘 */
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6) !important;
+  background: rgba(10, 20, 35, 0.6) !important;
+  /* 深蓝色调透明底 */
+  backdrop-filter: blur(15px) saturate(150%);
+  /* 高级感来源：强力毛玻璃效果 */
+  -webkit-backdrop-filter: blur(15px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  /* 细腻边框 */
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5) !important;
+  border-radius: 12px !important;
 }
 
-/* 3. 文字颜色适配：全部改为浅色系 */
-/* 主标题、文章标题 */
-.article-title, .site-name, #site-title, #site-subtitle, .card-widget .item-headline span {
-    color: #ffffff !important;
-    text-shadow: 0 2px 10px rgba(255, 255, 255, 0.2); /* 淡淡的荧光感 */
+/* 3. 字体颜色增强：彻底解决“太暗”的问题 */
+
+/* 文章标题、大标题、博主名 */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.article-title,
+.site-name,
+#site-title,
+#site-subtitle,
+.card-widget .item-headline span,
+#aside-content .card-author .author-info__name {
+  color: #ffffff !important;
+  /* 纯白 */
+  font-weight: 700 !important;
+  text-shadow: 0 2px 10px rgba(255, 255, 255, 0.2);
 }
 
-/* 正文、摘要、侧边栏小字 */
-#aside-content .card-widget .content,
-.recent-post-item .article-meta,
-.recent-post-item .content,
+/* 正文文字、摘要文字、侧边栏内容 */
 #post-content,
-.category-lists,
-.tag-cloud-list,
-.aside-list-item .title {
-    color: #e0e0e0 !important; /* 浅灰色，保护视力且优雅 */
-}
-
-/* 4. 侧边栏作者卡片特殊适配 */
-#aside-content .card-author .author-info__name,
-#aside-content .card-author .author-info__description {
-    color: #fff !important;
-}
-
-/* 5. 按钮样式适配 (Follow Me 那个蓝色太突兀了) */
-#aside-content .card-author .btn-inside {
-    background: rgba(255, 255, 255, 0.1) !important;
-    color: #fff !important;
-    border: 1px solid rgba(255, 255, 255, 0.3) !important;
-    transition: all 0.3s;
-}
-#aside-content .card-author .btn-inside:hover {
-    background: #49b1f5 !important; /* 悬浮时变蓝 */
-}
-
-/* 6. 文章预览图稍微调暗，避免太扎眼 */
-.recent-post-item .post_cover img {
-    filter: brightness(0.8);
-}
-
-/* 7. 页脚适配 */
+.recent-post-item .content,
+.article-meta,
+#aside-content .card-widget .content,
+#aside-content .aside-list-item .title,
+.category-list-link,
+.tag-cloud-list a,
 #footer {
-    background: transparent !important;
-    color: #eee !important;
+  color: #f8f9fa !important;
+  /* 极亮灰白，极高对比度，非常清晰 */
+  line-height: 1.8;
+}
+
+/* 4. 链接与交互：使用明亮的青蓝色作为点缀 */
+a,
+#post-content a,
+.aside-list-item .title:hover,
+.category-list-link:hover {
+  color: #00d4ff !important;
+  /* 亮青色，像极光一样醒目 */
+  transition: all 0.3s;
+}
+
+/* 5. 侧边栏图标与小细节 */
+.card-widget i,
+.card-archive-list-count,
+.card-category-list-count,
+.beian-item,
+#post-info .post-meta-icon {
+  color: #00d4ff !important;
+}
+
+/* 6. 引用块 (Blockquote) 适配：让原本黑沉沉的块亮起来 */
+blockquote {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-left: 4px solid #00d4ff !important;
+  color: #f0f0f0 !important;
+}
+
+/* 7. 代码块背景调整 */
+#post-content .highlight {
+  background: rgba(0, 0, 0, 0.4) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 8. 侧边栏目录页 (TOC) 高亮适配 */
+#aside-content #card-toc .toc-link.active {
+  background: #00d4ff !important;
+  color: #fff !important;
+}
+
+/* 9. 页脚透明化 */
+#footer {
+  background: transparent !important;
 }
