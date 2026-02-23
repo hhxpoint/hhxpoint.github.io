@@ -1,105 +1,107 @@
 /* ============================================================
-   Butterfly 星空深邃主题适配 - 最终增强版
+   Butterfly 星空深邃主题适配 - 文章页深度提亮版
    ============================================================ */
 
-/* 1. 全局背景优化：保持深邃感，让内容更突出 */
+/* 1. 背景与容器：保持深邃，调暗底图衬托文字 */
 #web_bg {
-  filter: brightness(0.5) !important;
-  /* 调暗背景图，让文字像星星一样亮起来 */
+  filter: brightness(0.45) !important;
   background-attachment: fixed !important;
 }
 
-/* 2. 核心卡片容器：半透明磨砂玻璃质感 */
 #aside-content .card-widget,
 #post,
 #page,
 #archive,
 .recent-post-item {
-  background: rgba(10, 20, 35, 0.6) !important;
-  /* 深蓝色调透明底 */
-  backdrop-filter: blur(15px) saturate(150%);
-  /* 高级感来源：强力毛玻璃效果 */
-  -webkit-backdrop-filter: blur(15px) saturate(150%);
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
-  /* 细腻边框 */
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5) !important;
-  border-radius: 12px !important;
+  background: rgba(10, 15, 30, 0.65) !important;
+  /* 稍微加深底色，让亮色文字更跳脱 */
+  backdrop-filter: blur(15px) saturate(160%);
+  -webkit-backdrop-filter: blur(15px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6) !important;
 }
 
-/* 3. 字体颜色增强：彻底解决“太暗”的问题 */
-
-/* 文章标题、大标题、博主名 */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-.article-title,
-.site-name,
-#site-title,
-#site-subtitle,
-.card-widget .item-headline span,
-#aside-content .card-author .author-info__name {
-  color: #ffffff !important;
-  /* 纯白 */
-  font-weight: 700 !important;
-  text-shadow: 0 2px 10px rgba(255, 255, 255, 0.2);
-}
-
-/* 正文文字、摘要文字、侧边栏内容 */
+/* 2. 文章页核心文字提亮：强制覆盖所有层级 */
+/* 针对段落、列表、普通文本、Span等 */
 #post-content,
-.recent-post-item .content,
+#post-content p,
+#post-content li,
+#post-content div,
+#post-content span:not([class*="highlight"]),
+/* 排除代码块高亮颜色 */
 .article-meta,
-#aside-content .card-widget .content,
-#aside-content .aside-list-item .title,
-.category-list-link,
-.tag-cloud-list a,
-#footer {
-  color: #f8f9fa !important;
-  /* 极亮灰白，极高对比度，非常清晰 */
+#post-info {
+  color: #ffffff !important;
+  /* 强制纯白 */
+  opacity: 1 !important;
+  /* 确保没有透明度干扰 */
   line-height: 1.8;
 }
 
-/* 4. 链接与交互：使用明亮的青蓝色作为点缀 */
-a,
-#post-content a,
-.aside-list-item .title:hover,
-.category-list-link:hover {
+/* 针对文章内的加粗文字 */
+#post-content strong,
+#post-content b {
   color: #00d4ff !important;
-  /* 亮青色，像极光一样醒目 */
-  transition: all 0.3s;
+  /* 加粗部分使用亮蓝色点缀，非常亮眼 */
 }
 
-/* 5. 侧边栏图标与小细节 */
-.card-widget i,
-.card-archive-list-count,
-.card-category-list-count,
-.beian-item,
-#post-info .post-meta-icon {
-  color: #00d4ff !important;
+/* 文章内的标题 (H1-H6) */
+#post-content h1,
+#post-content h2,
+#post-content h3,
+#post-content h4,
+#post-content h5,
+#post-content h6 {
+  color: #ffffff !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 0.3em;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
 }
 
-/* 6. 引用块 (Blockquote) 适配：让原本黑沉沉的块亮起来 */
+/* 3. 侧边栏与博主信息提亮 */
+#aside-content .card-author .author-info__name,
+#aside-content .card-author .author-info__description,
+#aside-content .item-headline,
+#aside-content .aside-list-item .title,
+#aside-content .aside-list-item .content,
+.card-announcement .item-headline+div {
+  /* 公告栏文字 */
+  color: #ffffff !important;
+}
+
+/* 4. 目录 (TOC) 适配 */
+#aside-content #card-toc .toc-content .toc-link {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+#aside-content #card-toc .toc-content .toc-link.active {
+  color: #00d4ff !important;
+  background: rgba(0, 212, 255, 0.15) !important;
+}
+
+/* 5. 链接颜色：明亮的青蓝色 */
+#post-content a {
+  color: #00d4ff !important;
+  border-bottom: 1px dashed #00d4ff;
+  text-decoration: none;
+}
+
+#post-content a:hover {
+  filter: brightness(1.2);
+  border-bottom: 1px solid #00d4ff;
+}
+
+/* 6. 引用块 (Blockquote) 深度优化：不再沉闷 */
 blockquote {
   background: rgba(255, 255, 255, 0.1) !important;
   border-left: 4px solid #00d4ff !important;
-  color: #f0f0f0 !important;
+  color: #f8f9fa !important;
+  padding: 10px 20px;
+  margin: 20px 0;
 }
 
-/* 7. 代码块背景调整 */
-#post-content .highlight {
-  background: rgba(0, 0, 0, 0.4) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* 8. 侧边栏目录页 (TOC) 高亮适配 */
-#aside-content #card-toc .toc-link.active {
-  background: #00d4ff !important;
-  color: #fff !important;
-}
-
-/* 9. 页脚透明化 */
-#footer {
-  background: transparent !important;
+/* 7. 顶部菜单栏适配 */
+#nav a {
+  color: #eee !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
