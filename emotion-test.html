@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>情感模型测试</title>
+    <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.16.0/dist/ort.min.js"></script>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        .result { margin: 20px 0; padding: 15px; background: #f5f5f5; border-radius: 5px; }
+        .emotion { margin: 5px 0; }
+        .bar { height: 20px; background: #4CAF50; margin: 5px 0; border-radius: 3px; }
+    </style>
+</head>
+<body>
+    <h1>情感分析模型测试</h1>
+    
+    <div>
+        <button onclick="loadModel()">加载模型</button>
+        <button onclick="testInference()">测试推理</button>
+    </div>
+    
+    <div id="status">状态：等待</div>
+    <div id="result" class="result"></div>
+    
+    <script>
+        let session = null;
+        const modelUrl = 'https://hhxpoint.github.io/assets/models/emotion/hubert_emotion.onnx';
+        
+        async function loadModel() {
+            document.getElementById('status').textContent = '状态：正在加载模型...';
+            
+            try {
+                // 创建推理会话
+                session = await ort.InferenceSession.create(modelUrl, {
+                    executionProviders: ['wasm']
+                });
+                
+                document.getElementById('status').textContent = 
+                    `✅ 模型加载成功！输入：${session.inputNames}，输出：${session.outputNames}`;
+                
+            } catch (error) {
+                document.getElementById('status').textContent = 
+                    `❌ 加载失败：${error.message}`;
+                console.error(error);
+            }
+        }
+        
+        async function testInference() {
+            if (!session) {
+                alert('请先加载模型');
+                return;
+            }
+            
+            document.getElementById('status').textContent = '状态：正在推理...';
+            
+            try {
+                // 创建测试输入
+                const audioLength = 6 * 16000;
+                const inputData = new Float32Array(audioLength).fill(0.1);
+                
+                // 创建Tensor
+                const inputTensor = new ort.Tensor('float32', inputData, [1, audioLength]);
+                
+                // 推理
+                const startTime = performance.now();
+                const feeds = { audio_input: inputTensor };
+                const results = await session.run(feeds);
+                const endTime = performance.now();
+                
+                // 获取结果
+                const output = results.emotion_scores.data;
+                const inferenceTime = endTime - startTime;
+                
+                // 显示结果
+                displayResult(output, inferenceTime);
+                
+                document.getElementById('status').textContent = 
+                    `✅ 推理完成，耗时：${inferenceTime.toFixed(2)}ms`;
+                
+            } catch (error) {
+                document.getElementById('status').textContent = 
+                    `❌ 推理失败：${error.message}`;
+                console.error(error);
+            }
+        }
+        
+        function displayResult(scores, time) {
+            const emotions = ['生气', '恐惧', '快乐', '中性', '悲伤', '惊讶'];
+            const resultDiv = document.getElementById('result');
+            
+            let html = `<h3>推理结果（${time.toFixed(2)}ms）</h3>`;
+            
+            scores.forEach((score, index) => {
+                const percentage = (score * 100).toFixed(1);
+                html += `<div class="emotion">${emotions[index]}: ${percentage}%</div>`;
+            });
+            
+            resultDiv.innerHTML = html;
+        }
+    </script>
+</body>
+</html>
