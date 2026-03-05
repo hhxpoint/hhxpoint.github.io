@@ -1,0 +1,241 @@
+<!DOCTYPE html><html lang="cn" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>天梯赛模拟题学习 | point_xuan</title><meta name="author" content="point_xuan"><meta name="copyright" content="point_xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="123456789101112131415161718192021222324252627282930313233343536#include &lt;iostream&gt;#include &lt;string&gt;using namespace std;int main() &#123;    string str;    cin &gt;&gt; str;    int N;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="天梯赛模拟题学习">
+<meta property="og:url" content="https://hhxpoint.github.io/2026/02/23/%E5%A4%A9%E6%A2%AF%E8%B5%9B/index.html">
+<meta property="og:site_name" content="point_xuan">
+<meta property="og:description" content="123456789101112131415161718192021222324252627282930313233343536#include &lt;iostream&gt;#include &lt;string&gt;using namespace std;int main() &#123;    string str;    cin &gt;&gt; str;    int N;">
+<meta property="og:locale">
+<meta property="og:image" content="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1000&q=80">
+<meta property="article:published_time" content="2026-02-23T09:58:41.000Z">
+<meta property="article:modified_time" content="2026-03-05T12:57:50.689Z">
+<meta property="article:author" content="point_xuan">
+<meta property="article:tag" content="题意理解">
+<meta property="article:tag" content="编码实现">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1000&q=80"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "天梯赛模拟题学习",
+  "url": "https://hhxpoint.github.io/2026/02/23/%E5%A4%A9%E6%A2%AF%E8%B5%9B/",
+  "image": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1000&q=80",
+  "datePublished": "2026-02-23T09:58:41.000Z",
+  "dateModified": "2026-03-05T12:57:50.689Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "point_xuan",
+      "url": "https://hhxpoint.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://hhxpoint.github.io/2026/02/23/%E5%A4%A9%E6%A2%AF%E8%B5%9B/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '天梯赛模拟题学习',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div class="bg-animation" id="web_bg" style="background-image: url(/img/3.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">5</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">12</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">2</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&amp;fit=crop&amp;w=1000&amp;q=80);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/photo.jpg" alt="Logo"><span class="site-name">point_xuan</span></a><a class="nav-page-title" href="/"><span class="site-name">天梯赛模拟题学习</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  Back to Home</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">天梯赛模拟题学习</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2026-02-23T09:58:41.000Z" title="Created 2026-02-23 17:58:41">2026-02-23</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2026-03-05T12:57:50.689Z" title="Updated 2026-03-05 20:57:50">2026-03-05</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF%E6%8E%A2%E7%B4%A2/">技术探索</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p><img src="C:\Users\卒星轩\AppData\Roaming\Typora\typora-user-images\image-20260305205702308.png" alt="image-20260305205702308"></p>
+<p><img src="C:\Users\卒星轩\AppData\Roaming\Typora\typora-user-images\image-20260305205725294.png" alt="image-20260305205725294"></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    string str;</span><br><span class="line">    cin &gt;&gt; str;</span><br><span class="line">    <span class="type">int</span> N;</span><br><span class="line">    cin &gt;&gt; N;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">        <span class="type">int</span> start, end;</span><br><span class="line">        string front, back;</span><br><span class="line">        cin &gt;&gt; start &gt;&gt; end &gt;&gt; front &gt;&gt; back;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 1. 剪切</span></span><br><span class="line">        string clipboard = str.<span class="built_in">substr</span>(start - <span class="number">1</span>, end - start + <span class="number">1</span>);</span><br><span class="line">        str.<span class="built_in">erase</span>(start - <span class="number">1</span>, end - start + <span class="number">1</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 2. 粘贴</span></span><br><span class="line">        string target = front + back;</span><br><span class="line">        <span class="type">size_t</span> pos = str.<span class="built_in">find</span>(target);</span><br><span class="line">        <span class="keyword">if</span> (pos != string::npos) &#123;</span><br><span class="line">            <span class="comment">// 找到，插在 front 后面</span></span><br><span class="line">            pos += front.<span class="built_in">length</span>();</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 没找到，插在最后</span></span><br><span class="line">            pos = str.<span class="built_in">length</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        str.<span class="built_in">insert</span>(pos, clipboard);</span><br><span class="line">        <span class="comment">// 操作完成后剪贴板应被清空（题目要求），虽然下次循环会被覆盖，但逻辑上可体现。</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    cout &lt;&lt; str &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://hhxpoint.github.io">point_xuan</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://hhxpoint.github.io/2026/02/23/%E5%A4%A9%E6%A2%AF%E8%B5%9B/">https://hhxpoint.github.io/2026/02/23/%E5%A4%A9%E6%A2%AF%E8%B5%9B/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E9%A2%98%E6%84%8F%E7%90%86%E8%A7%A3/">题意理解</a><a class="post-meta__tags" href="/tags/%E7%BC%96%E7%A0%81%E5%AE%9E%E7%8E%B0/">编码实现</a></div><div class="post-share"><div class="social-share" data-image="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&amp;fit=crop&amp;w=1000&amp;q=80" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/03/03/%E6%96%AF%E5%9D%A6%E7%A6%8Fcs336/" title="斯坦福CS336 大语言模型核心：架构、训练与对齐的数学基础"><img class="cover" src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&amp;w=2070&amp;auto=format&amp;fit=crop" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">Previous</div><div class="info-item-2">斯坦福CS336 大语言模型核心：架构、训练与对齐的数学基础</div></div><div class="info-2"><div class="info-item-1">斯坦福CS336 大语言模型核心：架构、训练与对齐的数学基础随着 ChatGPT、Claude 等模型的爆发，大语言模型（LLM）已成为人工智能的绝对核心。斯坦福大学 CS336: Language Modeling 是全球公认最硬核的 LLM 系统性课程。本文旨在剥开 LLM 神奇表现的外衣，深入其底层的数理骨架与工程设计，对课程中的核心架构、缩放定律、分布式训练及对齐算法进行详尽的公式推导与深度解析。 (图：大语言模型从预训练到对齐的基本范式)  一、 自回归语言模型基础：概率分解与评估大模型（如 GPT 系列、Llama 系列）的本质是一个计算文本序列联合概率的统计引擎，采用自回归（Autoregressive, Causal）范式。 1.1 联合概率分布与链式法则给定一个长度为 $T$ 的词元（Token）序列 $X &#x3D; (x_1, x_2, \dots, x_T)$，其联合概率通过条件概率链式法则分解为： $$P(x_1, x_2, \dots, x_T) &#x3D; \prod_{t&#x3D;1}^T P(x_t \mid x_1, \dots, x_{...</div></div></div></a><a class="pagination-related" href="/2026/02/23/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" title="机器学习：开启人工智能之门"><img class="cover" src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&amp;fit=crop&amp;w=1000&amp;q=80" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">Next</div><div class="info-item-2">机器学习：开启人工智能之门</div></div><div class="info-2"><div class="info-item-1">🚀 什么是机器学习？机器学习 (Machine Learning, ML) 是人工智能的一个子集，它的核心思想是：与其由人类编写固定的程序，不如让机器通过数据进行自我学习。 正如著名计算机科学家 Tom Mitchell 所说：  “如果一个程序在任务 T 上的性能（由 P 衡量）随着经验 E 的增加而提高，则称该程序从经验 E 中学习。”   📚 机器学习的三大分类在学习 ML 的过程中，我们通常将其分为以下三类： 1. 监督学习 (Supervised Learning)给机器看带标签的数据。例如：给机器看 1000 张猫的照片（标记为“猫”）和 1000 张狗的照片（标记为“狗”），让它学会分辨。  常见算法： 线性回归、逻辑回归、支持向量机 (SVM)。  2. 无监督学习 (Unsupervised Learning)给机器看没有标签的数据，让它自己寻找规律。  常见算法： K-Means 聚类、主成分分析 (PCA)。  3. 强化学习 (Reinforcement Learning)机器通过“试错”来学习。如果做对了，给予奖励；做错了，给予惩罚。  应用场景： ...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">point_xuan</div><div class="author-info-description">Please don't cry</div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">5</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">12</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/hhxpoint"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/03/03/%E6%96%AF%E5%9D%A6%E7%A6%8Fcs336/" title="斯坦福CS336 大语言模型核心：架构、训练与对齐的数学基础"><img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&amp;w=2070&amp;auto=format&amp;fit=crop" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="斯坦福CS336 大语言模型核心：架构、训练与对齐的数学基础"/></a><div class="content"><a class="title" href="/2026/03/03/%E6%96%AF%E5%9D%A6%E7%A6%8Fcs336/" title="斯坦福CS336 大语言模型核心：架构、训练与对齐的数学基础">斯坦福CS336 大语言模型核心：架构、训练与对齐的数学基础</a><time datetime="2026-03-03T08:00:00.000Z" title="Created 2026-03-03 16:00:00">2026-03-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/02/23/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" title="机器学习：开启人工智能之门"><img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&amp;fit=crop&amp;w=1000&amp;q=80" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="机器学习：开启人工智能之门"/></a><div class="content"><a class="title" href="/2026/02/23/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" title="机器学习：开启人工智能之门">机器学习：开启人工智能之门</a><time datetime="2026-02-23T09:58:41.000Z" title="Created 2026-02-23 17:58:41">2026-02-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/02/23/%E5%A4%A9%E6%A2%AF%E8%B5%9B/" title="天梯赛模拟题学习"><img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&amp;fit=crop&amp;w=1000&amp;q=80" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="天梯赛模拟题学习"/></a><div class="content"><a class="title" href="/2026/02/23/%E5%A4%A9%E6%A2%AF%E8%B5%9B/" title="天梯赛模拟题学习">天梯赛模拟题学习</a><time datetime="2026-02-23T09:58:41.000Z" title="Created 2026-02-23 17:58:41">2026-02-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/02/23/hello-world/" title="Hello World">Hello World</a><time datetime="2026-02-23T08:29:21.419Z" title="Created 2026-02-23 16:29:21">2026-02-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/02/24/%E6%A8%A1%E5%BC%8F%E8%AF%86%E5%88%AB%E6%A0%B8%E5%BF%83%EF%BC%9A%E6%95%B0%E7%90%86%E5%9F%BA%E7%A1%80%E4%B8%8E%E5%85%AC%E5%BC%8F%E5%AE%8C%E5%85%A8%E8%A7%A3%E6%9E%90/" title="模式识别核心：数理基础与公式完全解析（万字典藏版）"><img src="https://images.unsplash.com/photo-1509228468518-180dd4864904?q=80&amp;w=2070&amp;auto=format&amp;fit=crop" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="模式识别核心：数理基础与公式完全解析（万字典藏版）"/></a><div class="content"><a class="title" href="/2024/02/24/%E6%A8%A1%E5%BC%8F%E8%AF%86%E5%88%AB%E6%A0%B8%E5%BF%83%EF%BC%9A%E6%95%B0%E7%90%86%E5%9F%BA%E7%A1%80%E4%B8%8E%E5%85%AC%E5%BC%8F%E5%AE%8C%E5%85%A8%E8%A7%A3%E6%9E%90/" title="模式识别核心：数理基础与公式完全解析（万字典藏版）">模式识别核心：数理基础与公式完全解析（万字典藏版）</a><time datetime="2024-02-24T08:00:00.000Z" title="Created 2024-02-24 16:00:00">2024-02-24</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2026 By point_xuan</span><span class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        loader: {
+          load: [
+            // Four font extension packages (optional)
+            //- '[tex]/bbm',
+            //- '[tex]/bboldx',
+            //- '[tex]/dsfont',
+            '[tex]/mhchem'
+          ],
+          paths: {
+            'mathjax-newcm': '[mathjax]/../@mathjax/mathjax-newcm-font',
+
+            //- // Four font extension packages (optional)
+            //- 'mathjax-bbm-extension': '[mathjax]/../@mathjax/mathjax-bbm-font-extension',
+            //- 'mathjax-bboldx-extension': '[mathjax]/../@mathjax/mathjax-bboldx-font-extension',
+            //- 'mathjax-dsfont-extension': '[mathjax]/../@mathjax/mathjax-dsfont-font-extension',
+            'mathjax-mhchem-extension': '[mathjax]/../@mathjax/mathjax-mhchem-font-extension'
+          }
+        },
+        output: {
+          font: 'mathjax-newcm',
+        },
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+          packages: {
+            '[+]': [
+              'mhchem'
+            ]
+          }
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          menuOptions: {
+            settings: {
+              enrich: false  // Turn off Braille and voice narration text automatic generation
+            }
+          },
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@4.1.0/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script id="canvas_nest" defer="defer" color="198,120,223" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/canvas-nest.min.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/click-heart.min.js" async="async" mobile="false"></script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/click-show-text.min.js" data-mobile="false" data-text="机器学习,神经网络,模式识别" data-fontsize="15px" data-random="true" async="async"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
