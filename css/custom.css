@@ -626,3 +626,152 @@ a.fancybox {
   background: linear-gradient(135deg, rgba(198, 120, 221, 0.4), rgba(97, 175, 239, 0.3)) !important;
   transform: translateY(-2px);
 }
+
+/* ============================================================
+   侧边栏作者卡片精致设计
+   ============================================================ */
+
+/* 作者卡片容器 */
+#aside-content .card-widget.card-info {
+  background: linear-gradient(145deg, rgba(198, 120, 221, 0.12), rgba(10, 15, 30, 0.8)) !important;
+  border: 1px solid rgba(198, 120, 221, 0.25) !important;
+  border-radius: 20px !important;
+  overflow: hidden;
+  position: relative;
+}
+
+#aside-content .card-widget.card-info::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(135deg, rgba(198, 120, 221, 0.3), rgba(97, 175, 239, 0.2));
+  z-index: 0;
+}
+
+/* 头像样式 */
+#aside-content .card-info .avatar-img {
+  position: relative;
+  z-index: 1;
+  margin-top: 30px;
+}
+
+#aside-content .card-info .avatar-img img {
+  width: 80px !important;
+  height: 80px !important;
+  border-radius: 50% !important;
+  border: 4px solid rgba(198, 120, 221, 0.6) !important;
+  box-shadow: 0 0 30px rgba(198, 120, 221, 0.4), 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+  transition: all 0.4s ease !important;
+}
+
+#aside-content .card-info .avatar-img img:hover {
+  transform: scale(1.08) rotate(5deg) !important;
+  box-shadow: 0 0 50px rgba(198, 120, 221, 0.6), 0 15px 40px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* 作者名字 */
+#aside-content .card-info .author-info-name {
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  margin-top: 15px !important;
+  text-shadow: 0 0 20px rgba(198, 120, 221, 0.5);
+  letter-spacing: 1px;
+}
+
+/* 作者描述 */
+#aside-content .card-info .author-info-description {
+  font-size: 13px !important;
+  color: rgba(255, 255, 255, 0.6) !important;
+  margin-top: 8px !important;
+  font-style: italic;
+}
+
+/* 数据统计区域 */
+#aside-content .card-info .site-data {
+  display: flex !important;
+  justify-content: space-around !important;
+  padding: 15px 10px !important;
+  margin: 15px 0 !important;
+  background: rgba(0, 0, 0, 0.2) !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(198, 120, 221, 0.15) !important;
+}
+
+#aside-content .card-info .site-data a {
+  text-align: center !important;
+  transition: all 0.3s ease !important;
+}
+
+#aside-content .card-info .site-data a:hover {
+  transform: translateY(-3px) !important;
+}
+
+#aside-content .card-info .site-data .headline {
+  font-size: 11px !important;
+  color: rgba(255, 255, 255, 0.5) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+}
+
+#aside-content .card-info .site-data .length-num {
+  font-size: 22px !important;
+  font-weight: 700 !important;
+  color: #c678dd !important;
+  text-shadow: 0 0 10px rgba(198, 120, 221, 0.5) !important;
+}
+
+/* Follow Me 按钮 */
+#aside-content .card-info #card-info-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  margin: 0 20px 20px !important;
+  padding: 12px 20px !important;
+  background: linear-gradient(135deg, rgba(198, 120, 221, 0.2), rgba(97, 175, 239, 0.15)) !important;
+  border: 1px solid rgba(198, 120, 221, 0.4) !important;
+  border-radius: 12px !important;
+  color: #ffffff !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  transition: all 0.3s ease !important;
+  text-decoration: none !important;
+}
+
+#aside-content .card-info #card-info-btn i {
+  font-size: 18px !important;
+  transition: all 0.3s ease !important;
+}
+
+#aside-content .card-info #card-info-btn:hover {
+  background: linear-gradient(135deg, #c678dd, #a85fbb) !important;
+  border-color: #c678dd !important;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 10px 30px rgba(198, 120, 221, 0.4) !important;
+}
+
+#aside-content .card-info #card-info-btn:hover i {
+  transform: rotate(15deg) scale(1.1) !important;
+}
+
+/* 公告栏精致样式 */
+#aside-content .card-widget.card-announcement {
+  background: linear-gradient(135deg, rgba(198, 120, 221, 0.1), rgba(10, 15, 30, 0.7)) !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(198, 120, 221, 0.2) !important;
+}
+
+#aside-content .card-announcement .item-headline {
+  color: #c678dd !important;
+  font-weight: 600 !important;
+}
+
+#aside-content .card-announcement .announcement_content {
+  color: rgba(255, 255, 255, 0.8) !important;
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+}
