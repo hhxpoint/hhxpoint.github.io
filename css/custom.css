@@ -8,6 +8,17 @@
   background-attachment: fixed !important;
 }
 
+/* 选中文字颜色 - 紫色协调 */
+::selection {
+  background: rgba(198, 120, 221, 0.4) !important;
+  color: #ffffff !important;
+}
+
+::-moz-selection {
+  background: rgba(198, 120, 221, 0.4) !important;
+  color: #ffffff !important;
+}
+
 /* 2. 全站卡片容器 */
 #aside-content .card-widget,
 #post,
