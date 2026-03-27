@@ -2,9 +2,9 @@
    Butterfly 星空主题 - 完美最终版 (含页脚与侧边按钮修复)
    ============================================================ */
 
-/* 1. 背景设置 */
+/* 1. 背景设置 - 只保留图片，去掉效果 */
 #web_bg {
-  filter: brightness(0.8) !important;
+  filter: none !important;
   background-attachment: fixed !important;
 }
 
