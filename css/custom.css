@@ -421,62 +421,75 @@ blockquote {
 }
 
 /* ============================================================
-   子页面顶部 - 柔和灯光效果（仅子页面，不影响主页）
+   子页面顶部 - 柔和篝火效果（仅子页面，不影响主页）
    ============================================================ */
 
-/* 子页面头部容器 - 柔和渐变（排除主页的full_page） */
+/* 子页面头部容器 - 柔和深色渐变（排除主页的full_page） */
 #body-wrap:not(.full_page) .page #page-header,
 #body-wrap:not(.full_page) .archive #page-header,
 #body-wrap:not(.full_page) .tag #page-header,
 #body-wrap:not(.full_page) .category #page-header {
   background: linear-gradient(180deg, 
-    rgba(30, 40, 60, 0.95) 0%,
-    rgba(50, 60, 80, 0.85) 50%,
-    rgba(20, 25, 40, 0.9) 100%) !important;
+    rgba(25, 30, 45, 0.98) 0%,
+    rgba(35, 40, 55, 0.92) 40%,
+    rgba(45, 35, 30, 0.88) 70%,
+    rgba(30, 25, 25, 0.95) 100%) !important;
   position: relative;
   overflow: hidden;
 }
 
-/* 柔和灯光效果 */
+/* 篝火顶部光芒 */
 #body-wrap:not(.full_page) .page #page-header::before,
 #body-wrap:not(.full_page) .archive #page-header::before,
 #body-wrap:not(.full_page) .tag #page-header::before,
 #body-wrap:not(.full_page) .category #page-header::before {
   content: '';
   position: absolute;
-  top: -50%;
+  bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 150%;
-  height: 100%;
-  background: radial-gradient(ellipse at center top, 
-    rgba(255, 200, 100, 0.15) 0%, 
-    rgba(255, 150, 80, 0.08) 30%,
-    transparent 60%);
+  width: 120%;
+  height: 80%;
+  background: radial-gradient(ellipse at center bottom, 
+    rgba(255, 160, 80, 0.12) 0%, 
+    rgba(255, 120, 50, 0.06) 25%,
+    rgba(255, 100, 40, 0.03) 45%,
+    transparent 65%);
   pointer-events: none;
-  animation: gentleGlow 6s ease-in-out infinite alternate;
+  animation: campfireGlow 4s ease-in-out infinite alternate;
 }
 
-@keyframes gentleGlow {
-  0% { opacity: 0.6; transform: translateX(-50%) scale(1); }
-  100% { opacity: 1; transform: translateX(-50%) scale(1.05); }
+@keyframes campfireGlow {
+  0% { opacity: 0.7; transform: translateX(-50%) scale(1); }
+  50% { opacity: 1; transform: translateX(-50%) scale(1.02); }
+  100% { opacity: 0.8; transform: translateX(-50%) scale(0.98); }
 }
 
-/* 篝火粒子效果 */
+/* 篝火粒子效果 - 多层火焰 */
 #body-wrap:not(.full_page) .page #page-header::after,
 #body-wrap:not(.full_page) .archive #page-header::after,
 #body-wrap:not(.full_page) .tag #page-header::after,
 #body-wrap:not(.full_page) .category #page-header::after {
   content: '';
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 30%;
-  background: linear-gradient(0deg, 
-    rgba(255, 120, 50, 0.08) 0%, 
-    transparent 100%);
+  bottom: -10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 50%;
+  background: 
+    radial-gradient(ellipse at 30% 80%, rgba(255, 180, 100, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 85%, rgba(255, 150, 80, 0.06) 0%, transparent 45%),
+    radial-gradient(ellipse at 50% 90%, rgba(255, 200, 120, 0.1) 0%, transparent 40%);
   pointer-events: none;
+  animation: fireFlicker 3s ease-in-out infinite;
+}
+
+@keyframes fireFlicker {
+  0%, 100% { opacity: 0.6; transform: translateX(-50%) translateY(0); }
+  25% { opacity: 0.8; transform: translateX(-48%) translateY(-2%); }
+  50% { opacity: 1; transform: translateX(-52%) translateY(-1%); }
+  75% { opacity: 0.7; transform: translateX(-50%) translateY(-3%); }
 }
 
 /* 子页面标题样式 */
@@ -487,7 +500,7 @@ blockquote {
   font-size: 2.5rem !important;
   font-weight: 700 !important;
   color: #ffffff !important;
-  text-shadow: 0 2px 20px rgba(255, 200, 100, 0.3), 0 4px 8px rgba(0, 0, 0, 0.5) !important;
+  text-shadow: 0 2px 15px rgba(255, 180, 100, 0.25), 0 4px 8px rgba(0, 0, 0, 0.6) !important;
   position: relative;
   z-index: 1;
 }
@@ -498,9 +511,21 @@ blockquote {
 #body-wrap:not(.full_page) .tag #page-header .page-description,
 #body-wrap:not(.full_page) .category #page-header .page-description {
   font-size: 1rem !important;
-  color: rgba(255, 255, 255, 0.8) !important;
+  color: rgba(255, 230, 200, 0.85) !important;
   position: relative;
   z-index: 1;
+}
+
+/* 导航标签柔和颜色 */
+#nav .menus_item a.site-page,
+#nav .site-page {
+  color: rgba(255, 230, 210, 0.9) !important;
+  transition: all 0.3s ease;
+}
+
+#nav .menus_item a.site-page:hover,
+#nav .site-page:hover {
+  color: rgba(255, 200, 150, 1) !important;
 }
 
 /* ============================================================
