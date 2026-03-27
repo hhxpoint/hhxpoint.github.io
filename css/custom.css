@@ -783,10 +783,15 @@ a.fancybox {
 
 /* ============================================================
    页面顶部区域精致设计 (时间轴/标签/分类/关于)
+   只针对子页面，不影响主页
    ============================================================ */
 
-/* 1. 页面头部容器 - 替换蓝色背景 */
-#page-header {
+/* 1. 页面头部容器 - 只针对子页面，排除主页 */
+#body-wrap:not(.full_page) #page-header,
+.page #page-header,
+.archive #page-header,
+.tag #page-header,
+.category #page-header {
   background: linear-gradient(135deg, 
     rgba(198, 120, 221, 0.85) 0%, 
     rgba(97, 175, 239, 0.7) 50%, 
@@ -795,8 +800,12 @@ a.fancybox {
   overflow: hidden;
 }
 
-/* 添加动态光效 */
-#page-header::before {
+/* 添加动态光效 - 只针对子页面 */
+#body-wrap:not(.full_page) #page-header::before,
+.page #page-header::before,
+.archive #page-header::before,
+.tag #page-header::before,
+.category #page-header::before {
   content: '';
   position: absolute;
   top: -50%;
