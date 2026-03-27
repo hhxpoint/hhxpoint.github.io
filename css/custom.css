@@ -1,14 +1,14 @@
 /* ============================================================
-   Butterfly 星空主题 - 完美最终版 (含页脚与侧边按钮修复)
+   Butterfly 星空主题 - 简洁版
    ============================================================ */
 
-/* 1. 背景设置 - 只保留图片，去掉效果 */
+/* 1. 背景设置 */
 #web_bg {
-  filter: none !important;
+  filter: brightness(0.8) !important;
   background-attachment: fixed !important;
 }
 
-/* 2. 全站卡片容器 (玻璃质感) */
+/* 2. 全站卡片容器 */
 #aside-content .card-widget,
 #post,
 #page,
@@ -21,12 +21,9 @@
   box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.7) !important;
 }
 
-/* 3. 【重点修复】页脚背景：去掉那个亮蓝色 */
+/* 3. 页脚背景 */
 #footer {
   background: transparent !important;
-  /* 设为全透明，直接透出星空，最优雅 */
-  /* 如果你觉得全透明太飘，可以取消下面这一行的注释改用半透明： */
-  /* background: rgba(0, 0, 0, 0.5) !important; */
 }
 
 #footer #footer-wrap {
@@ -34,30 +31,20 @@
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-/* 4. 【细节修复】右下角侧边按钮 (回到顶部/设置)：去掉蓝色，换成柔和紫 */
+/* 4. 右下角侧边按钮 */
 #rightside>div>button,
 #rightside>div>a {
-  background-color: #c678dd !important;
-  /* 换成柔和紫 */
+  background-color: rgba(0, 0, 0, 0.5) !important;
   color: #fff !important;
   border-radius: 8px !important;
 }
 
 #rightside>div>button:hover,
 #rightside>div>a:hover {
-  background-color: #a85fbb !important;
-  /* 悬浮时稍微加深 */
+  background-color: rgba(0, 0, 0, 0.7) !important;
 }
 
-/* 5. 目录页 (TOC) 颜色优化 */
-#aside-content #card-toc .toc-content .toc-link.active {
-  background: rgba(198, 120, 221, 0.2) !important;
-  color: #ffffff !important;
-  border-left: 3px solid #c678dd !important;
-  font-weight: bold;
-}
-
-/* 6. 代码块修复 (消除白斑 + 彩色高亮) */
+/* 5. 代码块 */
 #article-container figure.highlight,
 #article-container figure.highlight table,
 #article-container figure.highlight .gutter,
@@ -67,34 +54,12 @@
   border: none !important;
 }
 
-.highlight .keyword {
-  color: #c678dd !important;
-  font-weight: bold;
-}
-
-.highlight .string {
-  color: #98c379 !important;
-}
-
-.highlight .function {
-  color: #61afef !important;
-}
-
-.highlight .code pre {
-  color: #abb2bf !important;
-}
-
-/* 7. 标题与文字提亮 */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
+/* 6. 标题与文字 */
+h1, h2, h3, h4, h5, h6,
 .article-title,
 .site-name {
   color: #ffffff !important;
-  text-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 0 2px 4px rgba(0, 0, 0, 0.8) !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8) !important;
 }
 
 #article-container p,
@@ -105,194 +70,19 @@ h6,
   opacity: 1 !important;
 }
 
-/* 8. 链接与按钮统一为柔和紫 */
+/* 7. 链接 */
 a,
 #article-container a,
 .recent-post-item .article-title:hover {
-  color: #c678dd !important;
-}
-
-#aside-content .card-author .btn-inside {
-  background: linear-gradient(135deg, #c678dd, #a85fbb) !important;
-  color: #fff !important;
-  border: none !important;
-  box-shadow: 0 4px 15px rgba(198, 120, 221, 0.3) !important;
-  transition: all 0.3s ease !important;
-}
-
-#aside-content .card-author .btn-inside:hover {
-  transform: translateY(-2px) !important;
-  box-shadow: 0 8px 25px rgba(198, 120, 221, 0.5) !important;
+  color: #49b1f5 !important;
 }
 
 blockquote {
   background: rgba(255, 255, 255, 0.1) !important;
-  border-left: 4px solid #c678dd !important;
+  border-left: 4px solid #49b1f5 !important;
 }
 
-/* ============================================================
-   新增：界面美化与细节优化
-   ============================================================ */
-
-/* 9. 全局动画效果 */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
-}
-
-@keyframes glow {
-  0% { box-shadow: 0 0 5px rgba(198, 120, 221, 0.3); }
-  50% { box-shadow: 0 0 20px rgba(198, 120, 221, 0.6); }
-  100% { box-shadow: 0 0 5px rgba(198, 120, 221, 0.3); }
-}
-
-/* 10. 首页文章卡片悬浮效果 */
-.recent-post-item {
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  animation: fadeInUp 0.6s ease-out forwards;
-  animation-delay: calc(var(--index) * 0.1s);
-}
-
-.recent-post-item:hover {
-  transform: translateY(-8px) !important;
-  box-shadow: 0 20px 60px rgba(198, 120, 221, 0.3) !important;
-  border-color: rgba(198, 120, 221, 0.5) !important;
-}
-
-/* 11. 文章封面图渐变遮罩 */
-.recent-post-item .post_cover {
-  position: relative;
-  overflow: hidden;
-}
-
-.recent-post-item .post_cover::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 60%;
-  background: linear-gradient(transparent, rgba(10, 15, 30, 0.9));
-  pointer-events: none;
-}
-
-/* 12. 导航栏毛玻璃效果 - 修复指示条对准 */
-#nav {
-  background: rgba(10, 15, 30, 0.85) !important;
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-  transition: all 0.3s ease;
-}
-
-/* 导航菜单项容器 */
-#menus .menus_item {
-  display: inline-block;
-}
-
-/* 导航链接 */
-#menus .menus_item a.site-page {
-  display: inline-flex;
-  align-items: center;
-  padding: 10px 12px !important;
-  position: relative;
-  transition: all 0.3s ease;
-  text-decoration: none;
-}
-
-/* 指示条 - 使用伪元素 */
-#menus .menus_item a.site-page::after {
-  content: '';
-  position: absolute;
-  bottom: 2px;
-  left: 12px;
-  right: 12px;
-  height: 3px;
-  background: linear-gradient(90deg, #c678dd, #61afef);
-  border-radius: 2px;
-  transform: scaleX(0);
-  transition: transform 0.3s ease;
-  transform-origin: center;
-}
-
-/* 悬浮时显示指示条 */
-#menus .menus_item a.site-page:hover::after {
-  transform: scaleX(1);
-}
-
-/* 去掉默认样式 */
-#menus .menus_item a.site-page:hover {
-  color: inherit !important;
-}
-
-/* 修复Butterfly主题默认蓝色指示 */
-#nav a {
-  border-bottom: none !important;
-}
-
-/* 13. 侧边栏卡片悬浮效果 */
-#aside-content .card-widget {
-  transition: all 0.3s ease;
-  margin-bottom: 15px;
-}
-
-#aside-content .card-widget:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 50px rgba(198, 120, 221, 0.25) !important;
-}
-
-/* 14. 作者卡片头像光晕 */
-#aside-content .card-author .avatar {
-  border: 3px solid rgba(198, 120, 221, 0.5);
-  box-shadow: 0 0 30px rgba(198, 120, 221, 0.4);
-  transition: all 0.3s ease;
-}
-
-#aside-content .card-author .avatar:hover {
-  box-shadow: 0 0 50px rgba(198, 120, 221, 0.7);
-}
-
-/* 15. 标签云彩色渐变 */
-#aside-content .card-tag-cloud a {
-  transition: all 0.3s ease;
-  display: inline-block;
-}
-
-#aside-content .card-tag-cloud a:nth-child(3n) {
-  color: #c678dd !important;
-}
-
-#aside-content .card-tag-cloud a:nth-child(3n+1) {
-  color: #61afef !important;
-}
-
-#aside-content .card-tag-cloud a:nth-child(3n+2) {
-  color: #98c379 !important;
-}
-
-#aside-content .card-tag-cloud a:hover {
-  transform: scale(1.1);
-  text-shadow: 0 0 10px currentColor;
-}
-
-/* 16. 自定义滚动条 */
+/* 8. 自定义滚动条 */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -303,736 +93,329 @@ blockquote {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(198, 120, 221, 0.5);
+  background: rgba(73, 177, 245, 0.5);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(198, 120, 221, 0.8);
-}
-
-/* 17. 文章页面优化 */
-#article-container {
-  animation: fadeIn 0.8s ease-out;
-}
-
-#article-container h1,
-#article-container h2,
-#article-container h3 {
-  position: relative;
-  padding-left: 15px;
-}
-
-#article-container h1::before,
-#article-container h2::before,
-#article-container h3::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 4px;
-  height: 70%;
-  background: linear-gradient(180deg, #c678dd, #61afef);
-  border-radius: 2px;
-}
-
-/* 18. 引用块装饰增强 */
-#article-container blockquote {
-  position: relative;
-  padding: 20px 20px 20px 30px;
-  margin: 20px 0;
-  border-radius: 8px;
-}
-
-#article-container blockquote::before {
-  content: '\201C';
-  position: absolute;
-  left: 10px;
-  top: 10px;
-  font-size: 40px;
-  color: rgba(198, 120, 221, 0.5);
-  font-family: Georgia, serif;
-  line-height: 1;
-}
-
-/* 19. 分割线美化 */
-hr {
-  border: none;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(198, 120, 221, 0.5), transparent);
-  margin: 30px 0;
-}
-
-/* 20. 按钮统一样式 */
-.btn {
-  background: linear-gradient(135deg, #c678dd, #a85fbb) !important;
-  border: none !important;
-  color: #fff !important;
-  border-radius: 25px !important;
-  padding: 10px 25px !important;
-  transition: all 0.3s ease !important;
-  box-shadow: 0 4px 15px rgba(198, 120, 221, 0.3) !important;
-}
-
-.btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(198, 120, 221, 0.5) !important;
-}
-
-/* 21. 分类标签彩色徽章 */
-.article-meta .article-categories {
-  display: inline-flex;
-  gap: 5px;
-}
-
-.article-meta .article-categories a {
-  background: linear-gradient(135deg, rgba(198, 120, 221, 0.3), rgba(97, 175, 239, 0.3));
-  padding: 3px 12px;
-  border-radius: 15px;
-  font-size: 12px;
-  transition: all 0.3s ease;
-}
-
-.article-meta .article-categories a:hover {
-  background: linear-gradient(135deg, rgba(198, 120, 221, 0.5), rgba(97, 175, 239, 0.5));
-  transform: scale(1.05);
-}
-
-/* 22. 搜索框美化 */
-#search-input {
-  background: rgba(10, 15, 30, 0.8) !important;
-  border: 1px solid rgba(198, 120, 221, 0.3) !important;
-  color: #fff !important;
-  border-radius: 25px !important;
-  transition: all 0.3s ease;
-}
-
-#search-input:focus {
-  border-color: #c678dd !important;
-  box-shadow: 0 0 20px rgba(198, 120, 221, 0.3);
-}
-
-/* 23. 页面加载动画 */
-#loading-box {
-  background: rgba(10, 15, 30, 0.95) !important;
-}
-
-#loading-box .loading-img {
-  animation: pulse 1.5s ease-in-out infinite;
-}
-
-/* 24. 鼠标点击特效 */
-canvas#click-effect {
-  position: fixed;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  z-index: 9999;
-}
-
-/* 25. 公告栏样式 */
-#aside-content .card-announcement {
-  background: linear-gradient(135deg, rgba(198, 120, 221, 0.2), rgba(97, 175, 239, 0.2)) !important;
-  border-left: 4px solid #c678dd !important;
-}
-
-/* 26. 最近文章列表优化 */
-#aside-content .aside-list .aside-list-item {
-  transition: all 0.3s ease;
-  padding: 10px;
-  border-radius: 8px;
-}
-
-#aside-content .aside-list .aside-list-item:hover {
-  background: rgba(198, 120, 221, 0.1);
-  transform: translateX(5px);
-}
-
-/* 27. 归档时间轴样式 */
-.article-sort-item {
-  position: relative;
-  padding-left: 20px;
-}
-
-.article-sort-item::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 8px;
-  height: 8px;
-  background: #c678dd;
-  border-radius: 50%;
-  box-shadow: 0 0 10px rgba(198, 120, 221, 0.5);
-}
-
-/* 28. 网站信息卡片 */
-#aside-content .card-webinfo .webinfo-item {
-  display: flex;
-  justify-content: space-between;
-  padding: 8px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-#aside-content .card-webinfo .webinfo-item:last-child {
-  border-bottom: none;
-}
-
-/* 29. 社交链接图标 */
-#aside-content .card-author .card-author-social a {
-  transition: all 0.3s ease;
-  margin: 0 8px;
-}
-
-#aside-content .card-author .card-author-social a:hover {
-  color: #c678dd !important;
-  transform: translateY(-3px);
-}
-
-/* 30. 页脚社交媒体链接 */
-.footer-social-links a {
-  transition: all 0.3s ease;
-  margin: 0 10px;
-}
-
-.footer-social-links a:hover {
-  color: #c678dd !important;
-  transform: translateY(-3px);
+  background: rgba(73, 177, 245, 0.8);
 }
 
 /* ============================================================
-   新增：颜色协调优化
+   AI对话页面样式
    ============================================================ */
 
-/* 32. 侧边栏作者卡片优化 */
-#aside-content .card-author .author-info {
-  text-align: center;
+/* 隐藏页面标题 */
+.article-container > h1,
+.article-container > .article-title,
+#article-container > h1,
+.page-title {
+  display: none !important;
 }
 
-#aside-content .card-author .author-info .author-name {
-  color: #ffffff !important;
-  font-weight: 600;
-  margin-top: 10px;
+/* 对话容器 */
+.chat-container {
+  max-width: 100%;
+  margin: -30px 0 0 0;
+  padding: 15px;
+  height: calc(100vh - 60px);
+  display: flex;
+  flex-direction: column;
 }
 
-#aside-content .card-author .author-info .author-description {
-  color: rgba(255, 255, 255, 0.7) !important;
-  font-size: 13px;
+/* 消息区域 */
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  background: rgba(10, 15, 30, 0.65);
+  border-radius: 20px;
+  margin-bottom: 12px;
+  backdrop-filter: blur(20px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  scroll-behavior: smooth;
+}
+
+/* 消息样式 */
+.message {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.message.user {
+  flex-direction: row-reverse;
+}
+
+.message-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+  overflow: hidden;
   margin-top: 5px;
 }
 
-/* 33. 公告栏样式优化 */
-#aside-content .card-announcement {
-  background: linear-gradient(135deg, rgba(198, 120, 221, 0.15), rgba(97, 175, 239, 0.1)) !important;
-  border-left: 3px solid #c678dd !important;
+.message-avatar img {
+  width: 110%;
+  height: 110%;
+  object-fit: cover;
+  object-position: center 100%;
+  border-radius: 50%;
+  margin: -5%;
+}
+
+.message.assistant .message-avatar {
+  background: rgba(73, 177, 245, 0.2);
+  border: 2px solid rgba(73, 177, 245, 0.4);
+}
+
+.message.user .message-avatar {
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.message-content {
+  max-width: 80%;
+  padding: 14px 18px;
+  border-radius: 18px;
+  line-height: 1.7;
+  word-wrap: break-word;
+}
+
+.message.user .message-content {
+  background: rgba(73, 177, 245, 0.8);
+  color: white;
+  border-bottom-right-radius: 6px;
+}
+
+.message.assistant .message-content {
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  border-bottom-left-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.message-content p {
+  margin: 0 0 10px 0;
+  color: #ffffff !important;
+}
+
+.message-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* 代码块 */
+.message-content pre {
+  background: rgba(0, 0, 0, 0.4) !important;
+  padding: 14px;
+  border-radius: 12px;
+  overflow-x: auto;
+  margin: 12px 0;
+}
+
+.message-content code {
+  font-family: 'Fira Code', 'Consolas', monospace;
+  font-size: 13px;
+}
+
+.message-content pre code {
+  background: transparent !important;
+  padding: 0;
+}
+
+.message-content code:not(pre code) {
+  background: rgba(73, 177, 245, 0.2);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* Markdown 样式 */
+.message-content h1,
+.message-content h2,
+.message-content h3 {
+  color: #49b1f5 !important;
+  margin: 15px 0 10px 0;
+}
+
+.message-content ul,
+.message-content ol {
+  margin: 10px 0;
+  padding-left: 20px;
+}
+
+.message-content li {
+  margin: 5px 0;
+  color: #ffffff !important;
+}
+
+.message-content blockquote {
+  border-left: 3px solid #49b1f5;
+  padding-left: 12px;
+  margin: 10px 0;
+}
+
+.message-content a {
+  color: #49b1f5 !important;
+}
+
+/* 输入区域 */
+.chat-input-container {
+  background: rgba(10, 15, 30, 0.6);
+  border-radius: 16px;
+  padding: 14px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: auto;
+}
+
+.input-wrapper {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+}
+
+#userInput {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 14px 16px;
+  color: white;
+  font-size: 15px;
+  resize: none;
+  transition: all 0.3s ease;
+  line-height: 1.5;
+  font-family: inherit;
+}
+
+#userInput:focus {
+  outline: none;
+  border-color: #49b1f5;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+#userInput::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+#sendBtn {
+  background: #49b1f5;
+  border: none;
+  border-radius: 12px;
+  width: 48px;
+  height: 48px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+#sendBtn:hover {
+  background: #3a9de8;
+  transform: scale(1.05);
+}
+
+#sendBtn:disabled {
+  background: rgba(100, 100, 100, 0.3);
+  cursor: not-allowed;
+  transform: none;
+}
+
+.chat-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+  padding: 0 4px;
+}
+
+.chat-tip {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 12px;
+}
+
+#clearBtn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 8px;
-}
-
-#aside-content .card-announcement .card-widget-title {
-  color: #c678dd !important;
-}
-
-/* 34. 最近文章标题颜色 */
-#aside-content .aside-list .aside-list-item .content .title {
-  color: #ffffff !important;
+  padding: 6px 12px;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
   transition: all 0.3s ease;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
-#aside-content .aside-list .aside-list-item .content .title:hover {
-  color: #c678dd !important;
+#clearBtn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
 }
 
-/* 35. 分类和标签页面 */
-.card-category-list .category-list-item a,
-.card-tag-list .tag-list-item a {
-  color: rgba(255, 255, 255, 0.9) !important;
-  transition: all 0.3s ease;
+/* 正在输入指示器 */
+.typing-indicator {
+  display: inline-flex;
+  gap: 5px;
+  padding: 10px 14px;
 }
 
-.card-category-list .category-list-item a:hover,
-.card-tag-list .tag-list-item a:hover {
-  color: #c678dd !important;
-  padding-left: 10px;
+.typing-indicator span {
+  width: 8px;
+  height: 8px;
+  background: #49b1f5;
+  border-radius: 50%;
+  animation: typing 1.4s infinite ease-in-out;
 }
 
-/* 36. 文章分页按钮 */
-.pagination .page-number,
-.pagination .extend {
-  background: rgba(198, 120, 221, 0.2) !important;
-  color: #ffffff !important;
-  border: 1px solid rgba(198, 120, 221, 0.3) !important;
-  transition: all 0.3s ease;
+.typing-indicator span:nth-child(2) {
+  animation-delay: 0.2s;
 }
 
-.pagination .page-number:hover,
-.pagination .extend:hover,
-.pagination .page-number.current {
-  background: linear-gradient(135deg, #c678dd, #a85fbb) !important;
-  border-color: #c678dd !important;
-  box-shadow: 0 4px 15px rgba(198, 120, 221, 0.3);
+.typing-indicator span:nth-child(3) {
+  animation-delay: 0.4s;
 }
 
-/* 37. 搜索框结果 */
-.local-search-result-item {
-  color: #ffffff !important;
-  border-left: 3px solid #c678dd !important;
+@keyframes typing {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+  30% { transform: translateY(-8px); opacity: 1; }
 }
 
-.local-search-result-item:hover {
-  background: rgba(198, 120, 221, 0.1) !important;
+/* 滚动条 */
+.chat-messages::-webkit-scrollbar {
+  width: 6px;
 }
 
-/* 38. 时间轴样式 */
-.article-sort-item .article-sort-item-title {
-  color: #ffffff !important;
+.chat-messages::-webkit-scrollbar-track {
+  background: transparent;
 }
 
-.article-sort-item .article-sort-item-title:hover {
-  color: #c678dd !important;
+.chat-messages::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
 }
 
-/* 39. 全局链接颜色统一 */
-a.fancybox {
-  color: #c678dd !important;
+.chat-messages::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
 }
 
-/* 40. 强化卡片边框效果 */
-#aside-content .card-widget:hover {
-  border-color: rgba(198, 120, 221, 0.4) !important;
-}
-
-/* 41. 首页文章标题优化 */
-.recent-post-info .article-title {
-  color: #ffffff !important;
-  transition: all 0.3s ease;
-}
-
-.recent-post-info .article-title:hover {
-  color: #c678dd !important;
-  text-shadow: 0 0 15px rgba(198, 120, 221, 0.5);
-}
-
-/* 42. 文章标签颜色 */
-.article-meta .article-tag-list .article-tag-list-item {
-  background: linear-gradient(135deg, rgba(198, 120, 221, 0.2), rgba(97, 175, 239, 0.15)) !important;
-  color: rgba(255, 255, 255, 0.9) !important;
-  border: 1px solid rgba(198, 120, 221, 0.3) !important;
-  transition: all 0.3s ease;
-}
-
-.article-meta .article-tag-list .article-tag-list-item:hover {
-  background: linear-gradient(135deg, rgba(198, 120, 221, 0.4), rgba(97, 175, 239, 0.3)) !important;
-  transform: translateY(-2px);
-}
-
-/* ============================================================
-   侧边栏作者卡片精致设计
-   ============================================================ */
-
-/* 作者卡片容器 */
-#aside-content .card-widget.card-info {
-  background: linear-gradient(160deg, rgba(198, 120, 221, 0.22), rgba(10, 15, 30, 0.88)) !important;
-  border: 1px solid rgba(198, 120, 221, 0.4) !important;
-  border-radius: 20px !important;
-  overflow: hidden;
-  position: relative;
-}
-
-#aside-content .card-widget.card-info::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 100px;
-  background: linear-gradient(135deg, rgba(198, 120, 221, 0.45), rgba(97, 175, 239, 0.3));
-  z-index: 0;
-}
-
-/* 头像样式 */
-#aside-content .card-info .avatar-img {
-  position: relative;
-  z-index: 1;
-  margin-top: 40px;
-}
-
-#aside-content .card-info .avatar-img img {
-  width: 95px !important;
-  height: 95px !important;
-  border-radius: 50% !important;
-  border: 4px solid rgba(255, 255, 255, 0.3) !important;
-  box-shadow: 0 0 50px rgba(198, 120, 221, 0.6), 0 15px 40px rgba(0, 0, 0, 0.5) !important;
-  transition: all 0.4s ease !important;
-}
-
-#aside-content .card-info .avatar-img img:hover {
-  transform: scale(1.1) rotate(5deg) !important;
-  box-shadow: 0 0 70px rgba(198, 120, 221, 0.8), 0 20px 50px rgba(0, 0, 0, 0.6) !important;
-}
-
-/* 作者名字 - 更显化 */
-#aside-content .card-info .author-info-name {
-  font-size: 24px !important;
-  font-weight: 800 !important;
-  color: #ffffff !important;
-  margin-top: 20px !important;
-  text-shadow: 0 0 30px rgba(255, 255, 255, 0.4), 0 2px 10px rgba(0, 0, 0, 0.5) !important;
-  letter-spacing: 2px !important;
-}
-
-/* 作者描述 - 柔和 */
-#aside-content .card-info .author-info-description {
-  font-size: 14px !important;
-  color: rgba(255, 255, 255, 0.75) !important;
-  margin-top: 12px !important;
-  font-style: italic;
-  letter-spacing: 0.5px !important;
-}
-
-/* 数据统计区域 */
-#aside-content .card-info .site-data {
-  display: flex !important;
-  justify-content: flex-start !important;
-  gap: 22px !important;
-  padding: 14px 22px !important;
-  margin: 18px 15px !important;
-  background: rgba(0, 0, 0, 0.25) !important;
-  border-radius: 14px !important;
-  border: 1px solid rgba(198, 120, 221, 0.2) !important;
-}
-
-#aside-content .card-info .site-data a {
-  text-align: left !important;
-  transition: all 0.3s ease !important;
-  min-width: 55px !important;
-}
-
-#aside-content .card-info .site-data a:hover {
-  transform: translateY(-3px) !important;
-}
-
-#aside-content .card-info .site-data .headline {
-  font-size: 11px !important;
-  color: rgba(255, 255, 255, 0.6) !important;
-  text-transform: uppercase !important;
-  letter-spacing: 1px !important;
-}
-
-#aside-content .card-info .site-data .length-num {
-  font-size: 22px !important;
-  font-weight: 700 !important;
-  color: #c678dd !important;
-  text-shadow: 0 0 12px rgba(198, 120, 221, 0.5) !important;
-}
-
-/* Follow Me 按钮 - 柔和清晰设计 */
-#aside-content .card-info #card-info-btn {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 10px !important;
-  margin: 0 20px 28px !important;
-  padding: 15px 28px !important;
-  background: rgba(198, 120, 221, 0.25) !important;
-  border: 2px solid rgba(198, 120, 221, 0.5) !important;
-  border-radius: 30px !important;
-  color: rgba(255, 255, 255, 0.95) !important;
-  font-size: 16px !important;
-  font-weight: 600 !important;
-  transition: all 0.35s ease !important;
-  text-decoration: none !important;
-  letter-spacing: 1px !important;
-}
-
-#aside-content .card-info #card-info-btn i {
-  font-size: 20px !important;
-  transition: all 0.35s ease !important;
-}
-
-#aside-content .card-info #card-info-btn:hover {
-  background: rgba(198, 120, 221, 0.45) !important;
-  border-color: rgba(198, 120, 221, 0.7) !important;
-  transform: translateY(-3px) !important;
-  box-shadow: 0 15px 40px rgba(198, 120, 221, 0.35) !important;
-  color: #ffffff !important;
-}
-
-#aside-content .card-info #card-info-btn:hover i {
-  transform: scale(1.2) !important;
-}
-
-/* 公告栏精致样式 */
-#aside-content .card-widget.card-announcement {
-  background: linear-gradient(135deg, rgba(198, 120, 221, 0.15), rgba(10, 15, 30, 0.75)) !important;
-  border-radius: 16px !important;
-  border: 1px solid rgba(198, 120, 221, 0.25) !important;
-}
-
-#aside-content .card-announcement .item-headline {
-  color: #c678dd !important;
-  font-weight: 600 !important;
-}
-
-#aside-content .card-announcement .announcement_content {
-  color: rgba(255, 255, 255, 0.85) !important;
-  font-size: 14px !important;
-  line-height: 1.6 !important;
-}
-
-/* ============================================================
-   页面顶部区域精致设计 (时间轴/标签/分类/关于)
-   只针对子页面，不影响主页
-   ============================================================ */
-
-/* 1. 页面头部容器 - 只针对子页面，排除主页 */
-#body-wrap:not(.full_page) #page-header,
-.page #page-header,
-.archive #page-header,
-.tag #page-header,
-.category #page-header {
-  background: linear-gradient(135deg, 
-    rgba(198, 120, 221, 0.85) 0%, 
-    rgba(97, 175, 239, 0.7) 50%, 
-    rgba(168, 95, 187, 0.8) 100%) !important;
-  position: relative;
-  overflow: hidden;
-}
-
-/* 添加动态光效 - 只针对子页面 */
-#body-wrap:not(.full_page) #page-header::before,
-.page #page-header::before,
-.archive #page-header::before,
-.tag #page-header::before,
-.category #page-header::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
-  animation: headerGlow 8s ease-in-out infinite;
-  pointer-events: none;
-}
-
-@keyframes headerGlow {
-  0%, 100% { transform: translate(0, 0) rotate(0deg); }
-  25% { transform: translate(10%, 10%) rotate(90deg); }
-  50% { transform: translate(0, 20%) rotate(180deg); }
-  75% { transform: translate(-10%, 10%) rotate(270deg); }
-}
-
-/* 2. 页面标题样式 - 只针对子页面 */
-#body-wrap:not(.full_page) #page-header .page-title,
-.page #page-header .page-title,
-.archive #page-header .page-title,
-.tag #page-header .page-title,
-.category #page-header .page-title {
-  font-size: 2.8rem !important;
-  font-weight: 800 !important;
-  color: #ffffff !important;
-  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 40px rgba(255, 255, 255, 0.2) !important;
-  letter-spacing: 3px !important;
-  position: relative;
-  z-index: 1;
-}
-
-/* 3. 页面副标题/描述 - 只针对子页面 */
-#body-wrap:not(.full_page) #page-header .page-description,
-.page #page-header .page-description,
-.archive #page-header .page-description,
-.tag #page-header .page-description,
-.category #page-header .page-description {
-  font-size: 1.1rem !important;
-  color: rgba(255, 255, 255, 0.9) !important;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) !important;
-  letter-spacing: 1px !important;
-  position: relative;
-  z-index: 1;
-}
-
-/* 4. 标签云页面特殊样式 */
-.tag-cloud-list {
-  padding: 30px 20px !important;
-}
-
-.tag-cloud-list a {
-  display: inline-block !important;
-  padding: 8px 18px !important;
-  margin: 6px !important;
-  background: rgba(198, 120, 221, 0.15) !important;
-  border: 1px solid rgba(198, 120, 221, 0.3) !important;
-  border-radius: 25px !important;
-  color: rgba(255, 255, 255, 0.9) !important;
-  font-size: 14px !important;
-  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
-}
-
-.tag-cloud-list a:hover {
-  background: linear-gradient(135deg, rgba(198, 120, 221, 0.4), rgba(97, 175, 239, 0.3)) !important;
-  border-color: rgba(198, 120, 221, 0.6) !important;
-  transform: translateY(-4px) scale(1.05) !important;
-  box-shadow: 0 10px 30px rgba(198, 120, 221, 0.3) !important;
-  color: #ffffff !important;
-}
-
-/* 5. 时间轴页面样式 */
-.article-sort {
-  padding: 20px 0 !important;
-}
-
-.article-sort-item {
-  position: relative !important;
-  padding: 20px 25px 20px 40px !important;
-  margin-bottom: 15px !important;
-  background: rgba(10, 15, 30, 0.5) !important;
-  border-radius: 12px !important;
-  border-left: 3px solid rgba(198, 120, 221, 0.6) !important;
-  transition: all 0.3s ease !important;
-}
-
-.article-sort-item:hover {
-  background: rgba(198, 120, 221, 0.1) !important;
-  border-left-color: #c678dd !important;
-  transform: translateX(5px) !important;
-}
-
-/* 时间轴圆点 */
-.article-sort-item::before {
-  content: '';
-  position: absolute;
-  left: -8px;
-  top: 28px;
-  width: 14px !important;
-  height: 14px !important;
-  background: linear-gradient(135deg, #c678dd, #61afef) !important;
-  border-radius: 50% !important;
-  box-shadow: 0 0 15px rgba(198, 120, 221, 0.6) !important;
-  border: 2px solid rgba(255, 255, 255, 0.3) !important;
-}
-
-/* 时间轴年份标题 */
-.article-sort-item .article-sort-item-title {
-  font-size: 1.1rem !important;
-  font-weight: 600 !important;
-  color: #ffffff !important;
-  margin-bottom: 8px !important;
-}
-
-.article-sort-item .article-sort-item-title:hover {
-  color: #c678dd !important;
-}
-
-/* 时间轴日期 */
-.article-sort-item time {
-  font-size: 0.85rem !important;
-  color: rgba(255, 255, 255, 0.6) !important;
-}
-
-/* 6. 分类页面样式 */
-.card-category-list {
-  padding: 25px 20px !important;
-}
-
-.card-category-list .category-list-item {
-  margin-bottom: 12px !important;
-}
-
-.card-category-list .category-list-item a {
-  display: flex !important;
-  align-items: center !important;
-  padding: 15px 20px !important;
-  background: rgba(10, 15, 30, 0.5) !important;
-  border-radius: 12px !important;
-  border: 1px solid rgba(198, 120, 221, 0.2) !important;
-  color: rgba(255, 255, 255, 0.9) !important;
-  transition: all 0.35s ease !important;
-}
-
-.card-category-list .category-list-item a:hover {
-  background: linear-gradient(135deg, rgba(198, 120, 221, 0.2), rgba(97, 175, 239, 0.15)) !important;
-  border-color: rgba(198, 120, 221, 0.5) !important;
-  transform: translateX(8px) !important;
-  color: #ffffff !important;
-}
-
-.card-category-list .category-list-item a::before {
-  content: '\f07b';
-  font-family: 'Font Awesome 6 Free';
-  font-weight: 900;
-  margin-right: 12px;
-  color: #c678dd !important;
-  font-size: 16px !important;
-}
-
-/* 分类文章数量 */
-.card-category-list .category-list-item .category-list-count {
-  margin-left: auto !important;
-  background: rgba(198, 120, 221, 0.25) !important;
-  padding: 4px 12px !important;
-  border-radius: 15px !important;
-  font-size: 12px !important;
-  color: rgba(255, 255, 255, 0.8) !important;
-}
-
-/* 7. 关于页面特殊样式 */
-#page.about-page {
-  background: linear-gradient(180deg, 
-    rgba(198, 120, 221, 0.3) 0%, 
-    rgba(10, 15, 30, 0.9) 30%) !important;
-}
-
-/* 8. 面包屑导航样式 */
-#breadcrumb {
-  padding: 15px 0 !important;
-}
-
-#breadcrumb a {
-  color: rgba(255, 255, 255, 0.7) !important;
-  transition: all 0.3s ease !important;
-}
-
-#breadcrumb a:hover {
-  color: #c678dd !important;
-}
-
-#breadcrumb .current {
-  color: rgba(255, 255, 255, 0.5) !important;
-}
-
-/* 9. 页面内容区域 */
-.layout {
-  padding-top: 30px !important;
-}
-
-/* 10. 标签/分类详情页标题 */
-#article-container .article-sort-title {
-  font-size: 1.5rem !important;
-  font-weight: 700 !important;
-  color: #c678dd !important;
-  padding-bottom: 15px !important;
-  margin-bottom: 25px !important;
-  border-bottom: 2px solid rgba(198, 120, 221, 0.3) !important;
-  text-shadow: 0 0 20px rgba(198, 120, 221, 0.3) !important;
-}
-
-/* 11. 时间轴分隔线优化 */
-.article-sort-title::before {
-  content: '';
-  display: inline-block;
-  width: 4px;
-  height: 24px;
-  background: linear-gradient(180deg, #c678dd, #61afef);
-  border-radius: 2px;
-  margin-right: 12px;
-  vertical-align: middle;
-}
-
-/* 12. 滚动时头部效果 */
-#nav.fixed {
-  background: rgba(10, 15, 30, 0.92) !important;
-  backdrop-filter: blur(25px) saturate(180%) !important;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3) !important;
+/* 响应式 */
+@media (max-width: 768px) {
+  .chat-container {
+    padding: 10px;
+    height: calc(100vh - 40px);
+  }
+  
+  .message-content {
+    max-width: 85%;
+    padding: 12px 14px;
+  }
 }
