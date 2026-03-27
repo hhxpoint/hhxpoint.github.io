@@ -121,3 +121,352 @@ blockquote {
   background: rgba(255, 255, 255, 0.1) !important;
   border-left: 4px solid #c678dd !important;
 }
+
+/* ============================================================
+   新增：界面美化与细节优化
+   ============================================================ */
+
+/* 9. 全局动画效果 */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes glow {
+  0% { box-shadow: 0 0 5px rgba(198, 120, 221, 0.3); }
+  50% { box-shadow: 0 0 20px rgba(198, 120, 221, 0.6); }
+  100% { box-shadow: 0 0 5px rgba(198, 120, 221, 0.3); }
+}
+
+/* 10. 首页文章卡片悬浮效果 */
+.recent-post-item {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  animation: fadeInUp 0.6s ease-out forwards;
+  animation-delay: calc(var(--index) * 0.1s);
+}
+
+.recent-post-item:hover {
+  transform: translateY(-8px) !important;
+  box-shadow: 0 20px 60px rgba(198, 120, 221, 0.3) !important;
+  border-color: rgba(198, 120, 221, 0.5) !important;
+}
+
+/* 11. 文章封面图渐变遮罩 */
+.recent-post-item .post_cover {
+  position: relative;
+  overflow: hidden;
+}
+
+.recent-post-item .post_cover::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60%;
+  background: linear-gradient(transparent, rgba(10, 15, 30, 0.9));
+  pointer-events: none;
+}
+
+/* 12. 导航栏毛玻璃效果 */
+#nav {
+  background: rgba(10, 15, 30, 0.85) !important;
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  transition: all 0.3s ease;
+}
+
+#nav .menus_item a {
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+#nav .menus_item a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: #c678dd;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+#nav .menus_item a:hover::after,
+#nav .menus_item a.active::after {
+  width: 80%;
+}
+
+/* 13. 侧边栏卡片悬浮效果 */
+#aside-content .card-widget {
+  transition: all 0.3s ease;
+  margin-bottom: 15px;
+}
+
+#aside-content .card-widget:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 50px rgba(198, 120, 221, 0.25) !important;
+}
+
+/* 14. 作者卡片头像光晕 */
+#aside-content .card-author .avatar {
+  border: 3px solid rgba(198, 120, 221, 0.5);
+  box-shadow: 0 0 30px rgba(198, 120, 221, 0.4);
+  transition: all 0.3s ease;
+}
+
+#aside-content .card-author .avatar:hover {
+  box-shadow: 0 0 50px rgba(198, 120, 221, 0.7);
+}
+
+/* 15. 标签云彩色渐变 */
+#aside-content .card-tag-cloud a {
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+#aside-content .card-tag-cloud a:nth-child(3n) {
+  color: #c678dd !important;
+}
+
+#aside-content .card-tag-cloud a:nth-child(3n+1) {
+  color: #61afef !important;
+}
+
+#aside-content .card-tag-cloud a:nth-child(3n+2) {
+  color: #98c379 !important;
+}
+
+#aside-content .card-tag-cloud a:hover {
+  transform: scale(1.1);
+  text-shadow: 0 0 10px currentColor;
+}
+
+/* 16. 自定义滚动条 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(10, 15, 30, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(198, 120, 221, 0.5);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(198, 120, 221, 0.8);
+}
+
+/* 17. 文章页面优化 */
+#article-container {
+  animation: fadeIn 0.8s ease-out;
+}
+
+#article-container h1,
+#article-container h2,
+#article-container h3 {
+  position: relative;
+  padding-left: 15px;
+}
+
+#article-container h1::before,
+#article-container h2::before,
+#article-container h3::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 70%;
+  background: linear-gradient(180deg, #c678dd, #61afef);
+  border-radius: 2px;
+}
+
+/* 18. 引用块装饰增强 */
+#article-container blockquote {
+  position: relative;
+  padding: 20px 20px 20px 30px;
+  margin: 20px 0;
+  border-radius: 8px;
+}
+
+#article-container blockquote::before {
+  content: '\201C';
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  font-size: 40px;
+  color: rgba(198, 120, 221, 0.5);
+  font-family: Georgia, serif;
+  line-height: 1;
+}
+
+/* 19. 分割线美化 */
+hr {
+  border: none;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(198, 120, 221, 0.5), transparent);
+  margin: 30px 0;
+}
+
+/* 20. 按钮统一样式 */
+.btn {
+  background: linear-gradient(135deg, #c678dd, #a85fbb) !important;
+  border: none !important;
+  color: #fff !important;
+  border-radius: 25px !important;
+  padding: 10px 25px !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 4px 15px rgba(198, 120, 221, 0.3) !important;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(198, 120, 221, 0.5) !important;
+}
+
+/* 21. 分类标签彩色徽章 */
+.article-meta .article-categories {
+  display: inline-flex;
+  gap: 5px;
+}
+
+.article-meta .article-categories a {
+  background: linear-gradient(135deg, rgba(198, 120, 221, 0.3), rgba(97, 175, 239, 0.3));
+  padding: 3px 12px;
+  border-radius: 15px;
+  font-size: 12px;
+  transition: all 0.3s ease;
+}
+
+.article-meta .article-categories a:hover {
+  background: linear-gradient(135deg, rgba(198, 120, 221, 0.5), rgba(97, 175, 239, 0.5));
+  transform: scale(1.05);
+}
+
+/* 22. 搜索框美化 */
+#search-input {
+  background: rgba(10, 15, 30, 0.8) !important;
+  border: 1px solid rgba(198, 120, 221, 0.3) !important;
+  color: #fff !important;
+  border-radius: 25px !important;
+  transition: all 0.3s ease;
+}
+
+#search-input:focus {
+  border-color: #c678dd !important;
+  box-shadow: 0 0 20px rgba(198, 120, 221, 0.3);
+}
+
+/* 23. 页面加载动画 */
+#loading-box {
+  background: rgba(10, 15, 30, 0.95) !important;
+}
+
+#loading-box .loading-img {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* 24. 鼠标点击特效 */
+canvas#click-effect {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* 25. 公告栏样式 */
+#aside-content .card-announcement {
+  background: linear-gradient(135deg, rgba(198, 120, 221, 0.2), rgba(97, 175, 239, 0.2)) !important;
+  border-left: 4px solid #c678dd !important;
+}
+
+/* 26. 最近文章列表优化 */
+#aside-content .aside-list .aside-list-item {
+  transition: all 0.3s ease;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+#aside-content .aside-list .aside-list-item:hover {
+  background: rgba(198, 120, 221, 0.1);
+  transform: translateX(5px);
+}
+
+/* 27. 归档时间轴样式 */
+.article-sort-item {
+  position: relative;
+  padding-left: 20px;
+}
+
+.article-sort-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  background: #c678dd;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(198, 120, 221, 0.5);
+}
+
+/* 28. 网站信息卡片 */
+#aside-content .card-webinfo .webinfo-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#aside-content .card-webinfo .webinfo-item:last-child {
+  border-bottom: none;
+}
+
+/* 29. 社交链接图标 */
+#aside-content .card-author .card-author-social a {
+  transition: all 0.3s ease;
+  margin: 0 8px;
+}
+
+#aside-content .card-author .card-author-social a:hover {
+  color: #c678dd !important;
+  transform: translateY(-3px);
+}
+
+/* 30. 页脚社交媒体链接 */
+.footer-social-links a {
+  transition: all 0.3s ease;
+  margin: 0 10px;
+}
+
+.footer-social-links a:hover {
+  color: #c678dd !important;
+  transform: translateY(-3px);
+}
