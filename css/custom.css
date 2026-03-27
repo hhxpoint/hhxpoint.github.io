@@ -193,7 +193,7 @@ blockquote {
   pointer-events: none;
 }
 
-/* 12. 导航栏毛玻璃效果 */
+/* 12. 导航栏毛玻璃效果 - 修复指示条对准 */
 #nav {
   background: rgba(10, 15, 30, 0.85) !important;
   backdrop-filter: blur(20px) saturate(180%);
@@ -202,13 +202,20 @@ blockquote {
   transition: all 0.3s ease;
 }
 
-#nav .menus_item a {
-  transition: all 0.3s ease;
-  position: relative;
-  padding-bottom: 8px !important;
+/* 导航菜单项 */
+#nav .menus_item {
+  display: inline-block;
 }
 
-#nav .menus_item a::after {
+#nav .menus_item > a {
+  display: inline-block;
+  padding: 10px 15px !important;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+/* 指示条 - 悬浮时显示 */
+#nav .menus_item > a::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -221,13 +228,52 @@ blockquote {
   border-radius: 2px;
 }
 
-#nav .menus_item a:hover::after,
-#nav .menus_item a.active::after {
-  width: 70%;
+#nav .menus_item > a:hover::after {
+  width: 60%;
 }
 
-#nav .menus_item .active a::after {
-  width: 70%;
+/* 活跃状态指示条 */
+#nav .menus_item .active > a::after,
+#nav .menus_item > a.active::after {
+  width: 60%;
+  opacity: 1;
+}
+
+/* 站点标题/页面标题 */
+#nav .site-page {
+  display: inline-block;
+  padding: 10px 15px !important;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+#nav .site-page::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #c678dd, #61afef);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
+#nav .site-page:hover::after,
+#nav .site-page.active::after {
+  width: 60%;
+}
+
+/* 修复Butterfly主题默认蓝色指示 */
+#nav .menus_item a,
+#nav .site-page {
+  border-bottom: none !important;
+}
+
+#nav .menus_item a:hover,
+#nav .site-page:hover {
+  color: #c678dd !important;
 }
 
 /* 13. 侧边栏卡片悬浮效果 */
@@ -488,29 +534,6 @@ canvas#click-effect {
 /* ============================================================
    新增：颜色协调优化
    ============================================================ */
-
-/* 31. 修正导航栏蓝色指示条 */
-#nav .site-page {
-  position: relative;
-  padding-bottom: 8px !important;
-}
-
-#nav .site-page::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #c678dd, #61afef);
-  transition: all 0.3s ease;
-  transform: translateX(-50%);
-  border-radius: 2px;
-}
-
-#nav .site-page:hover::after {
-  width: 70%;
-}
 
 /* 32. 侧边栏作者卡片优化 */
 #aside-content .card-author .author-info {
