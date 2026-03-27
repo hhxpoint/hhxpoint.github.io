@@ -633,8 +633,8 @@ a.fancybox {
 
 /* 作者卡片容器 */
 #aside-content .card-widget.card-info {
-  background: linear-gradient(145deg, rgba(198, 120, 221, 0.18), rgba(10, 15, 30, 0.85)) !important;
-  border: 1px solid rgba(198, 120, 221, 0.35) !important;
+  background: linear-gradient(160deg, rgba(198, 120, 221, 0.22), rgba(10, 15, 30, 0.88)) !important;
+  border: 1px solid rgba(198, 120, 221, 0.4) !important;
   border-radius: 20px !important;
   overflow: hidden;
   position: relative;
@@ -646,8 +646,8 @@ a.fancybox {
   top: 0;
   left: 0;
   right: 0;
-  height: 90px;
-  background: linear-gradient(135deg, rgba(198, 120, 221, 0.4), rgba(97, 175, 239, 0.25));
+  height: 100px;
+  background: linear-gradient(135deg, rgba(198, 120, 221, 0.45), rgba(97, 175, 239, 0.3));
   z-index: 0;
 }
 
@@ -655,50 +655,51 @@ a.fancybox {
 #aside-content .card-info .avatar-img {
   position: relative;
   z-index: 1;
-  margin-top: 35px;
+  margin-top: 40px;
 }
 
 #aside-content .card-info .avatar-img img {
-  width: 90px !important;
-  height: 90px !important;
+  width: 95px !important;
+  height: 95px !important;
   border-radius: 50% !important;
-  border: 4px solid rgba(198, 120, 221, 0.7) !important;
-  box-shadow: 0 0 40px rgba(198, 120, 221, 0.5), 0 10px 30px rgba(0, 0, 0, 0.4) !important;
+  border: 4px solid rgba(255, 255, 255, 0.3) !important;
+  box-shadow: 0 0 50px rgba(198, 120, 221, 0.6), 0 15px 40px rgba(0, 0, 0, 0.5) !important;
   transition: all 0.4s ease !important;
 }
 
 #aside-content .card-info .avatar-img img:hover {
-  transform: scale(1.08) rotate(5deg) !important;
-  box-shadow: 0 0 60px rgba(198, 120, 221, 0.7), 0 15px 40px rgba(0, 0, 0, 0.5) !important;
+  transform: scale(1.1) rotate(5deg) !important;
+  box-shadow: 0 0 70px rgba(198, 120, 221, 0.8), 0 20px 50px rgba(0, 0, 0, 0.6) !important;
 }
 
-/* 作者名字 */
+/* 作者名字 - 更显化 */
 #aside-content .card-info .author-info-name {
-  font-size: 22px !important;
-  font-weight: 700 !important;
+  font-size: 24px !important;
+  font-weight: 800 !important;
   color: #ffffff !important;
-  margin-top: 18px !important;
-  text-shadow: 0 0 25px rgba(198, 120, 221, 0.6);
-  letter-spacing: 1px;
+  margin-top: 20px !important;
+  text-shadow: 0 0 30px rgba(255, 255, 255, 0.4), 0 2px 10px rgba(0, 0, 0, 0.5) !important;
+  letter-spacing: 2px !important;
 }
 
-/* 作者描述 */
+/* 作者描述 - 柔和 */
 #aside-content .card-info .author-info-description {
   font-size: 14px !important;
-  color: rgba(255, 255, 255, 0.7) !important;
-  margin-top: 10px !important;
+  color: rgba(255, 255, 255, 0.75) !important;
+  margin-top: 12px !important;
   font-style: italic;
+  letter-spacing: 0.5px !important;
 }
 
 /* 数据统计区域 */
 #aside-content .card-info .site-data {
   display: flex !important;
   justify-content: space-around !important;
-  padding: 18px 10px !important;
-  margin: 18px 15px !important;
-  background: rgba(0, 0, 0, 0.25) !important;
-  border-radius: 14px !important;
-  border: 1px solid rgba(198, 120, 221, 0.2) !important;
+  padding: 20px 10px !important;
+  margin: 20px 18px !important;
+  background: rgba(0, 0, 0, 0.3) !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(198, 120, 221, 0.25) !important;
 }
 
 #aside-content .card-info .site-data a {
@@ -712,51 +713,52 @@ a.fancybox {
 
 #aside-content .card-info .site-data .headline {
   font-size: 12px !important;
-  color: rgba(255, 255, 255, 0.6) !important;
+  color: rgba(255, 255, 255, 0.65) !important;
   text-transform: uppercase !important;
-  letter-spacing: 1px !important;
+  letter-spacing: 1.5px !important;
 }
 
 #aside-content .card-info .site-data .length-num {
-  font-size: 24px !important;
-  font-weight: 700 !important;
-  color: #c678dd !important;
-  text-shadow: 0 0 15px rgba(198, 120, 221, 0.6) !important;
+  font-size: 26px !important;
+  font-weight: 800 !important;
+  color: rgba(198, 120, 221, 0.9) !important;
+  text-shadow: 0 0 20px rgba(198, 120, 221, 0.5) !important;
 }
 
-/* Follow Me 按钮 - 柔和设计 */
+/* Follow Me 按钮 - 柔和清晰设计 */
 #aside-content .card-info #card-info-btn {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   gap: 10px !important;
-  margin: 0 20px 25px !important;
-  padding: 14px 24px !important;
-  background: linear-gradient(135deg, rgba(198, 120, 221, 0.35), rgba(168, 95, 187, 0.3)) !important;
-  border: 1px solid rgba(198, 120, 221, 0.5) !important;
-  border-radius: 14px !important;
-  color: #ffffff !important;
-  font-size: 15px !important;
+  margin: 0 20px 28px !important;
+  padding: 15px 28px !important;
+  background: rgba(198, 120, 221, 0.25) !important;
+  border: 2px solid rgba(198, 120, 221, 0.5) !important;
+  border-radius: 30px !important;
+  color: rgba(255, 255, 255, 0.95) !important;
+  font-size: 16px !important;
   font-weight: 600 !important;
-  transition: all 0.3s ease !important;
+  transition: all 0.35s ease !important;
   text-decoration: none !important;
-  letter-spacing: 0.5px !important;
+  letter-spacing: 1px !important;
 }
 
 #aside-content .card-info #card-info-btn i {
   font-size: 20px !important;
-  transition: all 0.3s ease !important;
+  transition: all 0.35s ease !important;
 }
 
 #aside-content .card-info #card-info-btn:hover {
-  background: linear-gradient(135deg, rgba(198, 120, 221, 0.55), rgba(168, 95, 187, 0.5)) !important;
+  background: rgba(198, 120, 221, 0.45) !important;
   border-color: rgba(198, 120, 221, 0.7) !important;
   transform: translateY(-3px) !important;
-  box-shadow: 0 12px 35px rgba(198, 120, 221, 0.4) !important;
+  box-shadow: 0 15px 40px rgba(198, 120, 221, 0.35) !important;
+  color: #ffffff !important;
 }
 
 #aside-content .card-info #card-info-btn:hover i {
-  transform: rotate(15deg) scale(1.15) !important;
+  transform: scale(1.2) !important;
 }
 
 /* 公告栏精致样式 */
