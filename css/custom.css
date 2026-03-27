@@ -780,3 +780,242 @@ a.fancybox {
   font-size: 14px !important;
   line-height: 1.6 !important;
 }
+
+/* ============================================================
+   页面顶部区域精致设计 (时间轴/标签/分类/关于)
+   ============================================================ */
+
+/* 1. 页面头部容器 - 替换蓝色背景 */
+#page-header {
+  background: linear-gradient(135deg, 
+    rgba(198, 120, 221, 0.85) 0%, 
+    rgba(97, 175, 239, 0.7) 50%, 
+    rgba(168, 95, 187, 0.8) 100%) !important;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 添加动态光效 */
+#page-header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+  animation: headerGlow 8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes headerGlow {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(10%, 10%) rotate(90deg); }
+  50% { transform: translate(0, 20%) rotate(180deg); }
+  75% { transform: translate(-10%, 10%) rotate(270deg); }
+}
+
+/* 2. 页面标题样式 */
+#page-header .page-title {
+  font-size: 2.8rem !important;
+  font-weight: 800 !important;
+  color: #ffffff !important;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 40px rgba(255, 255, 255, 0.2) !important;
+  letter-spacing: 3px !important;
+  position: relative;
+  z-index: 1;
+}
+
+/* 3. 页面副标题/描述 */
+#page-header .page-description {
+  font-size: 1.1rem !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) !important;
+  letter-spacing: 1px !important;
+  position: relative;
+  z-index: 1;
+}
+
+/* 4. 标签云页面特殊样式 */
+.tag-cloud-list {
+  padding: 30px 20px !important;
+}
+
+.tag-cloud-list a {
+  display: inline-block !important;
+  padding: 8px 18px !important;
+  margin: 6px !important;
+  background: rgba(198, 120, 221, 0.15) !important;
+  border: 1px solid rgba(198, 120, 221, 0.3) !important;
+  border-radius: 25px !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-size: 14px !important;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.tag-cloud-list a:hover {
+  background: linear-gradient(135deg, rgba(198, 120, 221, 0.4), rgba(97, 175, 239, 0.3)) !important;
+  border-color: rgba(198, 120, 221, 0.6) !important;
+  transform: translateY(-4px) scale(1.05) !important;
+  box-shadow: 0 10px 30px rgba(198, 120, 221, 0.3) !important;
+  color: #ffffff !important;
+}
+
+/* 5. 时间轴页面样式 */
+.article-sort {
+  padding: 20px 0 !important;
+}
+
+.article-sort-item {
+  position: relative !important;
+  padding: 20px 25px 20px 40px !important;
+  margin-bottom: 15px !important;
+  background: rgba(10, 15, 30, 0.5) !important;
+  border-radius: 12px !important;
+  border-left: 3px solid rgba(198, 120, 221, 0.6) !important;
+  transition: all 0.3s ease !important;
+}
+
+.article-sort-item:hover {
+  background: rgba(198, 120, 221, 0.1) !important;
+  border-left-color: #c678dd !important;
+  transform: translateX(5px) !important;
+}
+
+/* 时间轴圆点 */
+.article-sort-item::before {
+  content: '';
+  position: absolute;
+  left: -8px;
+  top: 28px;
+  width: 14px !important;
+  height: 14px !important;
+  background: linear-gradient(135deg, #c678dd, #61afef) !important;
+  border-radius: 50% !important;
+  box-shadow: 0 0 15px rgba(198, 120, 221, 0.6) !important;
+  border: 2px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+/* 时间轴年份标题 */
+.article-sort-item .article-sort-item-title {
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+  color: #ffffff !important;
+  margin-bottom: 8px !important;
+}
+
+.article-sort-item .article-sort-item-title:hover {
+  color: #c678dd !important;
+}
+
+/* 时间轴日期 */
+.article-sort-item time {
+  font-size: 0.85rem !important;
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* 6. 分类页面样式 */
+.card-category-list {
+  padding: 25px 20px !important;
+}
+
+.card-category-list .category-list-item {
+  margin-bottom: 12px !important;
+}
+
+.card-category-list .category-list-item a {
+  display: flex !important;
+  align-items: center !important;
+  padding: 15px 20px !important;
+  background: rgba(10, 15, 30, 0.5) !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(198, 120, 221, 0.2) !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  transition: all 0.35s ease !important;
+}
+
+.card-category-list .category-list-item a:hover {
+  background: linear-gradient(135deg, rgba(198, 120, 221, 0.2), rgba(97, 175, 239, 0.15)) !important;
+  border-color: rgba(198, 120, 221, 0.5) !important;
+  transform: translateX(8px) !important;
+  color: #ffffff !important;
+}
+
+.card-category-list .category-list-item a::before {
+  content: '\f07b';
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  margin-right: 12px;
+  color: #c678dd !important;
+  font-size: 16px !important;
+}
+
+/* 分类文章数量 */
+.card-category-list .category-list-item .category-list-count {
+  margin-left: auto !important;
+  background: rgba(198, 120, 221, 0.25) !important;
+  padding: 4px 12px !important;
+  border-radius: 15px !important;
+  font-size: 12px !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* 7. 关于页面特殊样式 */
+#page.about-page {
+  background: linear-gradient(180deg, 
+    rgba(198, 120, 221, 0.3) 0%, 
+    rgba(10, 15, 30, 0.9) 30%) !important;
+}
+
+/* 8. 面包屑导航样式 */
+#breadcrumb {
+  padding: 15px 0 !important;
+}
+
+#breadcrumb a {
+  color: rgba(255, 255, 255, 0.7) !important;
+  transition: all 0.3s ease !important;
+}
+
+#breadcrumb a:hover {
+  color: #c678dd !important;
+}
+
+#breadcrumb .current {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* 9. 页面内容区域 */
+.layout {
+  padding-top: 30px !important;
+}
+
+/* 10. 标签/分类详情页标题 */
+#article-container .article-sort-title {
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+  color: #c678dd !important;
+  padding-bottom: 15px !important;
+  margin-bottom: 25px !important;
+  border-bottom: 2px solid rgba(198, 120, 221, 0.3) !important;
+  text-shadow: 0 0 20px rgba(198, 120, 221, 0.3) !important;
+}
+
+/* 11. 时间轴分隔线优化 */
+.article-sort-title::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 24px;
+  background: linear-gradient(180deg, #c678dd, #61afef);
+  border-radius: 2px;
+  margin-right: 12px;
+  vertical-align: middle;
+}
+
+/* 12. 滚动时头部效果 */
+#nav.fixed {
+  background: rgba(10, 15, 30, 0.92) !important;
+  backdrop-filter: blur(25px) saturate(180%) !important;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3) !important;
+}
