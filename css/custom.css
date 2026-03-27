@@ -430,39 +430,40 @@ blockquote {
 #body-wrap:not(.full_page) .tag #page-header,
 #body-wrap:not(.full_page) .category #page-header {
   background: linear-gradient(180deg, 
-    rgba(25, 30, 45, 0.98) 0%,
-    rgba(35, 40, 55, 0.92) 40%,
-    rgba(45, 35, 30, 0.88) 70%,
-    rgba(30, 25, 25, 0.95) 100%) !important;
+    rgba(20, 25, 40, 1) 0%,
+    rgba(30, 35, 50, 0.95) 30%,
+    rgba(50, 40, 35, 0.9) 60%,
+    rgba(60, 45, 35, 0.85) 80%,
+    rgba(40, 30, 25, 0.95) 100%) !important;
   position: relative;
   overflow: hidden;
 }
 
-/* 篝火顶部光芒 */
+/* 篝火光芒 - 主光源 */
 #body-wrap:not(.full_page) .page #page-header::before,
 #body-wrap:not(.full_page) .archive #page-header::before,
 #body-wrap:not(.full_page) .tag #page-header::before,
 #body-wrap:not(.full_page) .category #page-header::before {
   content: '';
   position: absolute;
-  bottom: 0;
+  bottom: -20%;
   left: 50%;
   transform: translateX(-50%);
-  width: 120%;
-  height: 80%;
+  width: 200%;
+  height: 100%;
   background: radial-gradient(ellipse at center bottom, 
-    rgba(255, 160, 80, 0.12) 0%, 
-    rgba(255, 120, 50, 0.06) 25%,
-    rgba(255, 100, 40, 0.03) 45%,
-    transparent 65%);
+    rgba(255, 180, 100, 0.25) 0%, 
+    rgba(255, 140, 70, 0.15) 20%,
+    rgba(255, 100, 50, 0.08) 40%,
+    transparent 60%);
   pointer-events: none;
-  animation: campfireGlow 4s ease-in-out infinite alternate;
+  animation: campfireGlow 3s ease-in-out infinite alternate;
 }
 
 @keyframes campfireGlow {
-  0% { opacity: 0.7; transform: translateX(-50%) scale(1); }
-  50% { opacity: 1; transform: translateX(-50%) scale(1.02); }
-  100% { opacity: 0.8; transform: translateX(-50%) scale(0.98); }
+  0% { opacity: 0.8; }
+  50% { opacity: 1; }
+  100% { opacity: 0.85; }
 }
 
 /* 篝火粒子效果 - 多层火焰 */
@@ -472,24 +473,25 @@ blockquote {
 #body-wrap:not(.full_page) .category #page-header::after {
   content: '';
   position: absolute;
-  bottom: -10%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60%;
-  height: 50%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60%;
   background: 
-    radial-gradient(ellipse at 30% 80%, rgba(255, 180, 100, 0.08) 0%, transparent 50%),
-    radial-gradient(ellipse at 70% 85%, rgba(255, 150, 80, 0.06) 0%, transparent 45%),
-    radial-gradient(ellipse at 50% 90%, rgba(255, 200, 120, 0.1) 0%, transparent 40%);
+    radial-gradient(ellipse at 20% 90%, rgba(255, 160, 80, 0.2) 0%, transparent 40%),
+    radial-gradient(ellipse at 40% 85%, rgba(255, 200, 120, 0.18) 0%, transparent 35%),
+    radial-gradient(ellipse at 60% 88%, rgba(255, 140, 60, 0.15) 0%, transparent 38%),
+    radial-gradient(ellipse at 80% 92%, rgba(255, 180, 100, 0.12) 0%, transparent 35%),
+    linear-gradient(0deg, rgba(255, 150, 80, 0.1) 0%, transparent 50%);
   pointer-events: none;
-  animation: fireFlicker 3s ease-in-out infinite;
+  animation: fireFlicker 2.5s ease-in-out infinite;
 }
 
 @keyframes fireFlicker {
-  0%, 100% { opacity: 0.6; transform: translateX(-50%) translateY(0); }
-  25% { opacity: 0.8; transform: translateX(-48%) translateY(-2%); }
-  50% { opacity: 1; transform: translateX(-52%) translateY(-1%); }
-  75% { opacity: 0.7; transform: translateX(-50%) translateY(-3%); }
+  0%, 100% { opacity: 0.9; }
+  25% { opacity: 1; }
+  50% { opacity: 0.85; }
+  75% { opacity: 0.95; }
 }
 
 /* 子页面标题样式 */
@@ -500,7 +502,7 @@ blockquote {
   font-size: 2.5rem !important;
   font-weight: 700 !important;
   color: #ffffff !important;
-  text-shadow: 0 2px 15px rgba(255, 180, 100, 0.25), 0 4px 8px rgba(0, 0, 0, 0.6) !important;
+  text-shadow: 0 0 30px rgba(255, 180, 100, 0.4), 0 4px 8px rgba(0, 0, 0, 0.7) !important;
   position: relative;
   z-index: 1;
 }
@@ -511,7 +513,7 @@ blockquote {
 #body-wrap:not(.full_page) .tag #page-header .page-description,
 #body-wrap:not(.full_page) .category #page-header .page-description {
   font-size: 1rem !important;
-  color: rgba(255, 230, 200, 0.85) !important;
+  color: rgba(255, 230, 200, 0.9) !important;
   position: relative;
   z-index: 1;
 }
@@ -519,13 +521,13 @@ blockquote {
 /* 导航标签柔和颜色 */
 #nav .menus_item a.site-page,
 #nav .site-page {
-  color: rgba(255, 230, 210, 0.9) !important;
+  color: rgba(255, 240, 220, 0.95) !important;
   transition: all 0.3s ease;
 }
 
 #nav .menus_item a.site-page:hover,
 #nav .site-page:hover {
-  color: rgba(255, 200, 150, 1) !important;
+  color: rgba(255, 210, 160, 1) !important;
 }
 
 /* ============================================================
