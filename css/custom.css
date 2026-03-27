@@ -694,9 +694,9 @@ a.fancybox {
 /* 数据统计区域 */
 #aside-content .card-info .site-data {
   display: flex !important;
-  justify-content: center !important;
-  gap: 25px !important;
-  padding: 18px 15px !important;
+  justify-content: flex-start !important;
+  gap: 22px !important;
+  padding: 14px 22px !important;
   margin: 18px 15px !important;
   background: rgba(0, 0, 0, 0.25) !important;
   border-radius: 14px !important;
@@ -704,9 +704,9 @@ a.fancybox {
 }
 
 #aside-content .card-info .site-data a {
-  text-align: center !important;
+  text-align: left !important;
   transition: all 0.3s ease !important;
-  min-width: 60px !important;
+  min-width: 55px !important;
 }
 
 #aside-content .card-info .site-data a:hover {
