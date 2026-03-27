@@ -424,11 +424,11 @@ blockquote {
    子页面顶部 - 柔和灯光效果（仅子页面，不影响主页）
    ============================================================ */
 
-/* 子页面头部容器 - 柔和渐变 */
-.page #page-header,
-.archive #page-header,
-.tag #page-header,
-.category #page-header {
+/* 子页面头部容器 - 柔和渐变（排除主页的full_page） */
+#body-wrap:not(.full_page) .page #page-header,
+#body-wrap:not(.full_page) .archive #page-header,
+#body-wrap:not(.full_page) .tag #page-header,
+#body-wrap:not(.full_page) .category #page-header {
   background: linear-gradient(180deg, 
     rgba(30, 40, 60, 0.95) 0%,
     rgba(50, 60, 80, 0.85) 50%,
@@ -438,10 +438,10 @@ blockquote {
 }
 
 /* 柔和灯光效果 */
-.page #page-header::before,
-.archive #page-header::before,
-.tag #page-header::before,
-.category #page-header::before {
+#body-wrap:not(.full_page) .page #page-header::before,
+#body-wrap:not(.full_page) .archive #page-header::before,
+#body-wrap:not(.full_page) .tag #page-header::before,
+#body-wrap:not(.full_page) .category #page-header::before {
   content: '';
   position: absolute;
   top: -50%;
@@ -463,10 +463,10 @@ blockquote {
 }
 
 /* 篝火粒子效果 */
-.page #page-header::after,
-.archive #page-header::after,
-.tag #page-header::after,
-.category #page-header::after {
+#body-wrap:not(.full_page) .page #page-header::after,
+#body-wrap:not(.full_page) .archive #page-header::after,
+#body-wrap:not(.full_page) .tag #page-header::after,
+#body-wrap:not(.full_page) .category #page-header::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -480,10 +480,10 @@ blockquote {
 }
 
 /* 子页面标题样式 */
-.page #page-header .page-title,
-.archive #page-header .page-title,
-.tag #page-header .page-title,
-.category #page-header .page-title {
+#body-wrap:not(.full_page) .page #page-header .page-title,
+#body-wrap:not(.full_page) .archive #page-header .page-title,
+#body-wrap:not(.full_page) .tag #page-header .page-title,
+#body-wrap:not(.full_page) .category #page-header .page-title {
   font-size: 2.5rem !important;
   font-weight: 700 !important;
   color: #ffffff !important;
@@ -493,10 +493,10 @@ blockquote {
 }
 
 /* 子页面描述 */
-.page #page-header .page-description,
-.archive #page-header .page-description,
-.tag #page-header .page-description,
-.category #page-header .page-description {
+#body-wrap:not(.full_page) .page #page-header .page-description,
+#body-wrap:not(.full_page) .archive #page-header .page-description,
+#body-wrap:not(.full_page) .tag #page-header .page-description,
+#body-wrap:not(.full_page) .category #page-header .page-description {
   font-size: 1rem !important;
   color: rgba(255, 255, 255, 0.8) !important;
   position: relative;
