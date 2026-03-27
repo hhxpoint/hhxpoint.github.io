@@ -113,8 +113,16 @@ a,
 }
 
 #aside-content .card-author .btn-inside {
-  background: #c678dd !important;
+  background: linear-gradient(135deg, #c678dd, #a85fbb) !important;
   color: #fff !important;
+  border: none !important;
+  box-shadow: 0 4px 15px rgba(198, 120, 221, 0.3) !important;
+  transition: all 0.3s ease !important;
+}
+
+#aside-content .card-author .btn-inside:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 25px rgba(198, 120, 221, 0.5) !important;
 }
 
 blockquote {
@@ -197,6 +205,7 @@ blockquote {
 #nav .menus_item a {
   transition: all 0.3s ease;
   position: relative;
+  padding-bottom: 8px !important;
 }
 
 #nav .menus_item a::after {
@@ -205,15 +214,20 @@ blockquote {
   bottom: 0;
   left: 50%;
   width: 0;
-  height: 2px;
-  background: #c678dd;
+  height: 3px;
+  background: linear-gradient(90deg, #c678dd, #61afef);
   transition: all 0.3s ease;
   transform: translateX(-50%);
+  border-radius: 2px;
 }
 
 #nav .menus_item a:hover::after,
 #nav .menus_item a.active::after {
-  width: 80%;
+  width: 70%;
+}
+
+#nav .menus_item .active a::after {
+  width: 70%;
 }
 
 /* 13. 侧边栏卡片悬浮效果 */
@@ -469,4 +483,152 @@ canvas#click-effect {
 .footer-social-links a:hover {
   color: #c678dd !important;
   transform: translateY(-3px);
+}
+
+/* ============================================================
+   新增：颜色协调优化
+   ============================================================ */
+
+/* 31. 修正导航栏蓝色指示条 */
+#nav .site-page {
+  position: relative;
+  padding-bottom: 8px !important;
+}
+
+#nav .site-page::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #c678dd, #61afef);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
+#nav .site-page:hover::after {
+  width: 70%;
+}
+
+/* 32. 侧边栏作者卡片优化 */
+#aside-content .card-author .author-info {
+  text-align: center;
+}
+
+#aside-content .card-author .author-info .author-name {
+  color: #ffffff !important;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+#aside-content .card-author .author-info .author-description {
+  color: rgba(255, 255, 255, 0.7) !important;
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+/* 33. 公告栏样式优化 */
+#aside-content .card-announcement {
+  background: linear-gradient(135deg, rgba(198, 120, 221, 0.15), rgba(97, 175, 239, 0.1)) !important;
+  border-left: 3px solid #c678dd !important;
+  border-radius: 8px;
+}
+
+#aside-content .card-announcement .card-widget-title {
+  color: #c678dd !important;
+}
+
+/* 34. 最近文章标题颜色 */
+#aside-content .aside-list .aside-list-item .content .title {
+  color: #ffffff !important;
+  transition: all 0.3s ease;
+}
+
+#aside-content .aside-list .aside-list-item .content .title:hover {
+  color: #c678dd !important;
+}
+
+/* 35. 分类和标签页面 */
+.card-category-list .category-list-item a,
+.card-tag-list .tag-list-item a {
+  color: rgba(255, 255, 255, 0.9) !important;
+  transition: all 0.3s ease;
+}
+
+.card-category-list .category-list-item a:hover,
+.card-tag-list .tag-list-item a:hover {
+  color: #c678dd !important;
+  padding-left: 10px;
+}
+
+/* 36. 文章分页按钮 */
+.pagination .page-number,
+.pagination .extend {
+  background: rgba(198, 120, 221, 0.2) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(198, 120, 221, 0.3) !important;
+  transition: all 0.3s ease;
+}
+
+.pagination .page-number:hover,
+.pagination .extend:hover,
+.pagination .page-number.current {
+  background: linear-gradient(135deg, #c678dd, #a85fbb) !important;
+  border-color: #c678dd !important;
+  box-shadow: 0 4px 15px rgba(198, 120, 221, 0.3);
+}
+
+/* 37. 搜索框结果 */
+.local-search-result-item {
+  color: #ffffff !important;
+  border-left: 3px solid #c678dd !important;
+}
+
+.local-search-result-item:hover {
+  background: rgba(198, 120, 221, 0.1) !important;
+}
+
+/* 38. 时间轴样式 */
+.article-sort-item .article-sort-item-title {
+  color: #ffffff !important;
+}
+
+.article-sort-item .article-sort-item-title:hover {
+  color: #c678dd !important;
+}
+
+/* 39. 全局链接颜色统一 */
+a.fancybox {
+  color: #c678dd !important;
+}
+
+/* 40. 强化卡片边框效果 */
+#aside-content .card-widget:hover {
+  border-color: rgba(198, 120, 221, 0.4) !important;
+}
+
+/* 41. 首页文章标题优化 */
+.recent-post-info .article-title {
+  color: #ffffff !important;
+  transition: all 0.3s ease;
+}
+
+.recent-post-info .article-title:hover {
+  color: #c678dd !important;
+  text-shadow: 0 0 15px rgba(198, 120, 221, 0.5);
+}
+
+/* 42. 文章标签颜色 */
+.article-meta .article-tag-list .article-tag-list-item {
+  background: linear-gradient(135deg, rgba(198, 120, 221, 0.2), rgba(97, 175, 239, 0.15)) !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  border: 1px solid rgba(198, 120, 221, 0.3) !important;
+  transition: all 0.3s ease;
+}
+
+.article-meta .article-tag-list .article-tag-list-item:hover {
+  background: linear-gradient(135deg, rgba(198, 120, 221, 0.4), rgba(97, 175, 239, 0.3)) !important;
+  transform: translateY(-2px);
 }
