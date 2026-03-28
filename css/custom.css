@@ -773,3 +773,439 @@ html body #body-wrap #page-header.not-home-page .page-description {
 #card-toc * {
   transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease !important;
 }
+
+/* ============================================================
+   标签云页面 - 高级设计
+   ============================================================ */
+
+/* 标签云容器 */
+#tag .card-widget {
+  background: linear-gradient(145deg, 
+    rgba(45, 30, 20, 0.85) 0%, 
+    rgba(35, 25, 18, 0.9) 50%,
+    rgba(25, 18, 12, 0.85) 100%) !important;
+  border: 1px solid rgba(255, 200, 150, 0.2) !important;
+  border-radius: 15px !important;
+  backdrop-filter: blur(15px) saturate(120%);
+  -webkit-backdrop-filter: blur(15px) saturate(120%);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 
+              inset 0 1px 0 rgba(255, 200, 150, 0.1) !important;
+  overflow: hidden;
+  position: relative;
+}
+
+/* 标签云标题 */
+#tag .card-widget .item-headline {
+  background: linear-gradient(90deg, 
+    rgba(255, 180, 100, 0.15) 0%, 
+    rgba(255, 150, 80, 0.08) 100%) !important;
+  border-bottom: 1px solid rgba(255, 200, 150, 0.15) !important;
+  padding: 14px 18px !important;
+  margin: 0 !important;
+}
+
+#tag .card-widget .item-headline i {
+  color: rgba(255, 200, 120, 0.9) !important;
+  margin-right: 10px !important;
+}
+
+#tag .card-widget .item-headline span {
+  color: rgba(255, 230, 200, 0.95) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.5px !important;
+}
+
+/* 标签云内容 */
+#tag .card-widget .tag-cloud-list {
+  padding: 20px !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 12px !important;
+  justify-content: center !important;
+}
+
+/* 单个标签样式 */
+#tag .card-widget .tag-cloud-list a {
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 8px 16px !important;
+  border-radius: 20px !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+  transition: all 0.3s ease !important;
+  position: relative !important;
+  overflow: hidden !important;
+  border: 1px solid transparent !important;
+}
+
+/* 标签颜色变体 - 柔和温暖色调 */
+#tag .card-widget .tag-cloud-list a:nth-child(10n+1) {
+  background: rgba(255, 126, 103, 0.15) !important;
+  color: rgba(255, 160, 140, 0.9) !important;
+  border-color: rgba(255, 126, 103, 0.3) !important;
+}
+
+#tag .card-widget .tag-cloud-list a:nth-child(10n+2) {
+  background: rgba(255, 193, 7, 0.15) !important;
+  color: rgba(255, 220, 100, 0.9) !important;
+  border-color: rgba(255, 193, 7, 0.3) !important;
+}
+
+#tag .card-widget .tag-cloud-list a:nth-child(10n+3) {
+  background: rgba(76, 175, 80, 0.15) !important;
+  color: rgba(120, 200, 130, 0.9) !important;
+  border-color: rgba(76, 175, 80, 0.3) !important;
+}
+
+#tag .card-widget .tag-cloud-list a:nth-child(10n+4) {
+  background: rgba(33, 150, 243, 0.15) !important;
+  color: rgba(100, 190, 255, 0.9) !important;
+  border-color: rgba(33, 150, 243, 0.3) !important;
+}
+
+#tag .card-widget .tag-cloud-list a:nth-child(10n+5) {
+  background: rgba(156, 39, 176, 0.15) !important;
+  color: rgba(190, 100, 210, 0.9) !important;
+  border-color: rgba(156, 39, 176, 0.3) !important;
+}
+
+#tag .card-widget .tag-cloud-list a:nth-child(10n+6) {
+  background: rgba(255, 87, 34, 0.15) !important;
+  color: rgba(255, 140, 100, 0.9) !important;
+  border-color: rgba(255, 87, 34, 0.3) !important;
+}
+
+#tag .card-widget .tag-cloud-list a:nth-child(10n+7) {
+  background: rgba(0, 150, 136, 0.15) !important;
+  color: rgba(80, 200, 180, 0.9) !important;
+  border-color: rgba(0, 150, 136, 0.3) !important;
+}
+
+#tag .card-widget .tag-cloud-list a:nth-child(10n+8) {
+  background: rgba(103, 58, 183, 0.15) !important;
+  color: rgba(150, 120, 210, 0.9) !important;
+  border-color: rgba(103, 58, 183, 0.3) !important;
+}
+
+#tag .card-widget .tag-cloud-list a:nth-child(10n+9) {
+  background: rgba(233, 30, 99, 0.15) !important;
+  color: rgba(255, 100, 150, 0.9) !important;
+  border-color: rgba(233, 30, 99, 0.3) !important;
+}
+
+#tag .card-widget .tag-cloud-list a:nth-child(10n+10) {
+  background: rgba(0, 188, 212, 0.15) !important;
+  color: rgba(80, 220, 240, 0.9) !important;
+  border-color: rgba(0, 188, 212, 0.3) !important;
+}
+
+/* 标签悬停效果 */
+#tag .card-widget .tag-cloud-list a:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2) !important;
+}
+
+#tag .card-widget .tag-cloud-list a:hover::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  background: linear-gradient(90deg, 
+    rgba(255, 255, 255, 0.1) 0%, 
+    transparent 100%) !important;
+  opacity: 0 !important;
+  transition: opacity 0.3s ease !important;
+}
+
+#tag .card-widget .tag-cloud-list a:hover::before {
+  opacity: 1 !important;
+}
+
+/* ============================================================
+   侧边栏通用卡片样式 - 统一高级设计
+   ============================================================ */
+
+/* 所有侧边栏卡片 */
+#aside-content .card-widget {
+  background: linear-gradient(160deg, 
+    rgba(30, 40, 60, 0.9) 0%, 
+    rgba(20, 25, 40, 0.95) 100%) !important;
+  border: 1px solid rgba(100, 200, 255, 0.15) !important;
+  border-radius: 15px !important;
+  backdrop-filter: blur(15px) saturate(150%);
+  -webkit-backdrop-filter: blur(15px) saturate(150%);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4), 
+              0 0 0 1px rgba(255, 255, 255, 0.05) !important;
+  overflow: hidden;
+  margin-bottom: 20px !important;
+  transition: all 0.3s ease !important;
+}
+
+#aside-content .card-widget:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 
+              0 0 0 1px rgba(255, 255, 255, 0.08) !important;
+}
+
+/* 卡片标题栏 */
+#aside-content .card-widget .item-headline {
+  background: linear-gradient(90deg, 
+    rgba(100, 200, 255, 0.12) 0%, 
+    rgba(80, 180, 255, 0.06) 100%) !important;
+  border-bottom: 1px solid rgba(100, 200, 255, 0.12) !important;
+  padding: 14px 18px !important;
+  margin: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+#aside-content .card-widget .item-headline i {
+  color: rgba(100, 200, 255, 0.9) !important;
+  margin-right: 10px !important;
+  font-size: 16px !important;
+}
+
+#aside-content .card-widget .item-headline span {
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.5px !important;
+}
+
+/* ============================================================
+   Recent Posts 卡片
+   ============================================================ */
+
+/* 文章列表 */
+#aside-content .card-widget .content-list {
+  padding: 15px !important;
+}
+
+/* 单篇文章项 */
+#aside-content .card-widget .content-list .content-item {
+  display: flex !important;
+  align-items: center !important;
+  padding: 12px 0 !important;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.1) !important;
+  transition: all 0.3s ease !important;
+}
+
+#aside-content .card-widget .content-list .content-item:last-child {
+  border-bottom: none !important;
+}
+
+#aside-content .card-widget .content-list .content-item:hover {
+  transform: translateX(5px) !important;
+}
+
+/* 文章缩略图 */
+#aside-content .card-widget .content-list .content-item .content-item-cover {
+  width: 50px !important;
+  height: 50px !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+  margin-right: 12px !important;
+  flex-shrink: 0 !important;
+}
+
+#aside-content .card-widget .content-list .content-item .content-item-cover img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  transition: transform 0.3s ease !important;
+}
+
+#aside-content .card-widget .content-list .content-item:hover .content-item-cover img {
+  transform: scale(1.1) !important;
+}
+
+/* 文章信息 */
+#aside-content .card-widget .content-list .content-item .content-item-info {
+  flex: 1 !important;
+  min-width: 0 !important;
+}
+
+/* 文章标题 */
+#aside-content .card-widget .content-list .content-item .content-item-title {
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  margin-bottom: 4px !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  transition: color 0.3s ease !important;
+}
+
+#aside-content .card-widget .content-list .content-item:hover .content-item-title {
+  color: rgba(100, 200, 255, 0.9) !important;
+}
+
+/* 文章日期 */
+#aside-content .card-widget .content-list .content-item .content-item-date {
+  color: rgba(255, 255, 255, 0.5) !important;
+  font-size: 12px !important;
+}
+
+/* ============================================================
+   Categories 卡片
+   ============================================================ */
+
+/* 分类列表 */
+#aside-content .card-widget .category-list {
+  padding: 15px !important;
+}
+
+#aside-content .card-widget .category-list .category-item {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 10px 0 !important;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.1) !important;
+  transition: all 0.3s ease !important;
+}
+
+#aside-content .card-widget .category-list .category-item:last-child {
+  border-bottom: none !important;
+}
+
+#aside-content .card-widget .category-list .category-item:hover {
+  transform: translateX(5px) !important;
+}
+
+/* 分类链接 */
+#aside-content .card-widget .category-list .category-item a {
+  color: rgba(255, 255, 255, 0.8) !important;
+  text-decoration: none !important;
+  transition: color 0.3s ease !important;
+}
+
+#aside-content .card-widget .category-list .category-item:hover a {
+  color: rgba(100, 200, 255, 0.9) !important;
+}
+
+/* 分类数量 */
+#aside-content .card-widget .category-list .category-item .category-count {
+  background: rgba(100, 200, 255, 0.15) !important;
+  color: rgba(100, 200, 255, 0.9) !important;
+  padding: 2px 8px !important;
+  border-radius: 12px !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+}
+
+/* ============================================================
+   Tags 卡片 (侧边栏)
+   ============================================================ */
+
+/* 标签列表 */
+#aside-content .card-widget .tag-list {
+  padding: 15px !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+}
+
+/* 单个标签 */
+#aside-content .card-widget .tag-list .tag-item {
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 6px 12px !important;
+  border-radius: 15px !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+  transition: all 0.3s ease !important;
+  background: rgba(100, 200, 255, 0.12) !important;
+  color: rgba(100, 200, 255, 0.9) !important;
+  border: 1px solid rgba(100, 200, 255, 0.2) !important;
+}
+
+#aside-content .card-widget .tag-list .tag-item:hover {
+  transform: translateY(-2px) !important;
+  background: rgba(100, 200, 255, 0.2) !important;
+  box-shadow: 0 4px 15px rgba(100, 200, 255, 0.2) !important;
+}
+
+/* ============================================================
+   Archives 卡片
+   ============================================================ */
+
+/* 归档列表 */
+#aside-content .card-widget .archive-list {
+  padding: 15px !important;
+}
+
+#aside-content .card-widget .archive-list .archive-item {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 10px 0 !important;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.1) !important;
+  transition: all 0.3s ease !important;
+}
+
+#aside-content .card-widget .archive-list .archive-item:last-child {
+  border-bottom: none !important;
+}
+
+#aside-content .card-widget .archive-list .archive-item:hover {
+  transform: translateX(5px) !important;
+}
+
+/* 归档链接 */
+#aside-content .card-widget .archive-list .archive-item a {
+  color: rgba(255, 255, 255, 0.8) !important;
+  text-decoration: none !important;
+  transition: color 0.3s ease !important;
+}
+
+#aside-content .card-widget .archive-list .archive-item:hover a {
+  color: rgba(100, 200, 255, 0.9) !important;
+}
+
+/* 归档数量 */
+#aside-content .card-widget .archive-list .archive-item .archive-count {
+  background: rgba(100, 200, 255, 0.15) !important;
+  color: rgba(100, 200, 255, 0.9) !important;
+  padding: 2px 8px !important;
+  border-radius: 12px !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+}
+
+/* ============================================================
+   Website Info 卡片
+   ============================================================ */
+
+/* 网站信息列表 */
+#aside-content .card-widget .webinfo-item {
+  padding: 15px !important;
+}
+
+#aside-content .card-widget .webinfo-item .info-item {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 8px 0 !important;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.1) !important;
+}
+
+#aside-content .card-widget .webinfo-item .info-item:last-child {
+  border-bottom: none !important;
+}
+
+/* 信息标签 */
+#aside-content .card-widget .webinfo-item .info-item .info-label {
+  color: rgba(255, 255, 255, 0.7) !important;
+  font-size: 14px !important;
+}
+
+/* 信息数值 */
+#aside-content .card-widget .webinfo-item .info-item .info-value {
+  color: rgba(100, 200, 255, 0.9) !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+}
