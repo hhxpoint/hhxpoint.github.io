@@ -61,8 +61,142 @@
 #article-container figure.highlight .gutter,
 #article-container figure.highlight .code,
 #article-container figure.highlight pre {
-  background: rgba(20, 24, 32, 0.95) !important;
-  border: none !important;
+  background: linear-gradient(135deg, 
+    rgba(40, 25, 15, 0.95) 0%,
+    rgba(30, 20, 12, 0.95) 100%) !important;
+  border: 1px solid rgba(255, 200, 150, 0.1) !important;
+  border-radius: 8px !important;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* 代码块文字颜色 */
+#article-container figure.highlight .code {
+  color: rgba(255, 235, 215, 0.9) !important;
+}
+
+#article-container figure.highlight .gutter {
+  background: rgba(25, 15, 10, 0.8) !important;
+  color: rgba(255, 200, 150, 0.6) !important;
+  border-right: 1px solid rgba(255, 200, 150, 0.15) !important;
+}
+
+#article-container figure.highlight pre {
+  color: rgba(255, 235, 215, 0.9) !important;
+}
+
+/* 代码块中的语法高亮 */
+#article-container .hljs-keyword,
+#article-container .hljs-selector-tag,
+#article-container .hljs-built_in,
+#article-container .hljs-name,
+#article-container .hljs-tag {
+  color: rgba(255, 180, 100, 0.9) !important;
+}
+
+#article-container .hljs-string,
+#article-container .hljs-title,
+#article-container .hljs-section,
+#article-container .hljs-attribute,
+#article-container .hljs-literal,
+#article-container .hljs-template-tag,
+#article-container .hljs-template-variable,
+#article-container .hljs-type,
+#article-container .hljs-addition {
+  color: rgba(255, 210, 150, 0.9) !important;
+}
+
+#article-container .hljs-comment,
+#article-container .hljs-deletion,
+#article-container .hljs-quote,
+#article-container .hljs-variable {
+  color: rgba(255, 200, 150, 0.7) !important;
+}
+
+#article-container .hljs-number,
+#article-container .hljs-selector-class,
+#article-container .hljs-selector-id,
+#article-container .hljs-attr,
+#article-container .hljs-symbol,
+#article-container .hljs-bullet,
+#article-container .hljs-link,
+#article-container .hljs-meta {
+  color: rgba(255, 190, 120, 0.9) !important;
+}
+
+#article-container .hljs-regexp,
+#article-container .hljs--selector-pseudo,
+#article-container .hljs-selector-attr {
+  color: rgba(255, 180, 100, 0.8) !important;
+}
+
+#article-container .hljs-function,
+#article-container .hljs-params {
+  color: rgba(255, 220, 180, 0.9) !important;
+}
+
+#article-container .hljs-subst {
+  color: rgba(255, 235, 215, 0.9) !important;
+}
+
+#article-container .hljs-formula {
+  background-color: rgba(255, 180, 100, 0.1) !important;
+  color: rgba(255, 220, 180, 0.9) !important;
+  border-left: 3px solid rgba(255, 180, 100, 0.3) !important;
+  padding: 0 8px !important;
+}
+
+/* 代码块工具栏 */
+#article-container figure.highlight .btn-beautify,
+#article-container figure.highlight .code-header {
+  background: linear-gradient(90deg, 
+    rgba(255, 180, 100, 0.15) 0%, 
+    rgba(255, 150, 80, 0.08) 100%) !important;
+  border-bottom: 1px solid rgba(255, 200, 150, 0.15) !important;
+  border-radius: 8px 8px 0 0 !important;
+  padding: 8px 12px !important;
+  color: rgba(255, 230, 200, 0.9) !important;
+}
+
+#article-container figure.highlight .btn-beautify .to-copy,
+#article-container figure.highlight .copy-btn {
+  background: rgba(255, 180, 100, 0.2) !important;
+  border: 1px solid rgba(255, 200, 150, 0.3) !important;
+  color: rgba(255, 220, 180, 0.9) !important;
+  border-radius: 4px !important;
+  transition: all 0.3s ease !important;
+}
+
+#article-container figure.highlight .btn-beautify .to-copy:hover,
+#article-container figure.highlight .copy-btn:hover {
+  background: rgba(255, 180, 100, 0.3) !important;
+  border-color: rgba(255, 200, 150, 0.5) !important;
+}
+
+/* 代码块语言标签 */
+#article-container figure.highlight .code-header .language-name {
+  color: rgba(255, 210, 170, 0.9) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.5px !important;
+}
+
+/* 代码块滚动条 */
+#article-container figure.highlight pre::-webkit-scrollbar {
+  width: 8px !important;
+  height: 8px !important;
+}
+
+#article-container figure.highlight pre::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1) !important;
+  border-radius: 4px !important;
+}
+
+#article-container figure.highlight pre::-webkit-scrollbar-thumb {
+  background: rgba(255, 180, 100, 0.3) !important;
+  border-radius: 4px !important;
+}
+
+#article-container figure.highlight pre::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 180, 100, 0.5) !important;
 }
 
 /* 6. 标题与文字 */
@@ -77,8 +211,9 @@ h1, h2, h3, h4, h5, h6,
 #article-container li,
 .recent-post-item .content,
 #footer {
-  color: #ffffff !important;
+  color: rgba(255, 240, 225, 0.95) !important;
   opacity: 1 !important;
+  line-height: 1.8 !important;
 }
 
 /* 7. 链接 - 紫色 */
@@ -435,26 +570,21 @@ blockquote {
    子页面顶部 - 柔和篝火效果（仅子页面，不影响主页）
    ============================================================ */
 
-/* 子页面头部容器 - 柔和深色渐变（排除主页的full_page） */
-#body-wrap:not(.full_page) .page #page-header,
-#body-wrap:not(.full_page) .archive #page-header,
-#body-wrap:not(.full_page) .tag #page-header,
-#body-wrap:not(.full_page) .category #page-header {
+/* 子页面头部容器 - 柔和深色渐变（排除主页） */
+html body #body-wrap #page-header.not-home-page {
   background: linear-gradient(180deg, 
-    rgba(20, 25, 40, 1) 0%,
-    rgba(30, 35, 50, 0.95) 30%,
-    rgba(50, 40, 35, 0.9) 60%,
-    rgba(60, 45, 35, 0.85) 80%,
-    rgba(40, 30, 25, 0.95) 100%) !important;
-  position: relative;
-  overflow: hidden;
+    rgba(10, 15, 25, 1) 0%,
+    rgba(20, 25, 40, 0.95) 30%,
+    rgba(35, 25, 20, 0.9) 60%,
+    rgba(45, 30, 25, 0.85) 80%,
+    rgba(25, 20, 15, 0.95) 100%) !important;
+  background-color: transparent !important;
+  position: relative !important;
+  overflow: hidden !important;
 }
 
 /* 篝火光芒 - 主光源 */
-#body-wrap:not(.full_page) .page #page-header::before,
-#body-wrap:not(.full_page) .archive #page-header::before,
-#body-wrap:not(.full_page) .tag #page-header::before,
-#body-wrap:not(.full_page) .category #page-header::before {
+html body #body-wrap #page-header.not-home-page::before {
   content: '';
   position: absolute;
   bottom: -20%;
@@ -463,25 +593,36 @@ blockquote {
   width: 200%;
   height: 100%;
   background: radial-gradient(ellipse at center bottom, 
-    rgba(255, 180, 100, 0.25) 0%, 
-    rgba(255, 140, 70, 0.15) 20%,
-    rgba(255, 100, 50, 0.08) 40%,
+    rgba(255, 180, 100, 0.35) 0%, 
+    rgba(255, 140, 70, 0.25) 20%,
+    rgba(255, 100, 50, 0.15) 40%,
     transparent 60%);
   pointer-events: none;
+  z-index: 0;
   animation: campfireGlow 3s ease-in-out infinite alternate;
 }
 
 @keyframes campfireGlow {
-  0% { opacity: 0.8; }
-  50% { opacity: 1; }
-  100% { opacity: 0.85; }
+  0% { 
+    opacity: 0.7;
+    filter: brightness(0.95);
+  }
+  33% { 
+    opacity: 1;
+    filter: brightness(1.05);
+  }
+  66% { 
+    opacity: 0.8;
+    filter: brightness(0.98);
+  }
+  100% { 
+    opacity: 0.9;
+    filter: brightness(1.02);
+  }
 }
 
 /* 篝火粒子效果 - 多层火焰 */
-#body-wrap:not(.full_page) .page #page-header::after,
-#body-wrap:not(.full_page) .archive #page-header::after,
-#body-wrap:not(.full_page) .tag #page-header::after,
-#body-wrap:not(.full_page) .category #page-header::after {
+html body #body-wrap #page-header.not-home-page::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -489,27 +630,57 @@ blockquote {
   right: 0;
   height: 60%;
   background: 
-    radial-gradient(ellipse at 20% 90%, rgba(255, 160, 80, 0.2) 0%, transparent 40%),
-    radial-gradient(ellipse at 40% 85%, rgba(255, 200, 120, 0.18) 0%, transparent 35%),
-    radial-gradient(ellipse at 60% 88%, rgba(255, 140, 60, 0.15) 0%, transparent 38%),
-    radial-gradient(ellipse at 80% 92%, rgba(255, 180, 100, 0.12) 0%, transparent 35%),
-    linear-gradient(0deg, rgba(255, 150, 80, 0.1) 0%, transparent 50%);
+    radial-gradient(ellipse at 20% 90%, rgba(255, 160, 80, 0.3) 0%, transparent 40%),
+    radial-gradient(ellipse at 40% 85%, rgba(255, 200, 120, 0.25) 0%, transparent 35%),
+    radial-gradient(ellipse at 60% 88%, rgba(255, 140, 60, 0.22) 0%, transparent 38%),
+    radial-gradient(ellipse at 80% 92%, rgba(255, 180, 100, 0.18) 0%, transparent 35%),
+    linear-gradient(0deg, rgba(255, 150, 80, 0.15) 0%, transparent 50%);
   pointer-events: none;
-  animation: fireFlicker 2.5s ease-in-out infinite;
+  transform-origin: bottom center;
+  z-index: 0;
+  animation: fireFlicker 2.5s ease-in-out infinite, fireSway 4s ease-in-out infinite;
 }
 
 @keyframes fireFlicker {
-  0%, 100% { opacity: 0.9; }
-  25% { opacity: 1; }
-  50% { opacity: 0.85; }
-  75% { opacity: 0.95; }
+  0%, 100% { 
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  20% { 
+    opacity: 1;
+    transform: scale(1.02);
+  }
+  40% { 
+    opacity: 0.85;
+    transform: scale(0.98);
+  }
+  60% { 
+    opacity: 0.95;
+    transform: scale(1.01);
+  }
+  80% { 
+    opacity: 0.9;
+    transform: scale(0.99);
+  }
+}
+
+@keyframes fireSway {
+  0%, 100% {
+    transform: rotate(-1deg) translateY(0);
+  }
+  25% {
+    transform: rotate(0.5deg) translateY(-2px);
+  }
+  50% {
+    transform: rotate(-0.5deg) translateY(-1px);
+  }
+  75% {
+    transform: rotate(1deg) translateY(-3px);
+  }
 }
 
 /* 子页面标题样式 */
-#body-wrap:not(.full_page) .page #page-header .page-title,
-#body-wrap:not(.full_page) .archive #page-header .page-title,
-#body-wrap:not(.full_page) .tag #page-header .page-title,
-#body-wrap:not(.full_page) .category #page-header .page-title {
+html body #body-wrap #page-header.not-home-page .page-title {
   font-size: 2.5rem !important;
   font-weight: 700 !important;
   color: #ffffff !important;
@@ -519,10 +690,7 @@ blockquote {
 }
 
 /* 子页面描述 */
-#body-wrap:not(.full_page) .page #page-header .page-description,
-#body-wrap:not(.full_page) .archive #page-header .page-description,
-#body-wrap:not(.full_page) .tag #page-header .page-description,
-#body-wrap:not(.full_page) .category #page-header .page-description {
+html body #body-wrap #page-header.not-home-page .page-description {
   font-size: 1rem !important;
   color: rgba(255, 230, 200, 0.9) !important;
   position: relative;
@@ -703,4 +871,384 @@ blockquote {
 
 #aside-content .card-announcement .announcement_content {
   color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* ============================================================
+   目录（TOC）温馨柔和设计
+   ============================================================ */
+
+/* 目录容器 */
+#card-toc {
+  background: linear-gradient(145deg, 
+    rgba(45, 30, 20, 0.85) 0%, 
+    rgba(35, 25, 18, 0.9) 50%,
+    rgba(25, 18, 12, 0.85) 100%) !important;
+  border: 1px solid rgba(255, 200, 150, 0.2) !important;
+  border-radius: 15px !important;
+  backdrop-filter: blur(15px) saturate(120%);
+  -webkit-backdrop-filter: blur(15px) saturate(120%);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 
+              inset 0 1px 0 rgba(255, 200, 150, 0.1) !important;
+  overflow: hidden;
+  position: relative;
+}
+
+/* 目录标题栏 */
+#card-toc .item-headline {
+  background: linear-gradient(90deg, 
+    rgba(255, 180, 100, 0.15) 0%, 
+    rgba(255, 150, 80, 0.08) 100%) !important;
+  border-bottom: 1px solid rgba(255, 200, 150, 0.15) !important;
+  padding: 14px 18px !important;
+  margin: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+#card-toc .item-headline i {
+  color: rgba(255, 200, 120, 0.9) !important;
+  margin-right: 10px !important;
+}
+
+#card-toc .item-headline span {
+  color: rgba(255, 230, 200, 0.95) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.5px !important;
+}
+
+#card-toc .toc-percentage {
+  color: rgba(255, 200, 150, 0.8) !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+}
+
+/* 目录内容区域 */
+#card-toc .toc-content {
+  padding: 15px 18px !important;
+  max-height: 70vh !important;
+  overflow-y: auto !important;
+  scroll-behavior: smooth !important;
+}
+
+/* 目录滚动条 */
+#card-toc .toc-content::-webkit-scrollbar {
+  width: 6px !important;
+}
+
+#card-toc .toc-content::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1) !important;
+  border-radius: 3px !important;
+}
+
+#card-toc .toc-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 180, 100, 0.3) !important;
+  border-radius: 3px !important;
+}
+
+#card-toc .toc-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 180, 100, 0.5) !important;
+}
+
+/* 目录列表 */
+#card-toc .toc {
+  padding: 0 !important;
+  margin: 0 !important;
+  list-style: none !important;
+}
+
+#card-toc .toc-item {
+  position: relative !important;
+  margin: 4px 0 !important;
+}
+
+#card-toc .toc-item.toc-level-1 {
+  margin-top: 10px !important;
+  margin-bottom: 8px !important;
+}
+
+#card-toc .toc-child {
+  padding-left: 20px !important;
+  margin: 6px 0 !important;
+  border-left: 2px solid rgba(255, 180, 100, 0.15) !important;
+}
+
+/* 目录链接 */
+#card-toc .toc-link {
+  display: flex !important;
+  align-items: center !important;
+  padding: 8px 12px !important;
+  border-radius: 8px !important;
+  color: rgba(255, 230, 200, 0.85) !important;
+  text-decoration: none !important;
+  transition: all 0.3s ease !important;
+  font-size: 14px !important;
+  line-height: 1.4 !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+#card-toc .toc-link::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  background: linear-gradient(90deg, 
+    rgba(255, 180, 100, 0.08) 0%, 
+    transparent 100%) !important;
+  opacity: 0 !important;
+  transition: opacity 0.3s ease !important;
+  z-index: -1 !important;
+}
+
+#card-toc .toc-link:hover {
+  color: rgba(255, 210, 170, 1) !important;
+  background: rgba(255, 180, 100, 0.08) !important;
+  transform: translateX(3px) !important;
+}
+
+#card-toc .toc-link:hover::before {
+  opacity: 1 !important;
+}
+
+/* 目录编号 */
+#card-toc .toc-number {
+  color: rgba(255, 180, 120, 0.7) !important;
+  font-weight: 600 !important;
+  font-size: 12px !important;
+  margin-right: 8px !important;
+  min-width: 24px !important;
+  display: inline-block !important;
+}
+
+/* 目录文字 */
+#card-toc .toc-text {
+  color: rgba(255, 235, 215, 0.9) !important;
+  font-weight: 500 !important;
+}
+
+/* 激活状态（当前阅读位置） */
+#card-toc .toc-link.active {
+  color: rgba(255, 220, 180, 1) !important;
+  background: linear-gradient(90deg, 
+    rgba(255, 180, 100, 0.15) 0%, 
+    rgba(255, 150, 80, 0.08) 100%) !important;
+  border-left: 3px solid rgba(255, 180, 100, 0.6) !important;
+  box-shadow: inset 0 0 20px rgba(255, 180, 100, 0.08) !important;
+}
+
+#card-toc .toc-link.active .toc-number {
+  color: rgba(255, 200, 150, 0.9) !important;
+}
+
+#card-toc .toc-link.active .toc-text {
+  color: rgba(255, 240, 220, 1) !important;
+  font-weight: 600 !important;
+}
+
+/* 不同级别的目录项 */
+#card-toc .toc-level-2 .toc-link {
+  padding-left: 24px !important;
+  font-size: 13.5px !important;
+}
+
+#card-toc .toc-level-3 .toc-link {
+  padding-left: 36px !important;
+  font-size: 13px !important;
+  color: rgba(255, 225, 200, 0.8) !important;
+}
+
+/* 悬停效果增强 */
+#card-toc .toc-item:hover .toc-link {
+  color: rgba(255, 210, 170, 1) !important;
+}
+
+#card-toc .toc-item:hover .toc-number {
+  color: rgba(255, 190, 130, 0.9) !important;
+}
+
+/* 柔和的过渡动画 */
+#card-toc * {
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease !important;
+}
+
+/* ============================================================
+   首页副标题温馨设计
+   ============================================================ */
+
+/* 副标题容器 */
+#site-subtitle {
+  margin-top: 15px !important;
+  min-height: 30px !important;
+}
+
+/* 副标题文字 */
+#subtitle {
+  font-size: 1.2rem !important;
+  font-weight: 500 !important;
+  color: rgba(255, 235, 210, 0.95) !important;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 180, 100, 0.3) !important;
+  letter-spacing: 0.5px !important;
+  line-height: 1.4 !important;
+  display: inline-block !important;
+  padding: 8px 15px !important;
+  background: linear-gradient(90deg, 
+    rgba(255, 180, 100, 0.1) 0%, 
+    rgba(255, 150, 80, 0.05) 50%,
+    rgba(255, 180, 100, 0.1) 100%) !important;
+  border-radius: 20px !important;
+  border: 1px solid rgba(255, 200, 150, 0.2) !important;
+  backdrop-filter: blur(5px) !important;
+  -webkit-backdrop-filter: blur(5px) !important;
+}
+
+/* 打字机光标 */
+.typed-cursor {
+  color: rgba(255, 200, 150, 0.9) !important;
+  font-size: 1.2rem !important;
+  animation: blink 0.7s infinite !important;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* 副标题悬停效果 */
+#site-subtitle:hover #subtitle {
+  background: linear-gradient(90deg, 
+    rgba(255, 180, 100, 0.15) 0%, 
+    rgba(255, 150, 80, 0.08) 50%,
+    rgba(255, 180, 100, 0.15) 100%) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 5px 20px rgba(255, 180, 100, 0.15) !important;
+}
+
+/* ============================================================
+   文章内容区域温馨调整
+   ============================================================ */
+
+/* 文章容器背景调整 */
+#article-container {
+  background: rgba(15, 10, 8, 0.3) !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+}
+
+/* 文章标题颜色温馨化 */
+.article-title,
+#article-container h1,
+#article-container h2,
+#article-container h3,
+#article-container h4,
+#article-container h5,
+#article-container h6 {
+  color: rgba(255, 230, 200, 0.95) !important;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3), 0 0 15px rgba(255, 180, 100, 0.1) !important;
+  border-bottom: 1px solid rgba(255, 180, 100, 0.15) !important;
+  padding-bottom: 8px !important;
+  margin-bottom: 20px !important;
+}
+
+/* 文章内链接颜色 */
+#article-container a {
+  color: rgba(255, 180, 120, 0.9) !important;
+  text-decoration: none !important;
+  border-bottom: 1px dotted rgba(255, 180, 120, 0.3) !important;
+  transition: all 0.3s ease !important;
+}
+
+#article-container a:hover {
+  color: rgba(255, 200, 150, 1) !important;
+  border-bottom: 1px solid rgba(255, 180, 120, 0.6) !important;
+}
+
+/* 文章引用块 */
+#article-container blockquote {
+  background: linear-gradient(90deg, 
+    rgba(255, 180, 100, 0.08) 0%, 
+    rgba(255, 150, 80, 0.03) 100%) !important;
+  border-left: 4px solid rgba(255, 180, 100, 0.6) !important;
+  border-radius: 0 8px 8px 0 !important;
+  padding: 15px 20px !important;
+  margin: 20px 0 !important;
+  color: rgba(255, 235, 215, 0.9) !important;
+}
+
+/* 文章分割线 */
+#article-container hr {
+  border: none !important;
+  height: 1px !important;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 180, 100, 0.4) 20%, 
+    rgba(255, 180, 100, 0.4) 80%, 
+    transparent 100%) !important;
+  margin: 30px 0 !important;
+}
+
+/* 文章列表项目符号 */
+#article-container ul li::before {
+  color: rgba(255, 180, 100, 0.8) !important;
+}
+
+#article-container ol li::before {
+  color: rgba(255, 180, 100, 0.8) !important;
+}
+
+/* 文章表格样式 */
+#article-container table {
+  border: 1px solid rgba(255, 200, 150, 0.2) !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+  margin: 20px 0 !important;
+}
+
+#article-container table th {
+  background: rgba(255, 180, 100, 0.15) !important;
+  color: rgba(255, 230, 200, 0.95) !important;
+  border-bottom: 2px solid rgba(255, 180, 100, 0.3) !important;
+}
+
+#article-container table td {
+  border-bottom: 1px solid rgba(255, 200, 150, 0.1) !important;
+  color: rgba(255, 235, 215, 0.9) !important;
+}
+
+#article-container table tr:hover td {
+  background: rgba(255, 180, 100, 0.05) !important;
+}
+
+/* 文章图片样式 */
+#article-container img {
+  border-radius: 8px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2) !important;
+  transition: transform 0.3s ease !important;
+}
+
+#article-container img:hover {
+  transform: scale(1.02) !important;
+}
+
+/* 文章脚注 */
+#article-container .footnote {
+  color: rgba(255, 220, 190, 0.8) !important;
+  font-size: 0.9em !important;
+}
+
+/* 文章数学公式 */
+#article-container .katex,
+#article-container .mathjax {
+  color: rgba(255, 235, 215, 0.95) !important;
+}
+
+#article-container .katex-display,
+#article-container .mathjax-display {
+  background: rgba(255, 180, 100, 0.05) !important;
+  border-left: 3px solid rgba(255, 180, 100, 0.3) !important;
+  padding: 15px !important;
+  border-radius: 0 8px 8px 0 !important;
+  margin: 20px 0 !important;
 }

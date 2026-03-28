@@ -1,0 +1,275 @@
+/* 3D粒子交互页面样式 */
+
+#particle-container {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 9999 !important;
+  background: #000 !important;
+  overflow: hidden !important;
+}
+
+#particle-container canvas {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* 控制面板 */
+#controls {
+  position: fixed !important;
+  bottom: 20px !important;
+  left: 20px !important;
+  background: rgba(0, 0, 0, 0.7) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255, 200, 100, 0.2) !important;
+  border-radius: 15px !important;
+  padding: 20px !important;
+  z-index: 10001 !important;
+  min-width: 280px !important;
+  color: white !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+  transition: transform 0.3s ease !important;
+}
+
+#controls:hover {
+  transform: translateY(-5px) !important;
+}
+
+.control-group {
+  margin-bottom: 15px !important;
+}
+
+.control-group label {
+  display: block !important;
+  margin-bottom: 5px !important;
+  font-size: 12px !important;
+  color: rgba(255, 220, 180, 0.8) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+}
+
+.control-group input[type="range"] {
+  width: 100% !important;
+  height: 6px !important;
+  background: rgba(255, 180, 100, 0.2) !important;
+  border-radius: 3px !important;
+  outline: none !important;
+  -webkit-appearance: none !important;
+}
+
+.control-group input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none !important;
+  width: 18px !important;
+  height: 18px !important;
+  background: linear-gradient(135deg, #FFD700, #FFA500) !important;
+  border-radius: 50% !important;
+  cursor: pointer !important;
+  box-shadow: 0 2px 10px rgba(255, 180, 100, 0.5) !important;
+  transition: transform 0.2s ease !important;
+}
+
+.control-group input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2) !important;
+}
+
+.control-group button {
+  background: linear-gradient(135deg, rgba(255, 180, 100, 0.3), rgba(255, 150, 80, 0.2)) !important;
+  border: 1px solid rgba(255, 200, 100, 0.4) !important;
+  color: rgba(255, 220, 180, 0.9) !important;
+  padding: 10px 15px !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  font-size: 12px !important;
+  margin-right: 8px !important;
+  margin-bottom: 8px !important;
+  transition: all 0.3s ease !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+.control-group button:hover {
+  background: linear-gradient(135deg, rgba(255, 180, 100, 0.5), rgba(255, 150, 80, 0.4)) !important;
+  border-color: rgba(255, 200, 100, 0.6) !important;
+  transform: translateY(-2px) !important;
+}
+
+.control-group button:active {
+  transform: translateY(0) !important;
+}
+
+/* 加载状态 */
+#loading {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background: rgba(0, 0, 0, 0.9) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  z-index: 10002 !important;
+  color: white !important;
+  font-family: 'Arial', sans-serif !important;
+}
+
+.loading-spinner {
+  width: 50px !important;
+  height: 50px !important;
+  border: 3px solid rgba(255, 180, 100, 0.3) !important;
+  border-radius: 50% !important;
+  border-top-color: #FFD700 !important;
+  animation: spin 1s ease-in-out infinite !important;
+  margin-bottom: 20px !important;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg) !important; }
+}
+
+/* 信息面板 */
+#info-panel {
+  position: fixed !important;
+  top: 20px !important;
+  right: 20px !important;
+  background: rgba(0, 0, 0, 0.7) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255, 200, 100, 0.2) !important;
+  border-radius: 15px !important;
+  padding: 20px !important;
+  z-index: 10001 !important;
+  max-width: 300px !important;
+  color: white !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+  transition: transform 0.3s ease !important;
+}
+
+#info-panel:hover {
+  transform: translateY(-5px) !important;
+}
+
+#info-panel h3 {
+  color: rgba(255, 210, 150, 0.9) !important;
+  margin-top: 0 !important;
+  margin-bottom: 15px !important;
+  font-size: 16px !important;
+  border-bottom: 1px solid rgba(255, 180, 100, 0.3) !important;
+  padding-bottom: 10px !important;
+}
+
+#info-panel p {
+  color: rgba(255, 235, 215, 0.8) !important;
+  font-size: 12px !important;
+  line-height: 1.5 !important;
+  margin-bottom: 15px !important;
+}
+
+#info-panel ul {
+  padding-left: 20px !important;
+  margin: 0 !important;
+}
+
+#info-panel li {
+  color: rgba(255, 220, 180, 0.7) !important;
+  font-size: 11px !important;
+  margin-bottom: 5px !important;
+}
+
+/* 手势识别状态指示器 */
+.hand-indicator {
+  position: fixed !important;
+  top: 20px !important;
+  left: 20px !important;
+  background: rgba(0, 0, 0, 0.7) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255, 200, 100, 0.2) !important;
+  border-radius: 10px !important;
+  padding: 10px 15px !important;
+  z-index: 10001 !important;
+  color: white !important;
+  font-size: 12px !important;
+  display: none !important;
+}
+
+.hand-indicator.active {
+  display: block !important;
+  border-color: rgba(100, 255, 100, 0.5) !important;
+}
+
+.hand-indicator .status {
+  display: flex !important;
+  align-items: center !important;
+}
+
+.hand-indicator .status-dot {
+  width: 8px !important;
+  height: 8px !important;
+  background: #ff4444 !important;
+  border-radius: 50% !important;
+  margin-right: 8px !important;
+  animation: pulse 2s infinite !important;
+}
+
+.hand-indicator.active .status-dot {
+  background: #44ff44 !important;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.5 !important; }
+  50% { opacity: 1 !important; }
+  100% { opacity: 0.5 !important; }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  #controls {
+    bottom: 10px !important;
+    left: 10px !important;
+    right: 10px !important;
+    min-width: auto !important;
+  }
+  
+  #info-panel {
+    top: 10px !important;
+    right: 10px !important;
+    left: 10px !important;
+    max-width: none !important;
+  }
+  
+  .control-group button {
+    padding: 8px 12px !important;
+    font-size: 10px !important;
+  }
+}
+
+/* 隐藏导航栏 */
+#nav {
+  display: none !important;
+}
+
+/* 隐藏页脚 */
+#footer {
+  display: none !important;
+}
+
+/* 隐藏侧边栏 */
+#aside-content {
+  display: none !important;
+}
+
+/* 隐藏右下角按钮 */
+#rightside {
+  display: none !important;
+}
+
+/* 隐藏加载动画 */
+#loading:not(:empty) ~ #particle-container {
+  filter: blur(5px) !important;
+}
