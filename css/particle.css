@@ -250,22 +250,22 @@
 }
 
 /* 隐藏导航栏 - 仅限粒子页面 */
-body.type-particle #nav {
+#body-wrap.type-particle #nav {
   display: none !important;
 }
 
 /* 隐藏页脚 - 仅限粒子页面 */
-body.type-particle #footer {
+#body-wrap.type-particle #footer {
   display: none !important;
 }
 
 /* 隐藏侧边栏 - 仅限粒子页面 */
-body.type-particle #aside-content {
+#body-wrap.type-particle #aside-content {
   display: none !important;
 }
 
 /* 隐藏右下角按钮 - 仅限粒子页面 */
-body.type-particle #rightside {
+#body-wrap.type-particle #rightside {
   display: none !important;
 }
 
