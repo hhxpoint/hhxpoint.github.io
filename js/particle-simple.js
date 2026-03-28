@@ -461,9 +461,12 @@ class SimpleParticleSystem {
   hideLoading() {
     const loading = document.getElementById('loading');
     if(loading) {
+      console.log('隐藏加载状态');
       loading.style.opacity = '0';
+      loading.style.transition = 'opacity 0.5s ease';
       setTimeout(() => {
         loading.style.display = 'none';
+        console.log('加载状态已隐藏');
       }, 500);
     }
   }
@@ -535,7 +538,47 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('Three.js未加载，开始动态加载...');
     // 动态加载Three.js
     const script = document.createElement('script');
-    script.src = 'https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js';
+    // 尝试多个CDN源
+    const cdnSources = [
+      'https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js',
+      'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js',
+      'https://unpkg.com/three@0.158.0/build/three.min.js'
+    ];
+    
+    let currentCDN = 0;
+    
+    const tryLoadCDN = () => {
+      if(currentCDN >= cdnSources.length) {
+        console.error('所有CDN源都加载失败');
+        document.getElementById('loading').innerHTML = `
+          <p style="color: #ff6b6b;">无法加载3D引擎</p>
+          <p style="color: #888; font-size: 12px; margin-top: 10px;">请检查网络连接或尝试使用VPN</p>
+        `;
+        return;
+      }
+      
+      const script = document.createElement('script');
+      script.src = cdnSources[currentCDN];
+      script.onload = () => {
+        console.log('Three.js加载成功，CDN:', cdnSources[currentCDN]);
+        try {
+          window.particleSystem = new SimpleParticleSystem();
+        } catch (error) {
+          console.error('粒子系统初始化失败:', error);
+          document.getElementById('loading').innerHTML = `
+            <p style="color: #ff6b6b;">粒子系统初始化失败: ${error.message}</p>
+          `;
+        }
+      };
+      script.onerror = (error) => {
+        console.warn('CDN加载失败:', cdnSources[currentCDN], error);
+        currentCDN++;
+        tryLoadCDN(); // 尝试下一个CDN
+      };
+      document.head.appendChild(script);
+    };
+    
+    tryLoadCDN();
     script.onload = () => {
       console.log('Three.js加载成功');
       try {
