@@ -45,9 +45,14 @@ class SimpleParticleSystem {
       this.hideLoading();
       
       console.log('3D粒子系统初始化完成');
+      console.log('粒子数量:', this.particleCount);
+      console.log('场景:', this.scene);
+      console.log('相机:', this.camera);
+      console.log('渲染器:', this.renderer);
+      console.log('粒子对象:', this.particles);
     } catch (error) {
       console.error('初始化失败:', error);
-      this.showError('系统初始化失败，请刷新重试');
+      this.showError('系统初始化失败: ' + error.message);
     }
   }
   
@@ -516,23 +521,50 @@ class SimpleParticleSystem {
 
 // 初始化粒子系统
 document.addEventListener('DOMContentLoaded', () => {
+  console.log('DOM加载完成，开始初始化粒子系统...');
+  
+  // 检查必要元素是否存在
+  const particleContainer = document.getElementById('particle-container');
+  if(!particleContainer) {
+    console.error('找不到particle-container元素');
+    return;
+  }
+  
   // 检查Three.js是否加载
   if(typeof THREE === 'undefined') {
+    console.log('Three.js未加载，开始动态加载...');
     // 动态加载Three.js
     const script = document.createElement('script');
     script.src = 'https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js';
     script.onload = () => {
-      window.particleSystem = new SimpleParticleSystem();
+      console.log('Three.js加载成功');
+      try {
+        window.particleSystem = new SimpleParticleSystem();
+      } catch (error) {
+        console.error('粒子系统初始化失败:', error);
+        document.getElementById('loading').innerHTML = `
+          <p style="color: #ff6b6b;">粒子系统初始化失败: ${error.message}</p>
+        `;
+      }
     };
-    script.onerror = () => {
-      console.error('Three.js加载失败');
+    script.onerror = (error) => {
+      console.error('Three.js加载失败:', error);
       document.getElementById('loading').innerHTML = `
         <p style="color: #ff6b6b;">无法加载3D引擎，请检查网络连接</p>
+        <p style="color: #888; font-size: 12px; margin-top: 10px;">请确保可以访问cdn.jsdelivr.net</p>
       `;
     };
     document.head.appendChild(script);
   } else {
-    window.particleSystem = new SimpleParticleSystem();
+    console.log('Three.js已加载');
+    try {
+      window.particleSystem = new SimpleParticleSystem();
+    } catch (error) {
+      console.error('粒子系统初始化失败:', error);
+      document.getElementById('loading').innerHTML = `
+        <p style="color: #ff6b6b;">粒子系统初始化失败: ${error.message}</p>
+      `;
+    }
   }
 });
 

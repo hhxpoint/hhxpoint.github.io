@@ -9,6 +9,34 @@
   z-index: 9999 !important;
   background: #000 !important;
   overflow: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* 确保父容器不限制尺寸 */
+#article-container {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* 隐藏页面头部 */
+body.type-particle #page-header {
+  display: none !important;
+}
+
+/* 隐藏页面内容区域的其他元素 */
+body.type-particle #page {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+body.type-particle #content-inner {
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 #particle-container canvas {
