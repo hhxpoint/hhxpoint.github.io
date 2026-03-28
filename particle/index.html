@@ -1,378 +1,615 @@
-<!DOCTYPE html><html lang="cn" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>3D粒子交互 | point_xuan</title><meta name="author" content="point_xuan"><meta name="copyright" content="point_xuan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="3D粒子系统调试信息     正在初始化...     Three.js: 未加载     容器: 未找到            &#x2F;&#x2F; 简单的测试脚本 document.addEventListener(&#39;DOMContentLoaded&#39;, function() {   const statusDiv &#x3D; document.getElementById(&#39;status&#39;);">
-<meta property="og:type" content="website">
-<meta property="og:title" content="3D粒子交互">
-<meta property="og:url" content="https://hhxpoint.github.io/particle/index.html">
-<meta property="og:site_name" content="point_xuan">
-<meta property="og:description" content="3D粒子系统调试信息     正在初始化...     Three.js: 未加载     容器: 未找到            &#x2F;&#x2F; 简单的测试脚本 document.addEventListener(&#39;DOMContentLoaded&#39;, function() {   const statusDiv &#x3D; document.getElementById(&#39;status&#39;);">
-<meta property="og:locale">
-<meta property="og:image" content="https://hhxpoint.github.io/img/butterfly-icon.png">
-<meta property="article:published_time" content="2026-03-27T16:00:00.000Z">
-<meta property="article:modified_time" content="2026-03-28T12:35:06.174Z">
-<meta property="article:author" content="point_xuan">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://hhxpoint.github.io/img/butterfly-icon.png"><script type="application/ld+json"></script><link rel="shortcut icon" href="/img/photo.jpg"><link rel="canonical" href="https://hhxpoint.github.io/particle/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
-    (() => {
-      
-    const saveToLocal = {
-      set: (key, value, ttl) => {
-        if (!ttl) return
-        const expiry = Date.now() + ttl * 86400000
-        localStorage.setItem(key, JSON.stringify({ value, expiry }))
-      },
-      get: key => {
-        const itemStr = localStorage.getItem(key)
-        if (!itemStr) return undefined
-        const { value, expiry } = JSON.parse(itemStr)
-        if (Date.now() > expiry) {
-          localStorage.removeItem(key)
-          return undefined
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D粒子交互系统</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        return value
-      }
-    }
-
-    window.btf = {
-      saveToLocal,
-      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
-        const script = document.createElement('script')
-        script.src = url
-        script.async = true
-        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
-        script.onload = script.onreadystatechange = () => {
-          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
-        }
-        script.onerror = reject
-        document.head.appendChild(script)
-      }),
-      getCSS: (url, id) => new Promise((resolve, reject) => {
-        const link = document.createElement('link')
-        link.rel = 'stylesheet'
-        link.href = url
-        if (id) link.id = id
-        link.onload = link.onreadystatechange = () => {
-          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
-        }
-        link.onerror = reject
-        document.head.appendChild(link)
-      }),
-      addGlobalFn: (key, fn, name = false, parent = window) => {
-        if (!false && key.startsWith('pjax')) return
-        const globalFn = parent.globalFn || {}
-        globalFn[key] = globalFn[key] || {}
-        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
-        parent.globalFn = globalFn
-      }
-    }
-  
-      
-      const activateDarkMode = () => {
-        document.documentElement.setAttribute('data-theme', 'dark')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
-        }
-      }
-      const activateLightMode = () => {
-        document.documentElement.setAttribute('data-theme', 'light')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
-        }
-      }
-
-      btf.activateDarkMode = activateDarkMode
-      btf.activateLightMode = activateLightMode
-
-      const theme = saveToLocal.get('theme')
-    
-          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
         
-      
-      const asideStatus = saveToLocal.get('aside-status')
-      if (asideStatus !== undefined) {
-        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
-      }
+<pre><code>    body &#123;
+        background: #000;
+        overflow: hidden;
+        font-family: &#39;Segoe UI&#39;, Arial, sans-serif;
+        color: white;
+    &#125;
     
-      
-    const detectApple = () => {
-      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
-        document.documentElement.classList.add('apple')
-      }
-    }
-    detectApple()
-  
-    })()
-  </script><script>const GLOBAL_CONFIG = {
-  root: '/',
-  algolia: undefined,
-  localSearch: undefined,
-  translate: undefined,
-  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
-  copy: {
-    success: 'Copy Successful',
-    error: 'Copy Failed',
-    noSupport: 'Browser Not Supported'
-  },
-  relativeDate: {
-    homepage: false,
-    post: false
-  },
-  runtime: '',
-  dateSuffix: {
-    just: 'Just now',
-    min: 'minutes ago',
-    hour: 'hours ago',
-    day: 'days ago',
-    month: 'months ago'
-  },
-  copyright: undefined,
-  lightbox: 'null',
-  Snackbar: undefined,
-  infinitegrid: {
-    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
-    buttonText: 'Load More'
-  },
-  isPhotoFigcaption: false,
-  islazyloadPlugin: false,
-  isAnchor: false,
-  percent: {
-    toc: true,
-    rightside: false,
-  },
-  autoDarkmode: false
-}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
-  title: '3D粒子交互',
-  isHighlightShrink: false,
-  isToc: false,
-  pageType: 'page'
-}</script><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/particle.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div class="bg-animation" id="web_bg" style="background-image: url(/img/3.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">5</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">12</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">2</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/chat/"><i class="fa-fw fas fa-comments"></i><span> AI对话</span></a></div><div class="menus_item"><a class="site-page" href="/particle/"><i class="fa-fw fas fa-atom"></i><span> 3D粒子</span></a></div></div></div></div><div class="page type-particle" id="body-wrap"><header class="not-home-page" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/photo.jpg" alt="Logo"><span class="site-name">point_xuan</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/chat/"><i class="fa-fw fas fa-comments"></i><span> AI对话</span></a></div><div class="menus_item"><a class="site-page" href="/particle/"><i class="fa-fw fas fa-atom"></i><span> 3D粒子</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="page-site-info"><h1 id="site-title">3D粒子交互</h1></div></header><main class="layout" id="content-inner"><div id="page"><div class="container" id="article-container"><div id="test-container" style="width: 100vw; height: 100vh; background: #000; position: fixed; top: 0; left: 0; z-index: 9999;">
-  <div id="debug-info" style="position: fixed; top: 20px; left: 20px; color: white; font-family: monospace; z-index: 10000; background: rgba(0,0,0,0.8); padding: 15px; border-radius: 10px;">
-    <h3>3D粒子系统调试信息</h3>
-    <div id="status">正在初始化...</div>
-    <div id="three-status">Three.js: 未加载</div>
-    <div id="container-status">容器: 未找到</div>
-    <div id="error-info" style="color: #ff6b6b; margin-top: 10px;"></div>
-  </div>
-</div>
+    #canvas-container &#123;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 1;
+    &#125;
+    
+    /* 控制面板 */
+    #controls &#123;
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 200, 100, 0.3);
+        border-radius: 15px;
+        padding: 20px;
+        z-index: 1000;
+        min-width: 300px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    &#125;
+    
+    .control-group &#123;
+        margin-bottom: 15px;
+    &#125;
+    
+    .control-group label &#123;
+        display: block;
+        margin-bottom: 8px;
+        color: rgba(255, 220, 180, 0.9);
+        font-size: 14px;
+        font-weight: 500;
+    &#125;
+    
+    .control-group input[type=&quot;range&quot;] &#123;
+        width: 100%;
+        height: 6px;
+        background: rgba(255, 180, 100, 0.2);
+        border-radius: 3px;
+        outline: none;
+        -webkit-appearance: none;
+    &#125;
+    
+    .control-group input[type=&quot;range&quot;]::-webkit-slider-thumb &#123;
+        -webkit-appearance: none;
+        width: 18px;
+        height: 18px;
+        background: linear-gradient(135deg, #FFD700, #FFA500);
+        border-radius: 50%;
+        cursor: pointer;
+        box-shadow: 0 2px 10px rgba(255, 180, 100, 0.5);
+    &#125;
+    
+    .control-group button &#123;
+        background: linear-gradient(135deg, rgba(255, 180, 100, 0.3), rgba(255, 150, 80, 0.2));
+        border: 1px solid rgba(255, 200, 100, 0.4);
+        color: rgba(255, 220, 180, 0.9);
+        padding: 10px 20px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 14px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        transition: all 0.3s ease;
+    &#125;
+    
+    .control-group button:hover &#123;
+        background: linear-gradient(135deg, rgba(255, 180, 100, 0.5), rgba(255, 150, 80, 0.4));
+        transform: translateY(-2px);
+    &#125;
+    
+    /* 标题 */
+    #title &#123;
+        position: fixed;
+        top: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 36px;
+        font-weight: 700;
+        color: rgba(255, 220, 180, 0.9);
+        text-shadow: 0 0 30px rgba(255, 180, 100, 0.5);
+        z-index: 1000;
+        text-align: center;
+        pointer-events: none;
+    &#125;
+    
+    /* 加载状态 */
+    #loading &#123;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        z-index: 2000;
+        background: rgba(0, 0, 0, 0.9);
+        padding: 40px;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 200, 100, 0.3);
+    &#125;
+    
+    .spinner &#123;
+        width: 50px;
+        height: 50px;
+        border: 3px solid rgba(255, 180, 100, 0.3);
+        border-radius: 50%;
+        border-top-color: #FFD700;
+        animation: spin 1s ease-in-out infinite;
+        margin: 0 auto 20px;
+    &#125;
+    
+    @keyframes spin &#123;
+        to &#123; transform: rotate(360deg); &#125;
+    &#125;
+    
+    /* 状态信息 */
+    #info &#123;
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 200, 100, 0.3);
+        border-radius: 15px;
+        padding: 20px;
+        z-index: 1000;
+        max-width: 300px;
+    &#125;
+    
+    #info h3 &#123;
+        color: rgba(255, 210, 150, 0.9);
+        margin-bottom: 15px;
+        font-size: 18px;
+    &#125;
+    
+    #info p &#123;
+        color: rgba(255, 235, 215, 0.8);
+        font-size: 14px;
+        line-height: 1.5;
+        margin-bottom: 10px;
+    &#125;
+    
+    #info ul &#123;
+        color: rgba(255, 220, 180, 0.7);
+        font-size: 13px;
+        padding-left: 20px;
+    &#125;
+    
+    #info li &#123;
+        margin-bottom: 5px;
+    &#125;
+&lt;/style&gt;
+</code></pre>
+</head>
+<body>
+    <div id="title">3D粒子交互系统</div>
+    
+<pre><code>&lt;div id=&quot;canvas-container&quot;&gt;&lt;/div&gt;
 
-<script>
-// 简单的测试脚本
-document.addEventListener('DOMContentLoaded', function() {
-  const statusDiv = document.getElementById('status');
-  const threeStatusDiv = document.getElementById('three-status');
-  const containerStatusDiv = document.getElementById('container-status');
-  const errorInfoDiv = document.getElementById('error-info');
-  
-  // 检查容器
-  const container = document.getElementById('test-container');
-  if(container) {
-    containerStatusDiv.textContent = '容器: 已找到 ✓';
-    containerStatusDiv.style.color = '#44ff44';
-  } else {
-    containerStatusDiv.textContent = '容器: 未找到 ✗';
-    containerStatusDiv.style.color = '#ff4444';
-    errorInfoDiv.textContent = '错误: 找不到容器元素';
-    return;
-  }
-  
-  // 检查Three.js
-  if(typeof THREE !== 'undefined') {
-    threeStatusDiv.textContent = 'Three.js: 已加载 ✓';
-    threeStatusDiv.style.color = '#44ff44';
-    statusDiv.textContent = '初始化粒子系统...';
-    
-    // 创建简单的粒子
-    try {
-      const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-      const renderer = new THREE.WebGLRenderer();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      container.appendChild(renderer.domElement);
-      
-      // 创建粒子
-      const geometry = new THREE.BufferGeometry();
-      const particleCount = 10000;
-      const positions = new Float32Array(particleCount * 3);
-      const colors = new Float32Array(particleCount * 3);
-      
-      for(let i = 0; i < particleCount; i++) {
-        const i3 = i * 3;
-        positions[i3] = (Math.random() - 0.5) * 100;
-        positions[i3 + 1] = (Math.random() - 0.5) * 100;
-        positions[i3 + 2] = (Math.random() - 0.5) * 100;
-        
-        colors[i3] = 1.0;
-        colors[i3 + 1] = 0.8 + Math.random() * 0.2;
-        colors[i3 + 2] = 0.2;
-      }
-      
-      geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-      geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-      
-      const material = new THREE.PointsMaterial({
-        size: 1,
-        vertexColors: true,
-        transparent: true,
-        opacity: 0.8
-      });
-      
-      const particles = new THREE.Points(geometry, material);
-      scene.add(particles);
-      
-      camera.position.z = 50;
-      
-      // 动画循环
-      function animate() {
-        requestAnimationFrame(animate);
-        particles.rotation.x += 0.001;
-        particles.rotation.y += 0.002;
-        renderer.render(scene, camera);
-      }
-      
-      animate();
-      statusDiv.textContent = '粒子系统运行中 ✓';
-      statusDiv.style.color = '#44ff44';
-      
-    } catch(error) {
-      errorInfoDiv.textContent = '错误: ' + error.message;
-      console.error('粒子系统错误:', error);
-    }
-    
-  } else {
-    threeStatusDiv.textContent = 'Three.js: 未加载 ✗';
-    threeStatusDiv.style.color = '#ff4444';
-    statusDiv.textContent = '等待Three.js加载...';
-    
-    // 尝试加载Three.js
-    const script = document.createElement('script');
-    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
-    script.onload = function() {
-      threeStatusDiv.textContent = 'Three.js: 已加载 ✓';
-      threeStatusDiv.style.color = '#44ff44';
-      statusDiv.textContent = 'Three.js加载成功，请刷新页面';
-    };
-    script.onerror = function() {
-      threeStatusDiv.textContent = 'Three.js: 加载失败 ✗';
-      threeStatusDiv.style.color = '#ff4444';
-      errorInfoDiv.textContent = '无法加载Three.js，请检查网络连接';
-    };
-    document.head.appendChild(script);
-  }
-});
-</script></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">point_xuan</div><div class="author-info-description">Please don't cry</div><div class="site-data"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">5</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">12</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/hhxpoint"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/03/03/%E6%96%AF%E5%9D%A6%E7%A6%8Fcs336/" title="斯坦福CS336 大语言模型核心：架构、训练与对齐的数学基础"><img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&amp;w=2070&amp;auto=format&amp;fit=crop" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="斯坦福CS336 大语言模型核心：架构、训练与对齐的数学基础"/></a><div class="content"><a class="title" href="/2026/03/03/%E6%96%AF%E5%9D%A6%E7%A6%8Fcs336/" title="斯坦福CS336 大语言模型核心：架构、训练与对齐的数学基础">斯坦福CS336 大语言模型核心：架构、训练与对齐的数学基础</a><time datetime="2026-03-03T08:00:00.000Z" title="Created 2026-03-03 16:00:00">2026-03-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/02/23/%E5%A4%A9%E6%A2%AF%E8%B5%9B/" title="天梯赛模拟题学习"><img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&amp;fit=crop&amp;w=1000&amp;q=80" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="天梯赛模拟题学习"/></a><div class="content"><a class="title" href="/2026/02/23/%E5%A4%A9%E6%A2%AF%E8%B5%9B/" title="天梯赛模拟题学习">天梯赛模拟题学习</a><time datetime="2026-02-23T09:58:41.000Z" title="Created 2026-02-23 17:58:41">2026-02-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/02/23/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" title="机器学习：开启人工智能之门"><img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&amp;fit=crop&amp;w=1000&amp;q=80" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="机器学习：开启人工智能之门"/></a><div class="content"><a class="title" href="/2026/02/23/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" title="机器学习：开启人工智能之门">机器学习：开启人工智能之门</a><time datetime="2026-02-23T09:58:41.000Z" title="Created 2026-02-23 17:58:41">2026-02-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/02/23/hello-world/" title="Hello World">Hello World</a><time datetime="2026-02-23T08:29:21.419Z" title="Created 2026-02-23 16:29:21">2026-02-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/02/24/%E6%A8%A1%E5%BC%8F%E8%AF%86%E5%88%AB%E6%A0%B8%E5%BF%83%EF%BC%9A%E6%95%B0%E7%90%86%E5%9F%BA%E7%A1%80%E4%B8%8E%E5%85%AC%E5%BC%8F%E5%AE%8C%E5%85%A8%E8%A7%A3%E6%9E%90/" title="模式识别核心：数理基础与公式完全解析（万字典藏版）"><img src="https://images.unsplash.com/photo-1509228468518-180dd4864904?q=80&amp;w=2070&amp;auto=format&amp;fit=crop" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="模式识别核心：数理基础与公式完全解析（万字典藏版）"/></a><div class="content"><a class="title" href="/2024/02/24/%E6%A8%A1%E5%BC%8F%E8%AF%86%E5%88%AB%E6%A0%B8%E5%BF%83%EF%BC%9A%E6%95%B0%E7%90%86%E5%9F%BA%E7%A1%80%E4%B8%8E%E5%85%AC%E5%BC%8F%E5%AE%8C%E5%85%A8%E8%A7%A3%E6%9E%90/" title="模式识别核心：数理基础与公式完全解析（万字典藏版）">模式识别核心：数理基础与公式完全解析（万字典藏版）</a><time datetime="2024-02-24T08:00:00.000Z" title="Created 2024-02-24 16:00:00">2024-02-24</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
-            <i class="fas fa-folder-open"></i>
-            <span>Categories</span>
+&lt;div id=&quot;controls&quot;&gt;
+    &lt;div class=&quot;control-group&quot;&gt;
+        &lt;label for=&quot;particle-count&quot;&gt;粒子数量: 50000&lt;/label&gt;
+        &lt;input type=&quot;range&quot; id=&quot;particle-count&quot; min=&quot;1000&quot; max=&quot;200000&quot; value=&quot;50000&quot;&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;control-group&quot;&gt;
+        &lt;label for=&quot;particle-size&quot;&gt;粒子大小: 2.0&lt;/label&gt;
+        &lt;input type=&quot;range&quot; id=&quot;particle-size&quot; min=&quot;0.5&quot; max=&quot;5&quot; step=&quot;0.1&quot; value=&quot;2&quot;&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;control-group&quot;&gt;
+        &lt;label for=&quot;rotation-speed&quot;&gt;旋转速度: 0.5&lt;/label&gt;
+        &lt;input type=&quot;range&quot; id=&quot;rotation-speed&quot; min=&quot;0&quot; max=&quot;2&quot; step=&quot;0.1&quot; value=&quot;0.5&quot;&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;control-group&quot;&gt;
+        &lt;label for=&quot;bloom-intensity&quot;&gt;泛光强度: 0.5&lt;/label&gt;
+        &lt;input type=&quot;range&quot; id=&quot;bloom-intensity&quot; min=&quot;0&quot; max=&quot;1&quot; step=&quot;0.1&quot; value=&quot;0.5&quot;&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;control-group&quot;&gt;
+        &lt;button id=&quot;reset-view&quot;&gt;重置视角&lt;/button&gt;
+        &lt;button id=&quot;toggle-rotation&quot;&gt;暂停旋转&lt;/button&gt;
+        &lt;button id=&quot;fullscreen&quot;&gt;全屏模式&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;info&quot;&gt;
+    &lt;h3&gt;3D粒子交互系统&lt;/h3&gt;
+    &lt;p&gt;金色粒子云，支持鼠标控制&lt;/p&gt;
+    &lt;ul&gt;
+        &lt;li&gt;旋转：鼠标左键拖拽&lt;/li&gt;
+        &lt;li&gt;缩放：鼠标滚轮&lt;/li&gt;
+        &lt;li&gt;平移：鼠标右键拖拽&lt;/li&gt;
+        &lt;li&gt;重置：点击&quot;重置视角&quot;&lt;/li&gt;
+        &lt;li&gt;全屏：点击&quot;全屏模式&quot;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;loading&quot;&gt;
+    &lt;div class=&quot;spinner&quot;&gt;&lt;/div&gt;
+    &lt;p&gt;正在加载3D粒子系统...&lt;/p&gt;
+    &lt;p style=&quot;font-size: 12px; color: #888; margin-top: 10px;&quot;&gt;首次加载可能需要一些时间&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;!-- 引入Three.js --&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js&quot;&gt;&lt;/script&gt;
+
+&lt;script&gt;
+    // 粒子系统类
+    class GoldenParticleSystem &#123;
+        constructor() &#123;
+            this.scene = null;
+            this.camera = null;
+            this.renderer = null;
+            this.particles = null;
+            this.particleCount = 50000;
+            this.rotationSpeed = 0.001;
+            this.isRotating = true;
+            this.clock = new THREE.Clock();
             
-          </div>
-          <ul class="card-category-list" id="aside-cat-list">
-            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%8E%A2%E7%B4%A2/"><span class="card-category-list-name">技术探索</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">技术笔记</span><span class="card-category-list-count">2</span></a></li>
-          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/" style="font-size: 1.1em; color: #999">大语言模型</a> <a href="/tags/AI/" style="font-size: 1.1em; color: #999">AI</a> <a href="/tags/%E7%BC%96%E7%A0%81%E5%AE%9E%E7%8E%B0/" style="font-size: 1.1em; color: #999">编码实现</a> <a href="/tags/%E9%A2%98%E6%84%8F%E7%90%86%E8%A7%A3/" style="font-size: 1.1em; color: #999">题意理解</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 1.5em; color: #99a9bf">算法</a> <a href="/tags/%E6%96%AF%E5%9D%A6%E7%A6%8FCS336/" style="font-size: 1.1em; color: #999">斯坦福CS336</a> <a href="/tags/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86/" style="font-size: 1.1em; color: #999">自然语言处理</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 1.5em; color: #99a9bf">机器学习</a> <a href="/tags/%E6%A8%A1%E5%BC%8F%E8%AF%86%E5%88%AB/" style="font-size: 1.1em; color: #999">模式识别</a> <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" style="font-size: 1.1em; color: #999">人工智能</a> <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" style="font-size: 1.1em; color: #999">深度学习</a> <a href="/tags/%E6%95%B0%E5%AD%A6/" style="font-size: 1.1em; color: #999">数学</a></div></div><div class="card-widget card-archives">
-    <div class="item-headline">
-      <i class="fas fa-archive"></i>
-      <span>Archives</span>
-      
-    </div>
-  
-    <ul class="card-archive-list">
-      
-        <li class="card-archive-list-item">
-          <a class="card-archive-list-link" href="/archives/2026/03/">
-            <span class="card-archive-list-date">
-              March 2026
-            </span>
-            <span class="card-archive-list-count">1</span>
-          </a>
-        </li>
-      
-        <li class="card-archive-list-item">
-          <a class="card-archive-list-link" href="/archives/2026/02/">
-            <span class="card-archive-list-date">
-              February 2026
-            </span>
-            <span class="card-archive-list-count">3</span>
-          </a>
-        </li>
-      
-        <li class="card-archive-list-item">
-          <a class="card-archive-list-link" href="/archives/2024/02/">
-            <span class="card-archive-list-date">
-              February 2024
-            </span>
-            <span class="card-archive-list-count">1</span>
-          </a>
-        </li>
-      
-    </ul>
-  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Website Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article Count :</div><div class="item-count">5</div></div><div class="webinfo-item"><div class="item-name">Unique Visitors :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Page Views :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Update :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-03-28T12:36:32.492Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2026 By point_xuan</span><span class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"><script>(() => {
-  const loadMathjax = () => {
-    if (!window.MathJax) {
-      window.MathJax = {
-        loader: {
-          load: [
-            // Four font extension packages (optional)
-            //- '[tex]/bbm',
-            //- '[tex]/bboldx',
-            //- '[tex]/dsfont',
-            '[tex]/mhchem'
-          ],
-          paths: {
-            'mathjax-newcm': '[mathjax]/../@mathjax/mathjax-newcm-font',
-
-            //- // Four font extension packages (optional)
-            //- 'mathjax-bbm-extension': '[mathjax]/../@mathjax/mathjax-bbm-font-extension',
-            //- 'mathjax-bboldx-extension': '[mathjax]/../@mathjax/mathjax-bboldx-font-extension',
-            //- 'mathjax-dsfont-extension': '[mathjax]/../@mathjax/mathjax-dsfont-font-extension',
-            'mathjax-mhchem-extension': '[mathjax]/../@mathjax/mathjax-mhchem-font-extension'
-          }
-        },
-        output: {
-          font: 'mathjax-newcm',
-        },
-        tex: {
-          inlineMath: [['$', '$'], ['\\(', '\\)']],
-          tags: 'none',
-          packages: {
-            '[+]': [
-              'mhchem'
-            ]
-          }
-        },
-        chtml: {
-          scale: 1.1
-        },
-        options: {
-          enableMenu: true,
-          menuOptions: {
-            settings: {
-              enrich: false  // Turn off Braille and voice narration text automatic generation
-            }
-          },
-          renderActions: {
-            findScript: [10, doc => {
-              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
-                const display = !!node.type.match(/; *mode=display/)
-                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
-                const text = document.createTextNode('')
-                node.parentNode.replaceChild(text, node)
-                math.start = {node: text, delim: '', n: 0}
-                math.end = {node: text, delim: '', n: 0}
-                doc.math.push(math)
-              }
-            }, '']
-          }
-        }
-      }
-
-      const script = document.createElement('script')
-      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@4.1.0/tex-mml-chtml.min.js'
-      script.id = 'MathJax-script'
-      script.async = true
-      document.head.appendChild(script)
-    } else {
-      MathJax.startup.document.state(0)
-      MathJax.texReset()
-      MathJax.typesetPromise()
-    }
-  }
-
-  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
-  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
-})()</script></div><script src="/js/particle-simple.js"></script><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script id="canvas_nest" defer="defer" color="198,120,223" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/canvas-nest.min.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/click-heart.min.js" async="async" mobile="false"></script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/click-show-text.min.js" data-mobile="false" data-text="机器学习,神经网络,模式识别" data-fontsize="15px" data-random="true" async="async"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
+            this.mouse = new THREE.Vector2();
+            this.raycaster = new THREE.Raycaster();
+            this.isDragging = false;
+            this.previousMousePosition = &#123; x: 0, y: 0 &#125;;
+            
+            this.cameraDistance = 50;
+            this.cameraRotation = &#123; x: 0, y: 0 &#125;;
+            
+            this.init();
+        &#125;
+        
+        init() &#123;
+            try &#123;
+                // 场景
+                this.scene = new THREE.Scene();
+                this.scene.background = new THREE.Color(0x000000);
+                
+                // 相机
+                this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+                this.camera.position.z = this.cameraDistance;
+                
+                // 渲染器
+                this.renderer = new THREE.WebGLRenderer(&#123; antialias: true, alpha: true &#125;);
+                this.renderer.setSize(window.innerWidth, window.innerHeight);
+                this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+                document.getElementById(&#39;canvas-container&#39;).appendChild(this.renderer.domElement);
+                
+                // 灯光
+                const ambientLight = new THREE.AmbientLight(0x404040, 0.5);
+                this.scene.add(ambientLight);
+                
+                const pointLight1 = new THREE.PointLight(0xFFD700, 1, 100);
+                pointLight1.position.set(50, 50, 50);
+                this.scene.add(pointLight1);
+                
+                const pointLight2 = new THREE.PointLight(0xFF8C00, 1, 100);
+                pointLight2.position.set(-50, -50, 50);
+                this.scene.add(pointLight2);
+                
+                // 创建粒子
+                this.createParticles();
+                
+                // 事件监听
+                this.setupEventListeners();
+                
+                // 控制面板
+                this.setupControls();
+                
+                // 隐藏加载状态
+                this.hideLoading();
+                
+                // 开始动画
+                this.animate();
+                
+            &#125; catch (error) &#123;
+                console.error(&#39;初始化失败:&#39;, error);
+                this.showError(&#39;初始化失败: &#39; + error.message);
+            &#125;
+        &#125;
+        
+        createParticles() &#123;
+            const geometry = new THREE.BufferGeometry();
+            const positions = new Float32Array(this.particleCount * 3);
+            const colors = new Float32Array(this.particleCount * 3);
+            
+            for (let i = 0; i &lt; this.particleCount; i++) &#123;
+                const i3 = i * 3;
+                
+                // 球形分布
+                const radius = 20 + Math.random() * 30;
+                const theta = Math.random() * Math.PI * 2;
+                const phi = Math.acos(2 * Math.random() - 1);
+                
+                positions[i3] = radius * Math.sin(phi) * Math.cos(theta);
+                positions[i3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
+                positions[i3 + 2] = radius * Math.cos(phi);
+                
+                // 金色到橙色渐变
+                const hue = 0.1 + Math.random() * 0.1; // 金色到橙色
+                const saturation = 0.8;
+                const lightness = 0.5 + Math.random() * 0.3;
+                
+                const color = new THREE.Color();
+                color.setHSL(hue, saturation, lightness);
+                colors[i3] = color.r;
+                colors[i3 + 1] = color.g;
+                colors[i3 + 2] = color.b;
+            &#125;
+            
+            geometry.setAttribute(&#39;position&#39;, new THREE.BufferAttribute(positions, 3));
+            geometry.setAttribute(&#39;color&#39;, new THREE.BufferAttribute(colors, 3));
+            
+            // 创建粒子纹理
+            const canvas = document.createElement(&#39;canvas&#39;);
+            canvas.width = 64;
+            canvas.height = 64;
+            const ctx = canvas.getContext(&#39;2d&#39;);
+            
+            const gradient = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
+            gradient.addColorStop(0, &#39;rgba(255, 255, 255, 1)&#39;);
+            gradient.addColorStop(0.3, &#39;rgba(255, 200, 100, 0.8)&#39;);
+            gradient.addColorStop(0.7, &#39;rgba(255, 150, 50, 0.3)&#39;);
+            gradient.addColorStop(1, &#39;rgba(255, 100, 0, 0)&#39;);
+            
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 64, 64);
+            
+            const texture = new THREE.CanvasTexture(canvas);
+            
+            const material = new THREE.PointsMaterial(&#123;
+                size: 2,
+                map: texture,
+                blending: THREE.AdditiveBlending,
+                depthWrite: false,
+                transparent: true,
+                vertexColors: true
+            &#125;);
+            
+            this.particles = new THREE.Points(geometry, material);
+            this.scene.add(this.particles);
+        &#125;
+        
+        setupEventListeners() &#123;
+            // 鼠标控制
+            this.renderer.domElement.addEventListener(&#39;mousedown&#39;, (e) =&gt; this.onMouseDown(e));
+            this.renderer.domElement.addEventListener(&#39;mousemove&#39;, (e) =&gt; this.onMouseMove(e));
+            this.renderer.domElement.addEventListener(&#39;mouseup&#39;, () =&gt; this.onMouseUp());
+            this.renderer.domElement.addEventListener(&#39;wheel&#39;, (e) =&gt; this.onMouseWheel(e));
+            this.renderer.domElement.addEventListener(&#39;contextmenu&#39;, (e) =&gt; e.preventDefault());
+            
+            // 触摸控制
+            this.renderer.domElement.addEventListener(&#39;touchstart&#39;, (e) =&gt; this.onTouchStart(e));
+            this.renderer.domElement.addEventListener(&#39;touchmove&#39;, (e) =&gt; this.onTouchMove(e));
+            this.renderer.domElement.addEventListener(&#39;touchend&#39;, () =&gt; this.onTouchEnd());
+            
+            // 窗口大小改变
+            window.addEventListener(&#39;resize&#39;, () =&gt; this.onWindowResize());
+            
+            // 键盘控制
+            window.addEventListener(&#39;keydown&#39;, (e) =&gt; this.onKeyDown(e));
+        &#125;
+        
+        setupControls() &#123;
+            // 粒子数量
+            document.getElementById(&#39;particle-count&#39;).addEventListener(&#39;input&#39;, (e) =&gt; &#123;
+                this.particleCount = parseInt(e.target.value);
+                e.target.previousElementSibling.textContent = `粒子数量: $&#123;this.particleCount&#125;`;
+                this.recreateParticles();
+            &#125;);
+            
+            // 粒子大小
+            document.getElementById(&#39;particle-size&#39;).addEventListener(&#39;input&#39;, (e) =&gt; &#123;
+                const size = parseFloat(e.target.value);
+                e.target.previousElementSibling.textContent = `粒子大小: $&#123;size.toFixed(1)&#125;`;
+                if (this.particles) &#123;
+                    this.particles.material.size = size;
+                &#125;
+            &#125;);
+            
+            // 旋转速度
+            document.getElementById(&#39;rotation-speed&#39;).addEventListener(&#39;input&#39;, (e) =&gt; &#123;
+                this.rotationSpeed = parseFloat(e.target.value) * 0.002;
+                e.target.previousElementSibling.textContent = `旋转速度: $&#123;parseFloat(e.target.value).toFixed(1)&#125;`;
+            &#125;);
+            
+            // 泛光强度
+            document.getElementById(&#39;bloom-intensity&#39;).addEventListener(&#39;input&#39;, (e) =&gt; &#123;
+                const intensity = parseFloat(e.target.value);
+                e.target.previousElementSibling.textContent = `泛光强度: $&#123;intensity.toFixed(1)&#125;`;
+                // 这里可以添加泛光效果的实现
+            &#125;);
+            
+            // 重置视角
+            document.getElementById(&#39;reset-view&#39;).addEventListener(&#39;click&#39;, () =&gt; &#123;
+                this.cameraDistance = 50;
+                this.cameraRotation = &#123; x: 0, y: 0 &#125;;
+                this.updateCameraPosition();
+            &#125;);
+            
+            // 暂停/继续旋转
+            document.getElementById(&#39;toggle-rotation&#39;).addEventListener(&#39;click&#39;, (e) =&gt; &#123;
+                this.isRotating = !this.isRotating;
+                e.target.textContent = this.isRotating ? &#39;暂停旋转&#39; : &#39;继续旋转&#39;;
+            &#125;);
+            
+            // 全屏
+            document.getElementById(&#39;fullscreen&#39;).addEventListener(&#39;click&#39;, () =&gt; &#123;
+                if (!document.fullscreenElement) &#123;
+                    document.documentElement.requestFullscreen();
+                &#125; else &#123;
+                    document.exitFullscreen();
+                &#125;
+            &#125;);
+        &#125;
+        
+        recreateParticles() &#123;
+            if (this.particles) &#123;
+                this.scene.remove(this.particles);
+                this.particles.geometry.dispose();
+                this.particles.material.dispose();
+            &#125;
+            this.createParticles();
+        &#125;
+        
+        onMouseDown(event) &#123;
+            if (event.button === 0) &#123; // 左键
+                this.isDragging = true;
+                this.previousMousePosition = &#123; x: event.clientX, y: event.clientY &#125;;
+            &#125;
+        &#125;
+        
+        onMouseMove(event) &#123;
+            if (!this.isDragging) return;
+            
+            const deltaX = event.clientX - this.previousMousePosition.x;
+            const deltaY = event.clientY - this.previousMousePosition.y;
+            
+            this.cameraRotation.y += deltaX * 0.005;
+            this.cameraRotation.x += deltaY * 0.005;
+            
+            this.updateCameraPosition();
+            
+            this.previousMousePosition = &#123; x: event.clientX, y: event.clientY &#125;;
+        &#125;
+        
+        onMouseUp() &#123;
+            this.isDragging = false;
+        &#125;
+        
+        onMouseWheel(event) &#123;
+            event.preventDefault();
+            this.cameraDistance += event.deltaY * 0.05;
+            this.cameraDistance = Math.max(10, Math.min(200, this.cameraDistance));
+            this.updateCameraPosition();
+        &#125;
+        
+        onTouchStart(event) &#123;
+            if (event.touches.length === 1) &#123;
+                this.isDragging = true;
+                this.previousMousePosition = &#123; 
+                    x: event.touches[0].clientX, 
+                    y: event.touches[0].clientY 
+                &#125;;
+            &#125;
+        &#125;
+        
+        onTouchMove(event) &#123;
+            if (!this.isDragging || event.touches.length !== 1) return;
+            event.preventDefault();
+            
+            const deltaX = event.touches[0].clientX - this.previousMousePosition.x;
+            const deltaY = event.touches[0].clientY - this.previousMousePosition.y;
+            
+            this.cameraRotation.y += deltaX * 0.005;
+            this.cameraRotation.x += deltaY * 0.005;
+            
+            this.updateCameraPosition();
+            
+            this.previousMousePosition = &#123; 
+                x: event.touches[0].clientX, 
+                y: event.touches[0].clientY 
+            &#125;;
+        &#125;
+        
+        onTouchEnd() &#123;
+            this.isDragging = false;
+        &#125;
+        
+        onKeyDown(event) &#123;
+            switch(event.key) &#123;
+                case &#39; &#39;:
+                    this.cameraDistance = 50;
+                    this.cameraRotation = &#123; x: 0, y: 0 &#125;;
+                    this.updateCameraPosition();
+                    break;
+                case &#39;r&#39;:
+                case &#39;R&#39;:
+                    this.isRotating = !this.isRotating;
+                    document.getElementById(&#39;toggle-rotation&#39;).textContent = 
+                        this.isRotating ? &#39;暂停旋转&#39; : &#39;继续旋转&#39;;
+                    break;
+                case &#39;f&#39;:
+                case &#39;F&#39;:
+                    if (!document.fullscreenElement) &#123;
+                        document.documentElement.requestFullscreen();
+                    &#125; else &#123;
+                        document.exitFullscreen();
+                    &#125;
+                    break;
+            &#125;
+        &#125;
+        
+        updateCameraPosition() &#123;
+            this.camera.position.x = this.cameraDistance * Math.sin(this.cameraRotation.y) * Math.cos(this.cameraRotation.x);
+            this.camera.position.y = this.cameraDistance * Math.sin(this.cameraRotation.x);
+            this.camera.position.z = this.cameraDistance * Math.cos(this.cameraRotation.y) * Math.cos(this.cameraRotation.x);
+            this.camera.lookAt(0, 0, 0);
+        &#125;
+        
+        onWindowResize() &#123;
+            this.camera.aspect = window.innerWidth / window.innerHeight;
+            this.camera.updateProjectionMatrix();
+            this.renderer.setSize(window.innerWidth, window.innerHeight);
+        &#125;
+        
+        hideLoading() &#123;
+            setTimeout(() =&gt; &#123;
+                const loading = document.getElementById(&#39;loading&#39;);
+                if (loading) &#123;
+                    loading.style.transition = &#39;opacity 1s ease&#39;;
+                    loading.style.opacity = &#39;0&#39;;
+                    setTimeout(() =&gt; &#123;
+                        loading.style.display = &#39;none&#39;;
+                    &#125;, 1000);
+                &#125;
+            &#125;, 1000);
+        &#125;
+        
+        showError(message) &#123;
+            const loading = document.getElementById(&#39;loading&#39;);
+            if (loading) &#123;
+                loading.innerHTML = `
+                    &lt;div style=&quot;color: #ff6b6b; font-size: 24px; margin-bottom: 20px;&quot;&gt;⚠️&lt;/div&gt;
+                    &lt;p style=&quot;color: #ff6b6b; font-size: 16px;&quot;&gt;$&#123;message&#125;&lt;/p&gt;
+                    &lt;button onclick=&quot;location.reload()&quot; style=&quot;margin-top: 20px; padding: 10px 30px; background: rgba(255,100,100,0.2); border: 1px solid rgba(255,100,100,0.5); color: white; border-radius: 8px; cursor: pointer; font-size: 16px;&quot;&gt;
+                        重新加载
+                    &lt;/button&gt;
+                `;
+            &#125;
+        &#125;
+        
+        animate() &#123;
+            requestAnimationFrame(() =&gt; this.animate());
+            
+            if (this.particles &amp;&amp; this.isRotating) &#123;
+                this.particles.rotation.y += this.rotationSpeed;
+                this.particles.rotation.x += this.rotationSpeed * 0.5;
+            &#125;
+            
+            this.renderer.render(this.scene, this.camera);
+        &#125;
+    &#125;
+    
+    // 初始化
+    window.addEventListener(&#39;load&#39;, () =&gt; &#123;
+        // 检查Three.js是否加载
+        if (typeof THREE === &#39;undefined&#39;) &#123;
+            document.getElementById(&#39;loading&#39;).innerHTML = `
+                &lt;div style=&quot;color: #ff6b6b; font-size: 24px; margin-bottom: 20px;&quot;&gt;⚠️&lt;/div&gt;
+                &lt;p style=&quot;color: #ff6b6b; font-size: 16px;&quot;&gt;无法加载Three.js库&lt;/p&gt;
+                &lt;p style=&quot;color: #888; font-size: 12px; margin-top: 10px;&quot;&gt;请检查网络连接&lt;/p&gt;
+                &lt;button onclick=&quot;location.reload()&quot; style=&quot;margin-top: 20px; padding: 10px 30px; background: rgba(255,100,100,0.2); border: 1px solid rgba(255,100,100,0.5); color: white; border-radius: 8px; cursor: pointer; font-size: 16px;&quot;&gt;
+                    重新加载
+                &lt;/button&gt;
+            `;
+            return;
+        &#125;
+        
+        // 初始化粒子系统
+        try &#123;
+            window.particleSystem = new GoldenParticleSystem();
+            console.log(&#39;3D粒子系统初始化成功&#39;);
+        &#125; catch (error) &#123;
+            console.error(&#39;初始化失败:&#39;, error);
+            document.getElementById(&#39;loading&#39;).innerHTML = `
+                &lt;div style=&quot;color: #ff6b6b; font-size: 24px; margin-bottom: 20px;&quot;&gt;⚠️&lt;/div&gt;
+                &lt;p style=&quot;color: #ff6b6b; font-size: 16px;&quot;&gt;初始化失败: $&#123;error.message&#125;&lt;/p&gt;
+                &lt;button onclick=&quot;location.reload()&quot; style=&quot;margin-top: 20px; padding: 10px 30px; background: rgba(255,100,100,0.2); border: 1px solid rgba(255,100,100,0.5); color: white; border-radius: 8px; cursor: pointer; font-size: 16px;&quot;&gt;
+                    重新加载
+                &lt;/button&gt;
+            `;
+        &#125;
+    &#125;);
+&lt;/script&gt;
+</code></pre>
+</body>
+</html>
