@@ -281,6 +281,45 @@
             color: rgba(255, 220, 180, 0.7);
             text-transform: uppercase;
         }
+    /* Gesture recognition */
+    #gesture-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 200px;
+      height: 150px;
+      z-index: 1001;
+      border: 2px solid rgba(255, 200, 100, 0.5);
+      border-radius: 10px;
+      transform: scaleX(-1);
+    }
+    
+    #gesture-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 200px;
+      height: 150px;
+      z-index: 1002;
+      pointer-events: none;
+      transform: scaleX(-1);
+    }
+    
+    #toggle-gesture {
+      background: linear-gradient(135deg, rgba(100, 200, 255, 0.3), rgba(50, 150, 255, 0.2));
+      border: 1px solid rgba(100, 200, 255, 0.4);
+      color: rgba(200, 230, 255, 0.9);
+    }
+    
+    #toggle-gesture:hover {
+      background: linear-gradient(135deg, rgba(100, 200, 255, 0.5), rgba(50, 150, 255, 0.4));
+    }
+    
+    #toggle-gesture.active {
+      background: linear-gradient(135deg, rgba(255, 100, 100, 0.3), rgba(255, 50, 50, 0.2));
+      border: 1px solid rgba(255, 100, 100, 0.4);
+      color: rgba(255, 200, 200, 0.9);
+    }
     </style>
 </head>
 <body>
@@ -300,6 +339,10 @@
     <div id="title">3D粒子交互系统</div>
     
     <div id="canvas-container"></div>
+    
+    <!-- Gesture recognition elements -->
+    <video id="gesture-video" style="display:none;"></video>
+    <canvas id="gesture-canvas" style="display:none;"></canvas>
     
     <div id="sidebar">
         <div class="sidebar-card author-info">
@@ -349,6 +392,7 @@
             <button id="reset-view">重置视角</button>
             <button id="toggle-rotation">暂停旋转</button>
             <button id="fullscreen">全屏模式</button>
+            <button id="toggle-gesture">手势感应</button>
         </div>
     </div>
     
@@ -377,6 +421,204 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     
     <script>
+        // 手势控制器类
+        class GestureController {
+            constructor(particleSystem) {
+                this.particleSystem = particleSystem;
+                this.video = document.getElementById('gesture-video');
+                this.canvas = document.getElementById('gesture-canvas');
+                this.ctx = this.canvas.getContext('2d');
+                this.hands = null;
+                this.camera = null;
+                this.isRunning = false;
+                this.handPositions = []; // 存储手部关键点
+            }
+            
+            async init() {
+                try {
+                    // 检查MediaPipe是否加载
+                    if (typeof Hands === 'undefined') {
+                        throw new Error('MediaPipe Hands库未加载');
+                    }
+                    
+                    // 初始化手部追踪
+                    this.hands = new Hands({
+                        locateFile: (file) => {
+                            return `https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.4.1675469240/${file}`;
+                        }
+                    });
+                    
+                    this.hands.setOptions({
+                        maxNumHands: 2,
+                        minDetectionConfidence: 0.5,
+                        minTrackingConfidence: 0.5
+                    });
+                    
+                    this.hands.onResults((results) => this.onResults(results));
+                    
+                    // 初始化摄像头
+                    this.camera = new Camera(this.video, {
+                        onFrame: async () => {
+                            if (this.isRunning) {
+                                await this.hands.send({ image: this.video });
+                            }
+                        },
+                        width: 640,
+                        height: 480
+                    });
+                    
+                    console.log('手势控制器初始化成功');
+                    return true;
+                } catch (error) {
+                    console.error('手势控制器初始化失败:', error);
+                    this.showError(error.message);
+                    return false;
+                }
+            }
+            
+            async start() {
+                if (this.isRunning) return;
+                
+                try {
+                    // 显示视频和画布
+                    this.video.style.display = 'block';
+                    this.canvas.style.display = 'block';
+                    
+                    // 调整画布大小
+                    this.canvas.width = 200;
+                    this.canvas.height = 150;
+                    
+                    // 启动摄像头
+                    await this.camera.start();
+                    this.isRunning = true;
+                    
+                    // 更新按钮状态
+                    const button = document.getElementById('toggle-gesture');
+                    if (button) {
+                        button.textContent = '关闭手势';
+                        button.classList.add('active');
+                    }
+                    
+                    console.log('手势感应已启动');
+                } catch (error) {
+                    console.error('启动手势感应失败:', error);
+                    this.showError('无法访问摄像头: ' + error.message);
+                }
+            }
+            
+            stop() {
+                if (!this.isRunning) return;
+                
+                this.isRunning = false;
+                
+                // 停止摄像头
+                if (this.camera) {
+                    this.camera.stop();
+                }
+                
+                // 隐藏视频和画布
+                this.video.style.display = 'none';
+                this.canvas.style.display = 'none';
+                
+                // 清除画布
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                
+                // 更新按钮状态
+                const button = document.getElementById('toggle-gesture');
+                if (button) {
+                    button.textContent = '手势感应';
+                    button.classList.remove('active');
+                }
+                
+                console.log('手势感应已关闭');
+            }
+            
+            toggle() {
+                if (this.isRunning) {
+                    this.stop();
+                } else {
+                    this.start();
+                }
+            }
+            
+            onResults(results) {
+                // 清除画布
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                
+                // 绘制手部关键点
+                if (results.multiHandLandmarks) {
+                    for (const landmarks of results.multiHandLandmarks) {
+                        // 绘制连接线
+                        drawConnectors(this.ctx, landmarks, HAND_CONNECTIONS, {
+                            color: '#00FF00',
+                            lineWidth: 2
+                        });
+                        
+                        // 绘制关键点
+                        drawLandmarks(this.ctx, landmarks, {
+                            color: '#FF0000',
+                            lineWidth: 1,
+                            radius: 3
+                        });
+                        
+                        // 存储手部位置用于控制粒子
+                        this.handPositions.push(landmarks);
+                    }
+                }
+                
+                // 使用手部位置控制粒子
+                this.controlParticles();
+            }
+            
+            controlParticles() {
+                if (!this.particleSystem || !this.handPositions.length) return;
+                
+                // 计算手部平均位置
+                let avgX = 0, avgY = 0, avgZ = 0;
+                let count = 0;
+                
+                for (const hand of this.handPositions) {
+                    for (const landmark of hand) {
+                        avgX += landmark.x;
+                        avgY += landmark.y;
+                        avgZ += landmark.z;
+                        count++;
+                    }
+                }
+                
+                if (count > 0) {
+                    avgX /= count;
+                    avgY /= count;
+                    avgZ /= count;
+                    
+                    // 将手部位置映射到粒子旋转
+                    // 手部X坐标控制左右旋转，Y坐标控制上下旋转
+                    this.particleSystem.cameraRotation.y = (avgX - 0.5) * Math.PI * 2;
+                    this.particleSystem.cameraRotation.x = (avgY - 0.5) * Math.PI;
+                    
+                    // 更新相机位置
+                    this.particleSystem.updateCameraPosition();
+                    
+                    // 清空手部位置数组（用于下一帧）
+                    this.handPositions = [];
+                }
+            }
+            
+            showError(message) {
+                const loading = document.getElementById('loading');
+                if (loading) {
+                    loading.innerHTML = `
+                        <div style="color: #ff6b6b; font-size: 24px; margin-bottom: 20px;">⚠️</div>
+                        <p style="color: #ff6b6b; font-size: 16px;">手势感应错误: ${message}</p>
+                        <p style="color: #888; font-size: 12px; margin-top: 10px;">请确保允许摄像头权限</p>
+                        <button onclick="location.reload()" style="margin-top: 20px; padding: 10px 30px; background: rgba(255,100,100,0.2); border: 1px solid rgba(255,100,100,0.5); color: white; border-radius: 8px; cursor: pointer; font-size: 16px;">
+                            重新加载
+                        </button>
+                    `;
+                }
+            }
+        }
+        
         // 粒子系统类
         class GoldenParticleSystem {
             constructor() {
@@ -396,6 +638,8 @@
                 
                 this.cameraDistance = 50;
                 this.cameraRotation = { x: 0, y: 0 };
+                
+                this.gestureController = null;
                 
                 this.init();
             }
@@ -436,6 +680,9 @@
                     
                     // 控制面板
                     this.setupControls();
+                    
+                    // 初始化手势控制器
+                    this.gestureController = new GestureController(this);
                     
                     // 隐藏加载状态
                     this.hideLoading();
@@ -581,6 +828,23 @@
                         document.documentElement.requestFullscreen();
                     } else {
                         document.exitFullscreen();
+                    }
+                });
+                
+                // 手势感应
+                document.getElementById('toggle-gesture').addEventListener('click', async () => {
+                    if (!this.gestureController) {
+                        this.gestureController = new GestureController(this);
+                    }
+                    
+                    if (!this.gestureController.isRunning) {
+                        // 初始化手势控制器
+                        const success = await this.gestureController.init();
+                        if (success) {
+                            await this.gestureController.start();
+                        }
+                    } else {
+                        this.gestureController.stop();
                     }
                 });
             }
@@ -763,5 +1027,11 @@
             }
         });
     </script>
+    
+    <!-- MediaPipe Hands for gesture recognition -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.4.1675469240/hands.js" crossorigin="anonymous"></script>
 </body>
 </html>
